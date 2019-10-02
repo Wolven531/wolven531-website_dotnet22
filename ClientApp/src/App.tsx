@@ -6,8 +6,6 @@ import { FetchData } from './components/FetchData'
 import { Counter } from './components/Counter'
 
 class App extends Component {
-    //static displayName = App.name;
-
     public render() {
         return (
             <Layout>
