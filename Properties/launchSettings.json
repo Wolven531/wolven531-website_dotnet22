@@ -1,20 +1,5 @@
 ﻿{
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:41660",
-      "sslPort": 44337
-    }
-  },
   "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
     "wolven531_website_dotnet22": {
       "commandName": "Project",
       "launchBrowser": true,
