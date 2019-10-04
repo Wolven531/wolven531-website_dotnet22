@@ -7,7 +7,8 @@
     <IsPackable>false</IsPackable>
     <SpaRoot>ClientApp\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
-    <RootNamespace>wolven531_website_dotnet22</RootNamespace>
+    <RootNamespace>wolven531WebsiteDotnet22</RootNamespace>
+    <AssemblyName>wolven531WebsiteDotnet22</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,7 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wolven531-website_dotnet22.sln" />
+    <None Include="wolven531WebsiteDotnet22.sln" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
