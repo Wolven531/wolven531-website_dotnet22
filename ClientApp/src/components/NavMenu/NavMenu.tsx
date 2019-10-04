@@ -10,7 +10,7 @@ import {
 	NavLink
 } from 'reactstrap'
 
-import './NavMenu.css'
+import './NavMenu.scss'
 
 class NavMenu extends Component<{}, { collapsed: boolean }> {
 	constructor(props) {
