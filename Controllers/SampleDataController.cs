@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace wolven531_website_dotnet22.Controllers
+namespace wolven531WebsiteDotnet22.Controllers
 {
     [Route("api/[controller]")]
     public class SampleDataController : Controller

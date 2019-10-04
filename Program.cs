@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace wolven531_website_dotnet22
+namespace wolven531WebsiteDotnet22
 {
     public class Program
     {

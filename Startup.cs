@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace wolven531_website_dotnet22
+namespace wolven531WebsiteDotnet22
 {
     public class Startup
     {
