@@ -24,6 +24,10 @@ namespace wolven531WebsiteDotnet22
         {
             services.TryAddSingleton<IInfoService, InfoService>();
 
+            // TODO: this does NOT allow API web access after publish...
+            //services.AddCors();
+            //services.AddCors(builder => builder.AllowAnyHeader());
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddWebApiConventions();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // In production, the React files will be served from this directory
@@ -51,11 +55,15 @@ namespace wolven531WebsiteDotnet22
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
+            // TODO: this does NOT allow API web access after publish...
+            //app.UseCors();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
+                //routes.MapWebApiRoute("DefaultApi", "api/{controller}/{id?}");
             });
 
             app.UseSpa(spa =>
