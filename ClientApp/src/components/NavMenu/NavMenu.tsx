@@ -27,7 +27,7 @@ class NavMenu extends Component<{}, { collapsed: boolean }> {
 			<header>
 				<Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
 					<Container>
-						<NavbarBrand tag={Link} to="/">wolven531_website_dotnet22</NavbarBrand>
+						<NavbarBrand tag={Link} to="/">Wolven531 Web</NavbarBrand>
 						<NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
 						<Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
 							<ul className="navbar-nav flex-grow">
