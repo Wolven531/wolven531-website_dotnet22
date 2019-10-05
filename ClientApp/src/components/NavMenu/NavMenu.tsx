@@ -40,6 +40,9 @@ class NavMenu extends Component<{}, { collapsed: boolean }> {
 								<NavItem>
 									<NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
 								</NavItem>
+								<NavItem>
+									<NavLink tag={Link} className="text-dark" to="/info">Server Info</NavLink>
+								</NavItem>
 							</ul>
 						</Collapse>
 					</Container>
