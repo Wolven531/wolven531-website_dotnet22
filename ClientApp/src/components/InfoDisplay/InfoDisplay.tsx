@@ -1,9 +1,15 @@
 ﻿import React, { Component } from 'react'
 
-class InfoDisplay extends Component<{}, { data: any, loading: boolean }> {
+class ServerInfo {
+	constructor(
+		public healthy: boolean,
+		public startupTime: string) { }
+}
+
+class InfoDisplay extends Component<{}, { data?: ServerInfo, loading: boolean }> {
 	constructor(props) {
 		super(props)
-		this.state = { data: null, loading: true }
+		this.state = { loading: true }
 
 		fetch('api/health')
 			.then(response => response.json())
@@ -16,10 +22,13 @@ class InfoDisplay extends Component<{}, { data: any, loading: boolean }> {
 		return (
 			<article>
 				<h2>Server Info</h2>
-				{this.state.loading
+				{this.state.loading || !this.state.data
 					? <p>Loading...</p>
 					: <section>
-						<p>{(JSON.stringify(this.state.data, null, 4))}</p>
+						<ul>
+							<li>Healthy: {String(this.state.data.healthy)}</li>
+							<li>Startup time: {this.state.data.startupTime}</li>
+						</ul>
 					</section>
 				}
 			</article>
