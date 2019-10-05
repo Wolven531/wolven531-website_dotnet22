@@ -1,10 +1,6 @@
 ﻿import React, { Component } from 'react'
 
-class ServerInfo {
-	constructor(
-		public healthy: boolean,
-		public startupTime: string) { }
-}
+import { ServerInfo } from '../../models/ServerInfo'
 
 class InfoDisplay extends Component<{}, { data?: ServerInfo, loading: boolean }> {
 	constructor(props) {
