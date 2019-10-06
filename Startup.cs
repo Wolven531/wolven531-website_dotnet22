@@ -14,11 +14,14 @@ namespace wolven531WebsiteDotnet22
 {
     public class Startup
     {
+        private readonly IInfoService _infoService;
         private readonly ILogger _logger;
 
         public Startup(IConfiguration configuration, ILogger<Startup> logger)
         {
             Configuration = configuration;
+
+            _infoService = new InfoService();
             _logger = logger;
         }
 
@@ -27,7 +30,7 @@ namespace wolven531WebsiteDotnet22
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.TryAddSingleton<IInfoService, InfoService>();
+            services.TryAddSingleton(_infoService);
 
             // TODO: this does NOT allow API web access after publish...
             //services.AddCors();
@@ -69,6 +72,7 @@ namespace wolven531WebsiteDotnet22
                     context.Request.Path.HasValue && context.Request.Path.Value.Equals("/static/js/main.chunk.js", StringComparison.OrdinalIgnoreCase))
                 {
                     _logger.LogDebug("[MIDDLEWARE FOR UNIQUE]\t\t\tMarking UNIQUE visit and calling next...");
+                    _infoService.AddUniquePageHit();
                 }
 
                 await next();// Call the next delegate/middleware in the pipeline
