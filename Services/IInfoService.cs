@@ -8,5 +8,9 @@ namespace wolven531WebsiteDotnet22.Services
     public interface IInfoService
     {
         string GetFormattedStartTime();
+
+        void AddUniquePageHit();
+
+        int GetUniquePageHits();
     }
 }
