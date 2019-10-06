@@ -24,6 +24,7 @@ class InfoDisplay extends Component<{}, { data?: ServerInfo, loading: boolean }>
 						<ul>
 							<li>Healthy: {String(this.state.data.healthy)}</li>
 							<li>Startup time: {this.state.data.startupTime}</li>
+							<li>Unique Visits: {this.state.data.uniquePageHits}</li>
 						</ul>
 					</section>
 				}
