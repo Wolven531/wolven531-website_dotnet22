@@ -24,7 +24,8 @@ namespace wolven531WebsiteDotnet22.Controllers
         {
             return Ok(new JObject {
                 ["healthy"] = true,
-                ["startupTime"] = _infoService.GetFormattedStartTime()
+                ["startupTime"] = _infoService.GetFormattedStartTime(),
+                ["uniquePageHits"] = _infoService.GetUniquePageHits()
             });
         }
     }
