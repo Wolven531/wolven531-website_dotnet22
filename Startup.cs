@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
+using System;
 using wolven531WebsiteDotnet22.Services;
 
 namespace wolven531WebsiteDotnet22
@@ -61,7 +62,17 @@ namespace wolven531WebsiteDotnet22
 
             // TODO: this does NOT allow API web access after publish...
             //app.UseCors();
+            //app.UseMiddleware();
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.Method.Equals("get", StringComparison.OrdinalIgnoreCase) &&
+                    context.Request.Path.HasValue && context.Request.Path.Value.Equals("/static/js/main.chunk.js", StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogDebug("[MIDDLEWARE FOR UNIQUE]\t\t\tMarking UNIQUE visit and calling next...");
+                }
 
+                await next();// Call the next delegate/middleware in the pipeline
+            });
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
