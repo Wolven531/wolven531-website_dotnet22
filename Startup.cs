@@ -60,12 +60,7 @@ namespace wolven531WebsiteDotnet22
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseSpaStaticFiles();
 
-            // TODO: this does NOT allow API web access after publish...
-            //app.UseCors();
-            //app.UseMiddleware();
             app.Use(async (context, next) =>
             {
                 if (context.Request.Method.Equals("get", StringComparison.OrdinalIgnoreCase) &&
@@ -80,6 +75,14 @@ namespace wolven531WebsiteDotnet22
 
                 await next();// Call the next delegate/middleware in the pipeline
             });
+
+            app.UseStaticFiles();
+            app.UseSpaStaticFiles();
+
+            // TODO: this does NOT allow API web access after publish...
+            //app.UseCors();
+            //app.UseMiddleware();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
