@@ -61,20 +61,21 @@ namespace wolven531WebsiteDotnet22
 
             app.UseHttpsRedirection();
 
-            app.Use(async (context, next) =>
-            {
-                if (context.Request.Method.Equals("get", StringComparison.OrdinalIgnoreCase) &&
-                    // TODO: would like to use StartsWithSegments here:
-                    context.Request.Path.HasValue &&
-                    context.Request.Path.Value.Contains("js", StringComparison.OrdinalIgnoreCase) &&
-                    context.Request.Path.Value.Contains("main.", StringComparison.OrdinalIgnoreCase))
-                {
-                    _logger.LogDebug("[MIDDLEWARE FOR UNIQUE]\t\t\tMarking UNIQUE visit and calling next...");
-                    _infoService.AddUniquePageHit();
-                }
+            // unique page hit middleware
+            //app.Use(async (context, next) =>
+            //{
+            //    if (context.Request.Method.Equals("get", StringComparison.OrdinalIgnoreCase) &&
+            //        // TODO: would like to use StartsWithSegments here:
+            //        context.Request.Path.HasValue &&
+            //        context.Request.Path.Value.Contains("js", StringComparison.OrdinalIgnoreCase) &&
+            //        context.Request.Path.Value.Contains("main.", StringComparison.OrdinalIgnoreCase))
+            //    {
+            //        _logger.LogDebug("[MIDDLEWARE FOR UNIQUE]\t\t\tMarking UNIQUE visit and calling next...");
+            //        _infoService.AddUniquePageHit();
+            //    }
 
-                await next();// Call the next delegate/middleware in the pipeline
-            });
+            //    await next();// Call the next delegate/middleware in the pipeline
+            //});
 
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
