@@ -70,7 +70,7 @@ namespace wolven531WebsiteDotnet22
             {
                 if (context.Request.Method.Equals("get", StringComparison.OrdinalIgnoreCase) &&
                     // TODO: would like to use StartsWithSegments here:
-                    context.Request.Path.HasValue && context.Request.Path.Value.StartsWith("/static/js/main", StringComparison.OrdinalIgnoreCase))
+                    context.Request.Path.HasValue && context.Request.Path.Value.Contains("/static/js/main", StringComparison.OrdinalIgnoreCase))
                 {
                     _logger.LogDebug("[MIDDLEWARE FOR UNIQUE]\t\t\tMarking UNIQUE visit and calling next...");
                     _infoService.AddUniquePageHit();
