@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom'
 import {
 	Collapse,
@@ -12,7 +12,7 @@ import {
 
 import './NavMenu.scss'
 
-class NavMenu extends Component<{}, { collapsed: boolean }> {
+class NavMenu extends PureComponent<{}, { collapsed: boolean }> {
 	constructor(props) {
 		super(props)
 

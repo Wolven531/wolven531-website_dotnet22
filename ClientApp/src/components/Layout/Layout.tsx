@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Container } from 'reactstrap'
 
 import { NavMenu } from '../NavMenu/NavMenu'
 
-class Layout extends Component {
+class Layout extends PureComponent {
 	public render() {
 		return (
 			<div>
