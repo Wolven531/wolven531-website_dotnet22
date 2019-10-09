@@ -1,6 +1,6 @@
-import React, { FC, useState } from 'react'
+import React, { FC, memo, useState } from 'react'
 
-const Counter: FC<any> = (props) => {
+const Counter: FC<any> = memo((props) => {
 	const [currentCounter, setCurrentCounter] = useState(0)
 	const incrementCounter = () => setCurrentCounter(staleCounter => staleCounter + 1)
 
@@ -12,7 +12,7 @@ const Counter: FC<any> = (props) => {
 			<button className="btn btn-primary" onClick={incrementCounter}>Increment</button>
 		</div>
 	)
-}
+})
 
 // NOTE: non-hooks version:
 //class Counter extends Component<{}, { currentCount: number }> {
