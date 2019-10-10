@@ -29,7 +29,7 @@ const MoneyControls = () => {
 	const [gatherIncomeLevel, setGatherIncomeLevel] = useState(initGatherIncomeLevel)
 	const [gatherSpeedLevel, setGatherSpeedLevel] = useState(initGatherSpeedLevel)
 	const [gatherTick, setGatherTick] = useState(GATHERER_INITIAL_TICK)
-	const [isShowingModal, setIsShowingModal] = useState(true)
+	const [isShowingModal, setIsShowingModal] = useState(false)
 	const [money, setMoney] = useState(initMoney)
 	const [gatherCount, setGatherCount] = useState(initGatherCount)
 
