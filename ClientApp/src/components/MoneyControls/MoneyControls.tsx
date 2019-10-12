@@ -29,7 +29,7 @@ const MoneyControls = () => {
 	const [gatherIncomeLevel, setGatherIncomeLevel] = useState(initGatherIncomeLevel)
 	const [gatherSpeedLevel, setGatherSpeedLevel] = useState(initGatherSpeedLevel)
 	const [gatherTick, setGatherTick] = useState(GATHERER_INITIAL_TICK)
-	const [isShowingModal, setIsShowingModal] = useState(false)
+	const [isShowingModal, setIsShowingModal] = useState(true)
 	const [money, setMoney] = useState(initMoney)
 	const [gatherCount, setGatherCount] = useState(initGatherCount)
 
@@ -94,7 +94,7 @@ const MoneyControls = () => {
 			{isShowingModal && (
 				<Modal handleModalDialogClose={() => { setIsShowingModal(false) }}>
 					<article>
-						<h1>Welcome to Critter Manager!</h1>
+						<h2>Welcome to Critter Manager!</h2>
 						<button onClick={() => { resetProgress() }}>Reset Progress</button>
 					</article>
 				</Modal>)}
