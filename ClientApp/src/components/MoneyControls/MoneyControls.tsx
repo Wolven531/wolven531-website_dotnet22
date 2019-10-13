@@ -27,6 +27,7 @@ import './MoneyControls.scss'
 
 const MoneyControls = () => {
 	const [assignedToFood, setAssignedToFood] = useState(0)
+	const [assignedToStone, setAssignedToStone] = useState(0)
 	const [assignedToWood, setAssignedToWood] = useState(0)
 	const [gatherIncomeLevel, setGatherIncomeLevel] = useState(initGatherIncomeLevel)
 	const [gatherSpeedLevel, setGatherSpeedLevel] = useState(initGatherSpeedLevel)
@@ -156,7 +157,21 @@ const MoneyControls = () => {
 							setAssignedToWood(staleWood => staleWood + 1)
 						 }}>+</button>
 					</li>
-					<li>Stone</li>
+					<li>Stone
+						<button onClick={() => {
+							if (assignedToStone <= 0) {
+								return
+							}
+							setAssignedToStone(staleStone => staleStone - 1)
+						}}>-</button>
+						<input type="text" readOnly={true} value={assignedToStone} />
+						<button onClick={() => {
+							if (assignedToStone >= gatherCount) {
+								return
+							}
+							setAssignedToStone(staleStone => staleStone + 1)
+						 }}>+</button>
+					</li>
 				</ul>
 			</section>
 			<section>
