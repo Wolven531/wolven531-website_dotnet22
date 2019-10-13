@@ -26,6 +26,7 @@ import { monify } from '../utils'
 import './MoneyControls.scss'
 
 const MoneyControls = () => {
+	const [assignedToFood, setAssignedToFood] = useState(0)
 	const [gatherIncomeLevel, setGatherIncomeLevel] = useState(initGatherIncomeLevel)
 	const [gatherSpeedLevel, setGatherSpeedLevel] = useState(initGatherSpeedLevel)
 	const [gatherTick, setGatherTick] = useState(GATHERER_INITIAL_TICK)
@@ -125,9 +126,19 @@ const MoneyControls = () => {
 				<h3>Gatherer Assignment</h3>
 				<ul>
 					<li>Food
-						<button onClick={() => { return }}>-</button>
-						<input type="text" readOnly={true} value={0} />
-						<button onClick={() => { return }}>+</button>
+						<button onClick={() => {
+							if (assignedToFood <= 0) {
+								return
+							}
+							setAssignedToFood(staleFood => staleFood - 1)
+						}}>-</button>
+						<input type="text" readOnly={true} value={assignedToFood} />
+						<button onClick={() => {
+							if (assignedToFood >= gatherCount) {
+								return
+							}
+							setAssignedToFood(staleFood => staleFood + 1)
+						 }}>+</button>
 					</li>
 					<li>Wood</li>
 					<li>Stone</li>
