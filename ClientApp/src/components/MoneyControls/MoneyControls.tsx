@@ -120,11 +120,21 @@ const MoneyControls = () => {
 						<br />
 						<progress value={gatherTick} max={GATHERER_TIME_SECONDS * GATHERER_TICK_RATE} />
 					</article>}
-				<article>
-					<button className="add-money" onClick={() => { addMoney() }}>Add Money</button>
-				</article>
 			</section>
 			<section>
+				<h3>Gatherer Assignment</h3>
+				<ul>
+					<li>Food
+						<button onClick={() => { return }}>-</button>
+						<input type="text" readOnly={true} value={0} />
+						<button onClick={() => { return }}>+</button>
+					</li>
+					<li>Wood</li>
+					<li>Stone</li>
+				</ul>
+			</section>
+			<section>
+				<button className="add-money" onClick={() => { addMoney() }}>Add Money</button>
 				<button className="buy-gatherer"
 					disabled={money < GATHERER_COST}
 					onClick={() => { addGatherer() }}>Buy Gatherer ({monify(GATHERER_COST)})</button>
