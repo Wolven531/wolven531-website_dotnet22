@@ -46,6 +46,7 @@ const MoneyControls = () => {
 	const calcGatherIncomeUpgradeCost = (): number => Math.pow(gatherIncomeLevel + 1, 2) * 33
 	const calcGatherSpeedUpgradeCost = (): number => Math.pow(gatherSpeedLevel + 1, 3) * 66
 	const calcGatherTotalIncome = (): number => gatherCount * calcGatherIncome()
+	const calcNumberIdle = (): number => Math.max(0, gatherCount - assignedToFood - assignedToStone - assignedToWood)
 	const collectFromGatherers = () => addMoney(calcGatherTotalIncome())
 	const executeGatherTick = () => {
 		if (gatherCount < 1) {
@@ -125,7 +126,7 @@ const MoneyControls = () => {
 					</article>}
 			</section>
 			<section>
-				<h3>Gatherer Assignment</h3>
+				<h3>Gatherer Assignment ({calcNumberIdle()} idle)</h3>
 				<ul>
 					<li>Food
 						<button onClick={() => {
