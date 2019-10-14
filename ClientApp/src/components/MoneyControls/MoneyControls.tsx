@@ -129,14 +129,16 @@ const MoneyControls = () => {
 				<h3>Gatherer Assignment ({calcNumberIdle()} idle)</h3>
 				<ul>
 					<li>Food
-						<button onClick={() => {
+						<button disabled={assignedToFood <= 0}
+							onClick={() => {
 							if (assignedToFood <= 0) {
 								return
 							}
 							setAssignedToFood(staleFood => staleFood - 1)
 						}}>-</button>
 						<input type="text" readOnly={true} value={assignedToFood} />
-						<button onClick={() => {
+						<button disabled={calcNumberIdle() <= 0}
+							onClick={() => {
 							if (assignedToFood >= gatherCount) {
 								return
 							}
@@ -144,14 +146,16 @@ const MoneyControls = () => {
 						 }}>+</button>
 					</li>
 					<li>Wood
-						<button onClick={() => {
+						<button disabled={assignedToWood <= 0}
+							onClick={() => {
 							if (assignedToWood <= 0) {
 								return
 							}
 							setAssignedToWood(staleWood => staleWood - 1)
 						}}>-</button>
 						<input type="text" readOnly={true} value={assignedToWood} />
-						<button onClick={() => {
+						<button disabled={calcNumberIdle() <= 0}
+							onClick={() => {
 							if (assignedToWood >= gatherCount) {
 								return
 							}
@@ -159,14 +163,16 @@ const MoneyControls = () => {
 						 }}>+</button>
 					</li>
 					<li>Stone
-						<button onClick={() => {
+						<button disabled={assignedToStone <= 0}
+							onClick={() => {
 							if (assignedToStone <= 0) {
 								return
 							}
 							setAssignedToStone(staleStone => staleStone - 1)
 						}}>-</button>
 						<input type="text" readOnly={true} value={assignedToStone} />
-						<button onClick={() => {
+						<button disabled={calcNumberIdle() <= 0}
+							onClick={() => {
 							if (assignedToStone >= gatherCount) {
 								return
 							}
