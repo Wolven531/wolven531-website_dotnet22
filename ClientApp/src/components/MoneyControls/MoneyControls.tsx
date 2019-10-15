@@ -125,7 +125,7 @@ const MoneyControls = () => {
 						<progress value={gatherTick} max={GATHERER_TIME_SECONDS * GATHERER_TICK_RATE} />
 					</article>}
 			</section>
-			<section>
+			<section className="assignment">
 				<h3>Gatherer Assignment ({calcNumberIdle()} idle)</h3>
 				<ul>
 					<li>Food
