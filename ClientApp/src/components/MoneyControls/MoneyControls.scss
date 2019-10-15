@@ -17,6 +17,28 @@
 		*/
 	}
 
+	.assignment {
+		li {
+			button {
+				padding-bottom: 0;
+				padding-top: 0;
+			}
+
+			input[type="text"] {
+				padding-right: 5px;
+				text-align: right;
+				width: 50px;
+			}
+
+			button,
+			input[type="text"] {
+				height: 2.6rem;
+				line-height: 2.6rem;
+				vertical-align: middle;
+			}
+		}
+	}
+
 	/*
 	> section {
 		display: grid;
