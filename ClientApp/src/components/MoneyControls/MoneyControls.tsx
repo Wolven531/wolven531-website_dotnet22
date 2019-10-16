@@ -12,7 +12,8 @@ import {
 } from '../../constants'
 
 //import { Achievements } from '../../components/Achievements/Achievements'
-import { Modal } from '../../components/Modal/Modal'
+import { AssignmentPanel } from '../AssignmentPanel/AssignmentPanel'
+import { Modal } from '../Modal/Modal'
 import { AutoSave } from '../../models/AutoSave'
 import {
 	initGatherCount,
@@ -25,9 +26,6 @@ import { monify } from '../utils'
 import './MoneyControls.scss'
 
 const MoneyControls: FC = () => {
-	const [assignedToFood, setAssignedToFood] = useState(0)
-	const [assignedToStone, setAssignedToStone] = useState(0)
-	const [assignedToWood, setAssignedToWood] = useState(0)
 	const [gatherIncomeLevel, setGatherIncomeLevel] = useState(initGatherIncomeLevel)
 	const [gatherSpeedLevel, setGatherSpeedLevel] = useState(initGatherSpeedLevel)
 	const [gatherTick, setGatherTick] = useState(GATHERER_INITIAL_TICK)
@@ -45,7 +43,6 @@ const MoneyControls: FC = () => {
 	const calcGatherIncomeUpgradeCost = (): number => Math.pow(gatherIncomeLevel + 1, 2) * 33
 	const calcGatherSpeedUpgradeCost = (): number => Math.pow(gatherSpeedLevel + 1, 3) * 66
 	const calcGatherTotalIncome = (): number => gatherCount * calcGatherIncome()
-	const calcNumberIdle = (): number => Math.max(0, gatherCount - assignedToFood - assignedToStone - assignedToWood)
 	const collectFromGatherers = () => addMoney(calcGatherTotalIncome())
 	const executeGatherTick = () => {
 		if (gatherCount < 1) {
@@ -124,68 +121,13 @@ const MoneyControls: FC = () => {
 						<progress value={gatherTick} max={GATHERER_TIME_SECONDS * GATHERER_TICK_RATE} />
 					</article>}
 			</section>
-			<section className="assignment">
-				<h3>Gatherer Assignment ({calcNumberIdle()} idle)</h3>
-				<ul>
-					<li>Food
-						<button disabled={assignedToFood <= 0}
-							onClick={() => {
-							if (assignedToFood <= 0) {
-								return
-							}
-							setAssignedToFood(staleFood => staleFood - 1)
-						}}>-</button>
-						<input type="text" readOnly={true} value={assignedToFood} />
-						<button disabled={calcNumberIdle() <= 0}
-							onClick={() => {
-							if (assignedToFood >= gatherCount) {
-								return
-							}
-							setAssignedToFood(staleFood => staleFood + 1)
-						 }}>+</button>
-					</li>
-					<li>Wood
-						<button disabled={assignedToWood <= 0}
-							onClick={() => {
-							if (assignedToWood <= 0) {
-								return
-							}
-							setAssignedToWood(staleWood => staleWood - 1)
-						}}>-</button>
-						<input type="text" readOnly={true} value={assignedToWood} />
-						<button disabled={calcNumberIdle() <= 0}
-							onClick={() => {
-							if (assignedToWood >= gatherCount) {
-								return
-							}
-							setAssignedToWood(staleWood => staleWood + 1)
-						 }}>+</button>
-					</li>
-					<li>Stone
-						<button disabled={assignedToStone <= 0}
-							onClick={() => {
-							if (assignedToStone <= 0) {
-								return
-							}
-							setAssignedToStone(staleStone => staleStone - 1)
-						}}>-</button>
-						<input type="text" readOnly={true} value={assignedToStone} />
-						<button disabled={calcNumberIdle() <= 0}
-							onClick={() => {
-							if (assignedToStone >= gatherCount) {
-								return
-							}
-							setAssignedToStone(staleStone => staleStone + 1)
-						 }}>+</button>
-					</li>
-				</ul>
-			</section>
 			<section>
 				<button className="add-money" onClick={() => { addMoney() }}>Add Money</button>
 				<button className="buy-gatherer"
 					disabled={money < GATHERER_COST}
 					onClick={() => { addGatherer() }}>Buy Gatherer ({monify(GATHERER_COST)})</button>
 			</section>
+			<AssignmentPanel gatherCount={gatherCount} />
 			{/*
 			<Achievements />
 			*/}
