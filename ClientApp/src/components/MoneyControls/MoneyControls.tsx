@@ -100,9 +100,7 @@ const MoneyControls: FC = () => {
 				</Modal>)}
 			<section>
 				<p>Money: {monify(money)}</p>
-				{gatherCount < 1
-					? null
-					: <article>
+				{gatherCount > 0 && <article>
 						<p>Gatherers: {gatherCount} ({monify(calcGatherTotalIncome())} per collection)</p>
 						<p>Gatherer Income Level: {gatherIncomeLevel} ({monify(calcGatherIncome())} per gatherer)</p>
 						<p>Gatherer Speed Level: {gatherSpeedLevel} / {GATHERER_MAX_SPEED} (every {calcGatherTime().toFixed(2)} ms)</p>
@@ -119,6 +117,8 @@ const MoneyControls: FC = () => {
 						</button>
 						<br />
 						<progress value={gatherTick} max={GATHERER_TIME_SECONDS * GATHERER_TICK_RATE} />
+						<br/>
+						<AssignmentPanel gatherCount={gatherCount} />
 					</article>}
 			</section>
 			<section>
@@ -127,7 +127,6 @@ const MoneyControls: FC = () => {
 					disabled={money < GATHERER_COST}
 					onClick={() => { addGatherer() }}>Buy Gatherer ({monify(GATHERER_COST)})</button>
 			</section>
-			<AssignmentPanel gatherCount={gatherCount} />
 			{/*
 			<Achievements />
 			*/}
