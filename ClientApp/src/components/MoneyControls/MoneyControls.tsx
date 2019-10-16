@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react'
+import React, { useState, FC, memo } from 'react'
 
 import { useInterval } from '../../hooks/useInterval'
 
@@ -24,6 +24,22 @@ import {
 import { monify } from '../utils'
 
 import './MoneyControls.scss'
+
+const UpgradeDisplay: FC<{
+	disabled: boolean
+	displayText: string
+	onUpgrade: () => void
+}> = memo((props) => {
+	// console.info(`[ render | UpgradeDisplay] `)
+
+	return (
+		<button className="upgrade"
+			disabled={props.disabled}
+			onClick={() => { props.onUpgrade() }}>
+				{props.displayText}
+		</button>
+	)
+})
 
 const MoneyControls: FC = () => {
 	const [gatherIncomeLevel, setGatherIncomeLevel] = useState(initGatherIncomeLevel)
@@ -104,11 +120,18 @@ const MoneyControls: FC = () => {
 						<p>Gatherers: {gatherCount} ({monify(calcGatherTotalIncome())} per collection)</p>
 						<p>Gatherer Income Level: {gatherIncomeLevel} ({monify(calcGatherIncome())} per gatherer)</p>
 						<p>Gatherer Speed Level: {gatherSpeedLevel} / {GATHERER_MAX_SPEED} (every {calcGatherTime().toFixed(2)} ms)</p>
+						<UpgradeDisplay
+							disabled={money < calcGatherIncomeUpgradeCost()}
+							displayText={`Upgrade Gather Income (${monify(calcGatherIncomeUpgradeCost())})`}
+							onUpgrade={() => { handleUpgradeGatherIncome() }}
+							/>
+						{/*
 						<button className="upgrade"
 							disabled={money < calcGatherIncomeUpgradeCost()}
 							onClick={() => { handleUpgradeGatherIncome() }}>
 								Upgrade Gather Income ({monify(calcGatherIncomeUpgradeCost())})
 						</button>
+						*/}
 						<br />
 						<button className="upgrade"
 							disabled={money < calcGatherSpeedUpgradeCost() || gatherSpeedLevel >= GATHERER_MAX_SPEED}
