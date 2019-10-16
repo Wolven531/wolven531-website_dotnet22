@@ -30,7 +30,7 @@ const AssignmentPanel: FC<{ gatherCount: number }> = (props) => {
 
 	return (
 		<section className="assignment">
-			<h3>Gatherer Assignment ({calcNumberIdle()} idle)</h3>
+			<h3>Gatherer Assignment ({props.gatherCount} total, {calcNumberIdle()} idle)</h3>
 			<ul>
 				<li>Food
 					<button disabled={assignedToFood <= 0}
