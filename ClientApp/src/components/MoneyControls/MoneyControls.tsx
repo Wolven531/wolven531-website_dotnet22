@@ -1,5 +1,4 @@
-// import React, { useEffect, useState } from 'react'
-import React, { useState } from 'react'
+import React, { useState, FC } from 'react'
 
 import { useInterval } from '../../hooks/useInterval'
 
@@ -25,7 +24,7 @@ import { monify } from '../utils'
 
 import './MoneyControls.scss'
 
-const MoneyControls = () => {
+const MoneyControls: FC = () => {
 	const [assignedToFood, setAssignedToFood] = useState(0)
 	const [assignedToStone, setAssignedToStone] = useState(0)
 	const [assignedToWood, setAssignedToWood] = useState(0)
