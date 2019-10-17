@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react'
+import React, { useState, FC, memo } from 'react'
 
 import { useInterval } from '../../hooks/useInterval'
 
@@ -8,44 +8,67 @@ import {
 	GATHERER_INITIAL_TICK
 } from '../../constants'
 
-// import { AutoSave } from '../../models/AutoSave'
-
 // import './ElapsedProgress.scss'
 
-const ElapsedProgress: FC<{ assigned: number, onElapsed: () => void }> = (props) => {
-	const [_tick, set_Tick] = useState(GATHERER_INITIAL_TICK)
+interface IElapsedProgressProps {
+	/** Filters so that elapse invocation occurs ONLY when resourceCount exceeds this number */
+	minimumCountToEllapse?: number
+	resourceCount: number
+	/** Amount to increment progress bar */
+	tickAmount?: number
+	/** Max value of progress bar */
+	tickMax?: number
+	/** Number (ms) between ticks */
+	tickRate?: number
+	/** Start value of progress bar */
+	tickStart?: number
+	onElapsed: () => void
+}
+
+/**
+ * Default vals:
+ *   minimumCountToEllapse	= 1
+ *   tickAmount				= 1
+ *   tickMax				= GATHERER_TIME_SECONDS * GATHERER_TICK_RATE
+ *   tickRate				= 1000 / GATHERER_TICK_RATE
+ *   tickStart				= GATHERER_INITIAL_TICK
+ */
+const ElapsedProgress: FC<IElapsedProgressProps> = memo((props) => {
+	const minEllapse = props.minimumCountToEllapse === undefined
+		? 1
+		: props.minimumCountToEllapse
+	const tickAmount = props.tickAmount === undefined
+		? 1
+		: props.tickAmount
+	const tickMax = props.tickMax === undefined
+		? GATHERER_TIME_SECONDS * GATHERER_TICK_RATE
+		: props.tickMax
+	const tickRate = props.tickRate === undefined
+		? 1000 / GATHERER_TICK_RATE
+		: props.tickRate
+	const tickStart = props.tickStart === undefined
+		? GATHERER_INITIAL_TICK
+		: props.tickStart
+
+	const [_tick, set_Tick] = useState(tickStart)
 
 	const executeTick = () => {
-		if (props.assigned < 1) {
+		if (props.resourceCount < minEllapse) {
 			return
 		}
-		if (_tick >= GATHERER_TIME_SECONDS * GATHERER_TICK_RATE) {
+		if (_tick >= tickMax) {
 			props.onElapsed()
-			set_Tick(GATHERER_INITIAL_TICK)
+			set_Tick(tickStart)
 			return
 		}
-		set_Tick(staleTick => staleTick + 1)
+		set_Tick(staleTick => staleTick + tickAmount)
 	}
 
-	// // NOTE: This happens before un-render (only once)
-	// const handleUnmount = () => {
-	// 	return
-	// }
-
-	// // NOTE: This happens after render (only once)
-	// const handleMounted = () => {
-	// 	return handleUnmount
-	// }
-
-	// // NOTE: empty (no arg) to track nothing, fires on mount/unmount
-	// useEffect(handleMounted, [])
-
-	// useInterval(() => AutoSave.saveToLocal(gatherIncomeLevel, gatherSpeedLevel, money, gatherCount), 1000)
-	useInterval(executeTick, 1000 / GATHERER_TICK_RATE)
+	useInterval(executeTick, tickRate)
 
 	return (
-		<progress value={_tick} max={GATHERER_TIME_SECONDS * GATHERER_TICK_RATE} />
+		<progress value={_tick} max={tickMax} />
 	)
-}
+})
 
 export { ElapsedProgress }

@@ -64,7 +64,7 @@ const AssignmentPanel: FC<{ gatherCount: number }> = (props) => {
 						}
 						setAssignedToFood(staleFood => staleFood + 1)
 						}}>+</button>
-						<ElapsedProgress assigned={assignedToFood} onElapsed={foodTickElapsed} />
+						<ElapsedProgress resourceCount={assignedToFood} onElapsed={foodTickElapsed} />
 				</li>
 				<li>Wood
 					<button disabled={assignedToWood <= 0}
@@ -82,7 +82,7 @@ const AssignmentPanel: FC<{ gatherCount: number }> = (props) => {
 						}
 						setAssignedToWood(staleWood => staleWood + 1)
 						}}>+</button>
-						<ElapsedProgress assigned={assignedToWood} onElapsed={woodTickElapsed} />
+						<ElapsedProgress resourceCount={assignedToWood} onElapsed={woodTickElapsed} />
 				</li>
 				<li>Stone
 					<button disabled={assignedToStone <= 0}
@@ -100,7 +100,7 @@ const AssignmentPanel: FC<{ gatherCount: number }> = (props) => {
 						}
 						setAssignedToStone(staleStone => staleStone + 1)
 						}}>+</button>
-						<ElapsedProgress assigned={assignedToStone} onElapsed={stoneTickElapsed} />
+						<ElapsedProgress resourceCount={assignedToStone} onElapsed={stoneTickElapsed} />
 				</li>
 			</ul>
 		</section>
