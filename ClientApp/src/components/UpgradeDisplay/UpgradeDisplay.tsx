@@ -1,19 +1,45 @@
-import React, { FC, memo } from "react"
+// import React, { FC, memo } from "react"
+import React, { PureComponent } from "react"
 
-const UpgradeDisplay: FC<{
+interface IUpgradeDisplayProps {
 	disabled: boolean
 	displayText: string
 	onUpgrade: () => void
-}> = memo((props) => {
-	// console.info(`[ render | UpgradeDisplay] `)
+}
 
-	return (
-		<button className="upgrade"
-			disabled={props.disabled}
-			onClick={() => { props.onUpgrade() }}>
-				{props.displayText}
-		</button>
-	)
-})
+class UpgradeDisplay extends PureComponent<IUpgradeDisplayProps> {
+
+	constructor(props) {
+		super(props)
+	}
+
+	public render() {
+		// console.info(`[ render | UpgradeDisplay] `)
+
+		return (
+			<button className="upgrade"
+				disabled={this.props.disabled}
+				onClick={() => { this.props.onUpgrade() }}>
+					{this.props.displayText}
+			</button>
+		)
+	}
+}
+
+// const UpgradeDisplay: FC<{
+// 	disabled: boolean
+// 	displayText: string
+// 	onUpgrade: () => void
+// }> = memo((props) => {
+// 	// console.info(`[ render | UpgradeDisplay] `)
+
+// 	return (
+// 		<button className="upgrade"
+// 			disabled={props.disabled}
+// 			onClick={() => { props.onUpgrade() }}>
+// 				{props.displayText}
+// 		</button>
+// 	)
+// })
 
 export { UpgradeDisplay }
