@@ -21,25 +21,10 @@ import {
 	initGatherSpeedLevel,
 	initMoney
 } from '../../state/initializers'
+import { UpgradeDisplay } from '../UpgradeDisplay/UpgradeDisplay'
 import { monify } from '../utils'
 
 import './MoneyControls.scss'
-
-const UpgradeDisplay: FC<{
-	disabled: boolean
-	displayText: string
-	onUpgrade: () => void
-}> = memo((props) => {
-	// console.info(`[ render | UpgradeDisplay] `)
-
-	return (
-		<button className="upgrade"
-			disabled={props.disabled}
-			onClick={() => { props.onUpgrade() }}>
-				{props.displayText}
-		</button>
-	)
-})
 
 const MoneyControls: FC = () => {
 	const [gatherIncomeLevel, setGatherIncomeLevel] = useState(initGatherIncomeLevel)
