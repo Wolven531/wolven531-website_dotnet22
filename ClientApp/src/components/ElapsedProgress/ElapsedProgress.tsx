@@ -26,12 +26,19 @@ interface IElapsedProgressProps {
 }
 
 /**
- * Default vals:
- *   minimumCountToEllapse	= 1
- *   tickAmount				= 1
- *   tickMax				= GATHERER_TIME_SECONDS * GATHERER_TICK_RATE
- *   tickRate				= 1000 / GATHERER_TICK_RATE
- *   tickStart				= GATHERER_INITIAL_TICK
+ * @summary A multi-use progress bar, using a Functional approach and memoization
+ * @name ElapsedProgress
+ *
+ * @param {number} minimumCountToEllapse - Filters so that elapse invocation occurs ONLY when resourceCount exceeds this number
+ * @default 1
+ * @param {number} tickAmount - Amount to increment progress bar
+ * @default 1
+ * @param {number} tickMax - Max value of progress bar
+ * @default (GATHERER_TIME_SECONDS * GATHERER_TICK_RATE)
+ * @param {number} tickRate - Number (ms) between ticks
+ * @default (1000 / GATHERER_TICK_RATE)
+ * @param {number} tickStart - Start value of progress bar
+ * @default GATHERER_INITIAL_TICK
  */
 const ElapsedProgress: FC<IElapsedProgressProps> = memo((props) => {
 	const minEllapse = props.minimumCountToEllapse === undefined
