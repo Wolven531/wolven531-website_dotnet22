@@ -18,9 +18,17 @@ const AssignmentPanel: FC<{ gatherCount: number }> = (props) => {
 	const [assignedToWood, setAssignedToWood] = useState(0)
 
 	const [foodTick, setFoodTick] = useState(GATHERER_INITIAL_TICK)
+	const [stoneTick, setStoneTick] = useState(GATHERER_INITIAL_TICK)
+	const [woodTick, setWoodTick] = useState(GATHERER_INITIAL_TICK)
 
 	const calcNumberIdle = (): number => Math.max(0, props.gatherCount - assignedToFood - assignedToStone - assignedToWood)
 	const foodTickElapsed = (foodGatherers: number) => {
+
+	}
+	const stoneTickElapsed = (stoneGatherers: number) => {
+
+	}
+	const woodTickElapsed = (woodGatherers: number) => {
 
 	}
 	const executeFoodTick = () => {
@@ -33,6 +41,28 @@ const AssignmentPanel: FC<{ gatherCount: number }> = (props) => {
 			return
 		}
 		setFoodTick(staleTick => staleTick + 1)
+	}
+	const executeStoneTick = () => {
+		if (assignedToStone < 1) {
+			return
+		}
+		if (stoneTick >= GATHERER_TIME_SECONDS * GATHERER_TICK_RATE) {
+			stoneTickElapsed(assignedToStone)
+			setStoneTick(GATHERER_INITIAL_TICK)
+			return
+		}
+		setStoneTick(staleTick => staleTick + 1)
+	}
+	const executeWoodTick = () => {
+		if (assignedToWood < 1) {
+			return
+		}
+		if (woodTick >= GATHERER_TIME_SECONDS * GATHERER_TICK_RATE) {
+			woodTickElapsed(assignedToWood)
+			setWoodTick(GATHERER_INITIAL_TICK)
+			return
+		}
+		setWoodTick(staleTick => staleTick + 1)
 	}
 
 	// // NOTE: This happens before un-render (only once)
@@ -50,6 +80,8 @@ const AssignmentPanel: FC<{ gatherCount: number }> = (props) => {
 
 	// useInterval(() => AutoSave.saveToLocal(gatherIncomeLevel, gatherSpeedLevel, money, gatherCount), 1000)
 	useInterval(executeFoodTick, 1000 / GATHERER_TICK_RATE)
+	useInterval(executeStoneTick, 1000 / GATHERER_TICK_RATE)
+	useInterval(executeWoodTick, 1000 / GATHERER_TICK_RATE)
 
 	return (
 		<section className="assignment">
@@ -89,6 +121,7 @@ const AssignmentPanel: FC<{ gatherCount: number }> = (props) => {
 						}
 						setAssignedToWood(staleWood => staleWood + 1)
 						}}>+</button>
+						<progress value={woodTick} max={GATHERER_TIME_SECONDS * GATHERER_TICK_RATE} />
 				</li>
 				<li>Stone
 					<button disabled={assignedToStone <= 0}
@@ -106,6 +139,7 @@ const AssignmentPanel: FC<{ gatherCount: number }> = (props) => {
 						}
 						setAssignedToStone(staleStone => staleStone + 1)
 						}}>+</button>
+						<progress value={stoneTick} max={GATHERER_TIME_SECONDS * GATHERER_TICK_RATE} />
 				</li>
 			</ul>
 		</section>
