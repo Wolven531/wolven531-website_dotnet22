@@ -1,6 +1,12 @@
 import React, { useState, FC } from 'react'
 
-// import { useInterval } from '../../hooks/useInterval'
+import { useInterval } from '../../hooks/useInterval'
+
+import {
+	GATHERER_TIME_SECONDS,
+	GATHERER_TICK_RATE,
+	GATHERER_INITIAL_TICK
+} from '../../constants'
 
 // import { AutoSave } from '../../models/AutoSave'
 
@@ -11,7 +17,23 @@ const AssignmentPanel: FC<{ gatherCount: number }> = (props) => {
 	const [assignedToStone, setAssignedToStone] = useState(0)
 	const [assignedToWood, setAssignedToWood] = useState(0)
 
+	const [foodTick, setFoodTick] = useState(GATHERER_INITIAL_TICK)
+
 	const calcNumberIdle = (): number => Math.max(0, props.gatherCount - assignedToFood - assignedToStone - assignedToWood)
+	const foodTickElapsed = (foodGatherers: number) => {
+
+	}
+	const executeFoodTick = () => {
+		if (assignedToFood < 1) {
+			return
+		}
+		if (foodTick >= GATHERER_TIME_SECONDS * GATHERER_TICK_RATE) {
+			foodTickElapsed(assignedToFood)
+			setFoodTick(GATHERER_INITIAL_TICK)
+			return
+		}
+		setFoodTick(staleTick => staleTick + 1)
+	}
 
 	// // NOTE: This happens before un-render (only once)
 	// const handleUnmount = () => {
@@ -27,10 +49,11 @@ const AssignmentPanel: FC<{ gatherCount: number }> = (props) => {
 	// useEffect(handleMounted, [])
 
 	// useInterval(() => AutoSave.saveToLocal(gatherIncomeLevel, gatherSpeedLevel, money, gatherCount), 1000)
+	useInterval(executeFoodTick, 1000 / GATHERER_TICK_RATE)
 
 	return (
 		<section className="assignment">
-			<h3>Gatherer Assignment ({props.gatherCount} total, {calcNumberIdle()} idle)</h3>
+			<h3>Gatherer Assignment ({calcNumberIdle()} / {props.gatherCount} idle)</h3>
 			<ul>
 				<li>Food
 					<button disabled={assignedToFood <= 0}
@@ -48,6 +71,7 @@ const AssignmentPanel: FC<{ gatherCount: number }> = (props) => {
 						}
 						setAssignedToFood(staleFood => staleFood + 1)
 						}}>+</button>
+						<progress value={foodTick} max={GATHERER_TIME_SECONDS * GATHERER_TICK_RATE} />
 				</li>
 				<li>Wood
 					<button disabled={assignedToWood <= 0}
