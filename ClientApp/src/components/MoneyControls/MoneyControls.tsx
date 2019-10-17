@@ -110,19 +110,25 @@ const MoneyControls: FC = () => {
 							displayText={`Upgrade Gather Income (${monify(calcGatherIncomeUpgradeCost())})`}
 							onUpgrade={() => { handleUpgradeGatherIncome() }}
 							/>
+						<br />
+						<UpgradeDisplay
+							disabled={money < calcGatherSpeedUpgradeCost() || gatherSpeedLevel >= GATHERER_MAX_SPEED}
+							displayText={`Upgrade Gather Speed (${monify(calcGatherSpeedUpgradeCost())})`}
+							onUpgrade={() => { handleUpgradeGatherSpeed() }}
+							/>
 						{/*
 						<button className="upgrade"
 							disabled={money < calcGatherIncomeUpgradeCost()}
 							onClick={() => { handleUpgradeGatherIncome() }}>
 								Upgrade Gather Income ({monify(calcGatherIncomeUpgradeCost())})
 						</button>
-						*/}
 						<br />
 						<button className="upgrade"
 							disabled={money < calcGatherSpeedUpgradeCost() || gatherSpeedLevel >= GATHERER_MAX_SPEED}
 							onClick={() => { handleUpgradeGatherSpeed() }}>
 								Upgrade Gather Speed ({monify(calcGatherSpeedUpgradeCost())})
 						</button>
+						*/}
 						<br />
 						<progress value={gatherTick} max={GATHERER_TIME_SECONDS * GATHERER_TICK_RATE} />
 						<br/>
@@ -131,9 +137,16 @@ const MoneyControls: FC = () => {
 			</section>
 			<section>
 				<button className="add-money" onClick={() => { addMoney() }}>Add Money</button>
+				<UpgradeDisplay
+					disabled={money < GATHERER_COST}
+					onUpgrade={() => { addGatherer() }}
+					displayText={`Buy Gatherer (${monify(GATHERER_COST)})`}
+					/>
+				{/*
 				<button className="buy-gatherer"
 					disabled={money < GATHERER_COST}
 					onClick={() => { addGatherer() }}>Buy Gatherer ({monify(GATHERER_COST)})</button>
+				*/}
 			</section>
 			{/*
 			<Achievements />
