@@ -11,7 +11,7 @@ import React, { useState, FC } from 'react'
 // import { AutoSave } from '../../models/AutoSave'
 import { ElapsedProgress } from '../ElapsedProgress/ElapsedProgress'
 
-// import './AssignmentPanel.scss'
+import './AssignmentPanel.scss'
 
 const AssignmentPanel: FC<{ gatherCount: number }> = (props) => {
 	const [assignedToFood, setAssignedToFood] = useState(0)
@@ -64,7 +64,8 @@ const AssignmentPanel: FC<{ gatherCount: number }> = (props) => {
 						}
 						setAssignedToFood(staleFood => staleFood + 1)
 						}}>+</button>
-						<ElapsedProgress resourceCount={assignedToFood} onElapsed={foodTickElapsed} />
+						<ElapsedProgress extraClasses="food"
+							resourceCount={assignedToFood} onElapsed={foodTickElapsed} />
 				</li>
 				<li>Wood
 					<button disabled={assignedToWood <= 0}
@@ -82,7 +83,8 @@ const AssignmentPanel: FC<{ gatherCount: number }> = (props) => {
 						}
 						setAssignedToWood(staleWood => staleWood + 1)
 						}}>+</button>
-						<ElapsedProgress resourceCount={assignedToWood} onElapsed={woodTickElapsed} />
+						<ElapsedProgress extraClasses="wood"
+							resourceCount={assignedToWood} onElapsed={woodTickElapsed} />
 				</li>
 				<li>Stone
 					<button disabled={assignedToStone <= 0}
@@ -100,7 +102,8 @@ const AssignmentPanel: FC<{ gatherCount: number }> = (props) => {
 						}
 						setAssignedToStone(staleStone => staleStone + 1)
 						}}>+</button>
-						<ElapsedProgress resourceCount={assignedToStone} onElapsed={stoneTickElapsed} />
+						<ElapsedProgress extraClasses="stone"
+							resourceCount={assignedToStone} onElapsed={stoneTickElapsed} />
 				</li>
 			</ul>
 		</section>
