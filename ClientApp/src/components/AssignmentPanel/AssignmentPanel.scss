@@ -1,0 +1,12 @@
+progress {
+	&.food,
+	&.food::-webkit-progress-bar {
+		background-color: #a00;
+	}
+
+	&.food::-moz-progress-bar,
+	&.food::-webkit-progress-value {
+		background-color: #f00;
+		color: #f00;
+	}
+}
