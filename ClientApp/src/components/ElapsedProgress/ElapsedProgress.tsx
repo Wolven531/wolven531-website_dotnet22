@@ -11,6 +11,8 @@ import {
 // import './ElapsedProgress.scss'
 
 interface IElapsedProgressProps {
+	/** Extra CSS classes to apply to the progress */
+	extraClasses?: string
 	/** Filters so that elapse invocation occurs ONLY when resourceCount exceeds this number */
 	minimumCountToEllapse?: number
 	resourceCount: number
@@ -29,6 +31,8 @@ interface IElapsedProgressProps {
  * @summary A multi-use progress bar, using a Functional approach and memoization
  * @name ElapsedProgress
  *
+ * @param {string} extraClasses - Extra CSS classes to apply to the progress
+ * @default ''
  * @param {number} minimumCountToEllapse - Filters so that elapse invocation occurs ONLY when resourceCount exceeds this number
  * @default 1
  * @param {number} tickAmount - Amount to increment progress bar
@@ -56,6 +60,9 @@ const ElapsedProgress: FC<IElapsedProgressProps> = memo((props) => {
 	const tickStart = props.tickStart === undefined
 		? GATHERER_INITIAL_TICK
 		: props.tickStart
+	const extraClasses = props.extraClasses === undefined
+		? ''
+		: props.extraClasses
 
 	const [_tick, set_Tick] = useState(tickStart)
 
@@ -74,7 +81,7 @@ const ElapsedProgress: FC<IElapsedProgressProps> = memo((props) => {
 	useInterval(executeTick, tickRate)
 
 	return (
-		<progress value={_tick} max={tickMax} />
+		<progress value={_tick} max={tickMax} className={extraClasses} />
 	)
 })
 
