@@ -1,8 +1,9 @@
 import { useState } from 'react'
 
 import {
-	STORAGEKEY_ACHIEVEMENT_LEVEL_GATHER,
-	STORAGEKEY_ACHIEVEMENT_LEVEL_MONEY,
+	// STORAGEKEY_ACHIEVEMENT_LEVEL_GATHER,
+	// STORAGEKEY_ACHIEVEMENT_LEVEL_MONEY,
+	STORAGEKEY_FOODCOUNT,
 	STORAGEKEY_GATHERCOUNT,
 	STORAGEKEY_GATHERINCOMELEVEL,
 	STORAGEKEY_GATHERSPEEDLEVEL,
@@ -30,6 +31,14 @@ import {
 //	// return parseInt(achieveStr, 10)
 //	return useState(parseInt(achieveStr, 10))
 //}
+
+const initFoodCount = (): number => {
+	const foodStr = window.localStorage.getItem(STORAGEKEY_FOODCOUNT)
+	if (!foodStr || foodStr.length < 1) {
+		return 0
+	}
+	return parseInt(foodStr, 10)
+}
 
 const initGatherCount = (): number => {
 	const gathererStr = window.localStorage.getItem(STORAGEKEY_GATHERCOUNT)
@@ -65,6 +74,7 @@ const initMoney = (): number => {
 
 export {
 	//initAchievements,
+	initFoodCount,
 	initGatherCount,
 	initGatherIncomeLevel,
 	initGatherSpeedLevel,
