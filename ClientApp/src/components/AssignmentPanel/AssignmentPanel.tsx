@@ -13,15 +13,15 @@ import { ElapsedProgress } from '../ElapsedProgress/ElapsedProgress'
 
 import './AssignmentPanel.scss'
 
-const AssignmentPanel: FC<{ gatherCount: number }> = (props) => {
+const AssignmentPanel: FC<{
+		gatherCount: number
+		onFoodElapsed: () => void
+	}> = (props) => {
 	const [assignedToFood, setAssignedToFood] = useState(0)
 	const [assignedToStone, setAssignedToStone] = useState(0)
 	const [assignedToWood, setAssignedToWood] = useState(0)
 
 	const calcNumberIdle = (): number => Math.max(0, props.gatherCount - assignedToFood - assignedToStone - assignedToWood)
-	const foodTickElapsed = () => {
-
-	}
 	const stoneTickElapsed = () => {
 
 	}
@@ -65,7 +65,7 @@ const AssignmentPanel: FC<{ gatherCount: number }> = (props) => {
 						setAssignedToFood(staleFood => staleFood + 1)
 						}}>+</button>
 						<ElapsedProgress extraClasses="food"
-							resourceCount={assignedToFood} onElapsed={foodTickElapsed} />
+							resourceCount={assignedToFood} onElapsed={props.onFoodElapsed} />
 				</li>
 				<li>Wood
 					<button disabled={assignedToWood <= 0}

@@ -103,6 +103,7 @@ const MoneyControls: FC = () => {
 				</Modal>)}
 			<section>
 				<p>Money: {monify(money)}</p>
+				<p>Food: {foodCount}</p>
 				{gatherCount > 0 && <article>
 						<p>Gatherers: {gatherCount} ({monify(calcGatherTotalIncome())} per collection)</p>
 						<p>Gatherer Income Level: {gatherIncomeLevel} ({monify(calcGatherIncome())} per gatherer)</p>
@@ -121,7 +122,9 @@ const MoneyControls: FC = () => {
 						<br />
 						<progress value={gatherTick} max={GATHERER_TIME_SECONDS * GATHERER_TICK_RATE} />
 						<br/>
-						<AssignmentPanel gatherCount={gatherCount} />
+						<AssignmentPanel gatherCount={gatherCount}
+							onFoodElapsed={() => { setFoodCount(staleCount => staleCount + 1) }}
+							/>
 					</article>}
 			</section>
 			<section>
