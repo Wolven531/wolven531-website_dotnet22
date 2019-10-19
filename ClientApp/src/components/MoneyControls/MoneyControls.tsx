@@ -16,6 +16,7 @@ import { AssignmentPanel } from '../AssignmentPanel/AssignmentPanel'
 import { Modal } from '../Modal/Modal'
 import { AutoSave } from '../../models/AutoSave'
 import {
+	initFoodCount,
 	initGatherCount,
 	initGatherIncomeLevel,
 	initGatherSpeedLevel,
@@ -33,6 +34,7 @@ const MoneyControls: FC = () => {
 	const [isShowingModal, setIsShowingModal] = useState(true)
 	const [money, setMoney] = useState(initMoney)
 	const [gatherCount, setGatherCount] = useState(initGatherCount)
+	const [foodCount, setFoodCount] = useState(initFoodCount)
 
 	const addGatherer = () => {
 		setMoney(staleMoney => staleMoney - GATHERER_COST)
