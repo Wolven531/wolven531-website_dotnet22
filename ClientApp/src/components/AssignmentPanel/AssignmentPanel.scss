@@ -9,4 +9,15 @@ progress {
 		background-color: #f00;
 		color: #f00;
 	}
+
+	&.stone,
+	&.stone::-webkit-progress-bar {
+		background-color: #333;
+	}
+
+	&.stone::-moz-progress-bar,
+	&.stone::-webkit-progress-value {
+		background-color: #aaa;
+		color: #aaa;
+	}
 }
