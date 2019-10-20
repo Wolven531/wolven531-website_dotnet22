@@ -17,15 +17,13 @@ const AssignmentPanel: FC<{
 		gatherCount: number
 		onFoodElapsed: () => void
 		onStoneElapsed: () => void
+		onWoodElapsed: () => void
 	}> = (props) => {
 	const [assignedToFood, setAssignedToFood] = useState(0)
 	const [assignedToStone, setAssignedToStone] = useState(0)
 	const [assignedToWood, setAssignedToWood] = useState(0)
 
 	const calcNumberIdle = (): number => Math.max(0, props.gatherCount - assignedToFood - assignedToStone - assignedToWood)
-	const woodTickElapsed = () => {
-
-	}
 
 	// // NOTE: This happens before un-render (only once)
 	// const handleUnmount = () => {
@@ -82,7 +80,7 @@ const AssignmentPanel: FC<{
 						setAssignedToWood(staleWood => staleWood + 1)
 						}}>+</button>
 						<ElapsedProgress extraClasses="wood"
-							resourceCount={assignedToWood} onElapsed={woodTickElapsed} />
+							resourceCount={assignedToWood} onElapsed={props.onWoodElapsed} />
 				</li>
 				<li>Stone
 					<button disabled={assignedToStone <= 0}

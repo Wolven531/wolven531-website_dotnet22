@@ -20,4 +20,15 @@ progress {
 		background-color: #aaa;
 		color: #aaa;
 	}
+
+	&.wood,
+	&.wood::-webkit-progress-bar {
+		background-color: #661;
+	}
+
+	&.wood::-moz-progress-bar,
+	&.wood::-webkit-progress-value {
+		background-color: #aa4;
+		color: #aa4;
+	}
 }

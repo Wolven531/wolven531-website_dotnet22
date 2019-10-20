@@ -21,7 +21,8 @@ import {
 	initGatherIncomeLevel,
 	initGatherSpeedLevel,
 	initMoney,
-	initStoneCount
+	initStoneCount,
+	initWoodCount
 } from '../../state/initializers'
 import { UpgradeDisplay } from '../UpgradeDisplay/UpgradeDisplay'
 import { monify } from '../utils'
@@ -37,6 +38,7 @@ const MoneyControls: FC = () => {
 	const [gatherCount, setGatherCount] = useState(initGatherCount)
 	const [foodCount, setFoodCount] = useState(initFoodCount)
 	const [stoneCount, setStoneCount] = useState(initStoneCount)
+	const [woodCount, setWoodCount] = useState(initWoodCount)
 
 	const addGatherer = () => {
 		setMoney(staleMoney => staleMoney - GATHERER_COST)
@@ -107,6 +109,7 @@ const MoneyControls: FC = () => {
 				<p>Money: {monify(money)}</p>
 				<p>Food: {foodCount}</p>
 				<p>Stone: {stoneCount}</p>
+				<p>Wood: {woodCount}</p>
 				{gatherCount > 0 && <article>
 						<p>Gatherers: {gatherCount} ({monify(calcGatherTotalIncome())} per collection)</p>
 						<p>Gatherer Income Level: {gatherIncomeLevel} ({monify(calcGatherIncome())} per gatherer)</p>
@@ -128,6 +131,7 @@ const MoneyControls: FC = () => {
 						<AssignmentPanel gatherCount={gatherCount}
 							onFoodElapsed={() => { setFoodCount(staleCount => staleCount + 1) }}
 							onStoneElapsed={() => { setStoneCount(staleCount => staleCount + 1) }}
+							onWoodElapsed={() => { setWoodCount(staleCount => staleCount + 1) }}
 							/>
 					</article>}
 			</section>
