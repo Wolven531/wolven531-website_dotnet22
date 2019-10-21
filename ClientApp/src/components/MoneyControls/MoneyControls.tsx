@@ -33,7 +33,7 @@ const MoneyControls: FC = () => {
 	const [gatherIncomeLevel, setGatherIncomeLevel] = useState(initGatherIncomeLevel)
 	const [gatherSpeedLevel, setGatherSpeedLevel] = useState(initGatherSpeedLevel)
 	const [gatherTick, setGatherTick] = useState(GATHERER_INITIAL_TICK)
-	const [isShowingModal, setIsShowingModal] = useState(true)
+	const [isShowingModal, setIsShowingModal] = useState(false)
 	const [money, setMoney] = useState(initMoney)
 	const [gatherCount, setGatherCount] = useState(initGatherCount)
 	const [foodCount, setFoodCount] = useState(initFoodCount)
@@ -109,7 +109,7 @@ const MoneyControls: FC = () => {
 			{isShowingModal && (
 				<Modal handleModalDialogClose={() => { setIsShowingModal(false) }}>
 					<article>
-						<h2>Welcome to Critter Manager!</h2>
+						<h2>Options - Critter Manager</h2>
 						<button onClick={() => { resetProgress() }}>Reset Progress</button>
 					</article>
 				</Modal>)}
@@ -151,6 +151,7 @@ const MoneyControls: FC = () => {
 					displayText={`Buy Gatherer (${monify(GATHERER_COST)})`}
 					/>
 			</section>
+			<button onClick={() => { setIsShowingModal(true) }}>Show Options</button>
 			{/*
 			<Achievements />
 			*/}
