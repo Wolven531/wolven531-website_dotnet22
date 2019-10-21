@@ -94,7 +94,12 @@ const MoneyControls: FC = () => {
 	// useEffect(handleMounted, [])
 
 	useInterval(executeGatherTick, calcGatherTime())
-	useInterval(() => AutoSave.saveToLocal(gatherIncomeLevel, gatherSpeedLevel, money, gatherCount), 1000)
+	useInterval(() => AutoSave.saveToLocal({
+		gatherCount,
+		gatherIncomeLevel,
+		gatherSpeedLevel,
+		money
+	}), 1000)
 
 	return (
 		<article className="money-controls">
