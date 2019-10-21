@@ -52,7 +52,8 @@ const AssignmentPanel: FC<{
 						}
 						setAssignedToFood(staleFood => staleFood - 1)
 					}}>-</button>
-					<input type="text" readOnly={true} value={assignedToFood} />
+					{/* <input type="text" readOnly={true} value={assignedToFood} /> */}
+					{assignedToFood}
 					<button disabled={calcNumberIdle() <= 0}
 						onClick={() => {
 						if (assignedToFood >= props.gatherCount) {
@@ -63,25 +64,6 @@ const AssignmentPanel: FC<{
 					<ElapsedProgress extraClasses="food"
 						resourceCount={assignedToFood} onElapsed={() => { props.onFoodElapsed(assignedToFood) }} />
 				</li>
-				<li>Wood
-					<button disabled={assignedToWood <= 0}
-						onClick={() => {
-						if (assignedToWood <= 0) {
-							return
-						}
-						setAssignedToWood(staleWood => staleWood - 1)
-					}}>-</button>
-					<input type="text" readOnly={true} value={assignedToWood} />
-					<button disabled={calcNumberIdle() <= 0}
-						onClick={() => {
-						if (assignedToWood >= props.gatherCount) {
-							return
-						}
-						setAssignedToWood(staleWood => staleWood + 1)
-						}}>+</button>
-					<ElapsedProgress extraClasses="wood"
-						resourceCount={assignedToWood} onElapsed={() => { props.onWoodElapsed(assignedToWood) }} />
-				</li>
 				<li>Stone
 					<button disabled={assignedToStone <= 0}
 						onClick={() => {
@@ -90,7 +72,8 @@ const AssignmentPanel: FC<{
 						}
 						setAssignedToStone(staleStone => staleStone - 1)
 					}}>-</button>
-					<input type="text" readOnly={true} value={assignedToStone} />
+					{/* <input type="text" readOnly={true} value={assignedToStone} /> */}
+					{assignedToStone}
 					<button disabled={calcNumberIdle() <= 0}
 						onClick={() => {
 						if (assignedToStone >= props.gatherCount) {
@@ -100,6 +83,26 @@ const AssignmentPanel: FC<{
 						}}>+</button>
 					<ElapsedProgress extraClasses="stone"
 						resourceCount={assignedToStone} onElapsed={() => { props.onStoneElapsed(assignedToStone) }} />
+				</li>
+				<li>Wood
+					<button disabled={assignedToWood <= 0}
+						onClick={() => {
+							if (assignedToWood <= 0) {
+								return
+							}
+							setAssignedToWood(staleWood => staleWood - 1)
+						}}>-</button>
+					{/* <input type="text" readOnly={true} value={assignedToWood} /> */}
+					{assignedToWood}
+					<button disabled={calcNumberIdle() <= 0}
+						onClick={() => {
+							if (assignedToWood >= props.gatherCount) {
+								return
+							}
+							setAssignedToWood(staleWood => staleWood + 1)
+						}}>+</button>
+					<ElapsedProgress extraClasses="wood"
+						resourceCount={assignedToWood} onElapsed={() => { props.onWoodElapsed(assignedToWood) }} />
 				</li>
 			</ul>
 		</section>
