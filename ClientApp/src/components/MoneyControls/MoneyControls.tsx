@@ -114,10 +114,32 @@ const MoneyControls: FC = () => {
 					</article>
 				</Modal>)}
 			<section>
-				<p>Money: {monify(money)}</p>
-				<p>Food: {foodCount}</p>
-				<p>Stone: {stoneCount}</p>
-				<p>Wood: {woodCount}</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Resource</th>
+							<th>Amount</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Money</td>
+							<td>{monify(money)}</td>
+						</tr>
+						<tr>
+							<td>Food</td>
+							<td>{foodCount}</td>
+						</tr>
+						<tr>
+							<td>Stone</td>
+							<td>{stoneCount}</td>
+						</tr>
+						<tr>
+							<td>Wood</td>
+							<td>{woodCount}</td>
+						</tr>
+					</tbody>
+				</table>
 				{gatherCount > 0 && <article>
 						<p>Gatherers: {gatherCount} ({monify(calcGatherTotalIncome())} per collection)</p>
 						<p>Gatherer Income Level: {gatherIncomeLevel} ({monify(calcGatherIncome())} per gatherer)</p>
