@@ -95,10 +95,13 @@ const MoneyControls: FC = () => {
 
 	useInterval(executeGatherTick, calcGatherTime())
 	useInterval(() => AutoSave.saveToLocal({
+		foodCount,
 		gatherCount,
 		gatherIncomeLevel,
 		gatherSpeedLevel,
-		money
+		money,
+		stoneCount,
+		woodCount
 	}), 1000)
 
 	return (
