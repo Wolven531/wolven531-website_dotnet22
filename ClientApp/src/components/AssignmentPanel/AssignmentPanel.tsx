@@ -15,9 +15,9 @@ import './AssignmentPanel.scss'
 
 const AssignmentPanel: FC<{
 		gatherCount: number
-		onFoodElapsed: () => void
-		onStoneElapsed: () => void
-		onWoodElapsed: () => void
+		onFoodElapsed: (numAssigned: number) => void
+		onStoneElapsed: (numAssigned: number) => void
+		onWoodElapsed: (numAssigned: number) => void
 	}> = (props) => {
 	const [assignedToFood, setAssignedToFood] = useState(0)
 	const [assignedToStone, setAssignedToStone] = useState(0)
@@ -60,8 +60,8 @@ const AssignmentPanel: FC<{
 						}
 						setAssignedToFood(staleFood => staleFood + 1)
 						}}>+</button>
-						<ElapsedProgress extraClasses="food"
-							resourceCount={assignedToFood} onElapsed={props.onFoodElapsed} />
+					<ElapsedProgress extraClasses="food"
+						resourceCount={assignedToFood} onElapsed={() => { props.onFoodElapsed(assignedToFood) }} />
 				</li>
 				<li>Wood
 					<button disabled={assignedToWood <= 0}
@@ -79,8 +79,8 @@ const AssignmentPanel: FC<{
 						}
 						setAssignedToWood(staleWood => staleWood + 1)
 						}}>+</button>
-						<ElapsedProgress extraClasses="wood"
-							resourceCount={assignedToWood} onElapsed={props.onWoodElapsed} />
+					<ElapsedProgress extraClasses="wood"
+						resourceCount={assignedToWood} onElapsed={() => { props.onWoodElapsed(assignedToWood) }} />
 				</li>
 				<li>Stone
 					<button disabled={assignedToStone <= 0}
@@ -98,8 +98,8 @@ const AssignmentPanel: FC<{
 						}
 						setAssignedToStone(staleStone => staleStone + 1)
 						}}>+</button>
-						<ElapsedProgress extraClasses="stone"
-							resourceCount={assignedToStone} onElapsed={props.onStoneElapsed} />
+					<ElapsedProgress extraClasses="stone"
+						resourceCount={assignedToStone} onElapsed={() => { props.onStoneElapsed(assignedToStone) }} />
 				</li>
 			</ul>
 		</section>

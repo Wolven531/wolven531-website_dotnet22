@@ -137,9 +137,9 @@ const MoneyControls: FC = () => {
 						<progress value={gatherTick} max={GATHERER_TIME_SECONDS * GATHERER_TICK_RATE} />
 						<br/>
 						<AssignmentPanel gatherCount={gatherCount}
-							onFoodElapsed={() => { setFoodCount(staleCount => staleCount + 1) }}
-							onStoneElapsed={() => { setStoneCount(staleCount => staleCount + 1) }}
-							onWoodElapsed={() => { setWoodCount(staleCount => staleCount + 1) }}
+							onFoodElapsed={(assigned: number) => { setFoodCount(staleCount => staleCount + assigned) }}
+							onStoneElapsed={(assigned: number) => { setStoneCount(staleCount => staleCount + assigned) }}
+							onWoodElapsed={(assigned: number) => { setWoodCount(staleCount => staleCount + assigned) }}
 							/>
 					</article>}
 			</section>
