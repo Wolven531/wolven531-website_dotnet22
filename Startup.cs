@@ -31,6 +31,7 @@ namespace wolven531WebsiteDotnet22
         public void ConfigureServices(IServiceCollection services)
         {
             services.TryAddSingleton(_infoService);
+            services.TryAddSingleton<IUnitStore, InMemoryUnitStore>();
 
             // TODO: this does NOT allow API web access after publish...
             //services.AddCors();
