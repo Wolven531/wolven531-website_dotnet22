@@ -1,0 +1,100 @@
+﻿using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace wolven531WebsiteDotnet22.Services
+{
+    public class InMemoryUnitStore : IUnitStore
+    {
+        private readonly JObject _unitMap;
+
+        public InMemoryUnitStore(JObject prestoredUnitMap = null)
+        {
+            if (prestoredUnitMap != null)
+            {
+                _unitMap = prestoredUnitMap;
+            }
+            else
+            {
+                _unitMap = new JObject
+                {
+                    [0] = new JObject
+                    {
+                        ["Name"] = "None",
+                        ["Cost"] = new JObject
+                        {
+                            ["Food"] = 0,
+                            ["Stone"] = 0,
+                            ["Wood"] = 0
+                        },
+                        ["Info"] = new JObject()
+                    },
+                    [1] = new JObject
+                    {
+                        ["Name"] = "Archer",
+                        ["Cost"] = new JObject
+                        {
+                            ["Food"] = 0,
+                            ["Stone"] = 0,
+                            ["Wood"] = 0
+                        },
+                        ["Info"] = new JObject
+                        {
+                            ["Description"] = "A unit that adds decent attack, but not many hitpoints"
+                        }
+                    },
+                    [2] = new JObject
+                    {
+                        ["Name"] = "Clubman",
+                        ["Cost"] = new JObject
+                        {
+                            ["Food"] = 0,
+                            ["Stone"] = 0,
+                            ["Wood"] = 0
+                        },
+                        ["Info"] = new JObject
+                        {
+                            ["Description"] = "A unit that adds a small but dependable amount of both attack and hitpoints"
+                        }
+                    }
+                };
+            }
+        }
+
+        public JObject getUnitCost(int unitId)
+        {
+            var idString = $"{unitId}";
+            if (!_unitMap.ContainsKey(idString))
+            {
+                //return -1;
+                return new JObject
+                {
+                    ["Food"] = 0,
+                    ["Stone"] = 0,
+                    ["Wood"] = 0
+                };
+            }
+            var unit = _unitMap.GetValue(idString, StringComparison.OrdinalIgnoreCase);
+            return new JObject(unit["Cost"]);
+        }
+
+        public int getUnitCount(int unitId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public JObject getUnitInfo(int unitId)
+        {
+            var idString = $"{unitId}";
+            if (!_unitMap.ContainsKey(idString))
+            {
+                //return "";
+                return new JObject();
+            }
+            var unit = _unitMap.GetValue(idString, StringComparison.OrdinalIgnoreCase);
+            return new JObject(unit["Info"]);
+        }
+    }
+}
