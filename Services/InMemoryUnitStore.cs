@@ -23,45 +23,48 @@ namespace wolven531WebsiteDotnet22.Services
                 {
                     [0] = new JObject
                     {
-                        ["Id"] = 0,
-                        ["Name"] = "None",
                         ["Cost"] = new JObject
                         {
                             ["Food"] = 0,
                             ["Stone"] = 0,
                             ["Wood"] = 0
                         },
-                        ["Info"] = new JObject()
+                        ["Id"] = 0,
+                        ["Info"] = new JObject
+                        {
+                            ["Description"] = "None"
+                        },
+                        ["Name"] = "None"
                     },
                     [1] = new JObject
                     {
-                        ["Id"] = 1,
-                        ["Name"] = "Archer",
                         ["Cost"] = new JObject
                         {
                             ["Food"] = 0,
                             ["Stone"] = 0,
                             ["Wood"] = 0
                         },
+                        ["Id"] = 1,
                         ["Info"] = new JObject
                         {
                             ["Description"] = "A unit that adds decent attack, but not many hitpoints"
-                        }
+                        },
+                        ["Name"] = "Archer"
                     },
                     [2] = new JObject
                     {
-                        ["Id"] = 2,
-                        ["Name"] = "Clubman",
                         ["Cost"] = new JObject
                         {
                             ["Food"] = 0,
                             ["Stone"] = 0,
                             ["Wood"] = 0
                         },
+                        ["Id"] = 2,
                         ["Info"] = new JObject
                         {
                             ["Description"] = "A unit that adds a small but dependable amount of both attack and hitpoints"
-                        }
+                        },
+                        ["Name"] = "Clubman"
                     }
                 };
             }
