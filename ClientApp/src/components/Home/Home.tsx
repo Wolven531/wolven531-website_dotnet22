@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 
 class Home extends PureComponent {
 	public componentDidMount() {
-		window.document.title = 'Wolven531 Web'
+		window.document.title = 'Home - Wolven531 Web'
 	}
 
 	public render() {
