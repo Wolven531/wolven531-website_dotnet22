@@ -2,14 +2,15 @@ import React, { Component } from 'react'
 import { Route } from 'react-router'
 
 //import { Counter } from '../Counter/Counter'
-import { FetchData } from '../FetchData/FetchData'
+// import { FetchData } from '../FetchData/FetchData'
 import { Home } from '../Home/Home'
 import { InfoDisplay } from '../InfoDisplay/InfoDisplay'
 import { Layout } from '../Layout/Layout'
-import { MoneyControls } from '../MoneyControls/MoneyControls'
+import { ResourceControls } from '../ResourceControls/ResourceControls'
 
 class App extends Component {
 	public componentDidMount() {
+		window.document.title = 'Wolven531 Web'
 		/*
 			method: 'POST', // *GET, POST, PUT, DELETE, etc.
 			mode: 'cors', // no-cors, *cors, same-origin
@@ -28,11 +29,9 @@ class App extends Component {
 			method: 'post'
 		} as RequestInit)
 			.then(() => {
-				console.log(`[ componentDidMount | App ] pinged for unique page hit`)
+				console.info(`[ componentDidMount | App ] pinged for unique page hit`)
 			})
-			.catch(err => {
-				console.error(`An error ocurred`, err)
-			})
+			.catch(err => console.error(`An error ocurred`, err))
 	}
 
 	public render() {
@@ -40,8 +39,8 @@ class App extends Component {
 			<Layout>
 				<Route exact path='/' component={Home} />
 				{/*<Route path='/counter' component={Counter} />*/}
-				<Route path='/fetch-data' component={FetchData} />
-				<Route path='/money' component={MoneyControls} />
+				{/* <Route path='/fetch-data' component={FetchData} /> */}
+				<Route path='/resources' component={ResourceControls} />
 				<Route path='/info' component={InfoDisplay} />
 			</Layout>
 		)

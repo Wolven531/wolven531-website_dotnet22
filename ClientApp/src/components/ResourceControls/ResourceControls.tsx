@@ -27,9 +27,9 @@ import {
 import { UpgradeDisplay } from '../UpgradeDisplay/UpgradeDisplay'
 import { monify } from '../utils'
 
-import './MoneyControls.scss'
+import './ResourceControls.scss'
 
-const MoneyControls: FC = memo(() => {
+const ResourceControls: FC = memo(() => {
 	const [gatherIncomeLevel, setGatherIncomeLevel] = useState(initGatherIncomeLevel)
 	const [gatherSpeedLevel, setGatherSpeedLevel] = useState(initGatherSpeedLevel)
 	const [gatherTick, setGatherTick] = useState(GATHERER_INITIAL_TICK)
@@ -87,10 +87,11 @@ const MoneyControls: FC = memo(() => {
 
 	// NOTE: This happens after render (only once)
 	const handleMounted = () => {
+		window.document.title = 'Resources - Wolven531 Web'
 		fetch('/api/units/info')
 			.then(resp => resp.json())
 			.then(info => {
-				// console.log(`[ handleMounted | MoneyControls ] info=`, JSON.stringify(info, null, 4), info)
+				// console.log(`[ handleMounted | ResourceControls ] info=`, JSON.stringify(info, null, 4), info)
 			})
 			.catch(err => console.error(err))
 	// 	return handleUnmount
@@ -111,7 +112,7 @@ const MoneyControls: FC = memo(() => {
 	}), 1000)
 
 	return (
-		<article className="money-controls">
+		<article className="resource-controls">
 			{isShowingModal && (
 				<Modal handleModalDialogClose={() => { setIsShowingModal(false) }}>
 					<article>
@@ -187,4 +188,4 @@ const MoneyControls: FC = memo(() => {
 	)
 })
 
-export { MoneyControls }
+export { ResourceControls }
