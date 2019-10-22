@@ -87,10 +87,10 @@ const MoneyControls: FC = memo(() => {
 
 	// NOTE: This happens after render (only once)
 	const handleMounted = () => {
-		fetch('/api/units/info/1')
+		fetch('/api/units/info')
 			.then(resp => resp.json())
 			.then(info => {
-				console.log(`[ handleMounted | MoneyControls ] info=`, JSON.stringify(info, null, 4), info)
+				// console.log(`[ handleMounted | MoneyControls ] info=`, JSON.stringify(info, null, 4), info)
 			})
 			.catch(err => console.error(err))
 	// 	return handleUnmount
