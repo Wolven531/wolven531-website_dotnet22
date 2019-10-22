@@ -18,10 +18,12 @@ namespace wolven531WebsiteDotnet22.Services
             }
             else
             {
+                // TODO: strongly type the following structure
                 _unitMap = new JObject
                 {
                     [0] = new JObject
                     {
+                        ["Id"] = 0,
                         ["Name"] = "None",
                         ["Cost"] = new JObject
                         {
@@ -33,6 +35,7 @@ namespace wolven531WebsiteDotnet22.Services
                     },
                     [1] = new JObject
                     {
+                        ["Id"] = 1,
                         ["Name"] = "Archer",
                         ["Cost"] = new JObject
                         {
@@ -47,6 +50,7 @@ namespace wolven531WebsiteDotnet22.Services
                     },
                     [2] = new JObject
                     {
+                        ["Id"] = 2,
                         ["Name"] = "Clubman",
                         ["Cost"] = new JObject
                         {
@@ -68,7 +72,6 @@ namespace wolven531WebsiteDotnet22.Services
             var idString = $"{unitId}";
             if (!_unitMap.ContainsKey(idString))
             {
-                //return -1;
                 return new JObject
                 {
                     ["Food"] = 0,
@@ -77,6 +80,7 @@ namespace wolven531WebsiteDotnet22.Services
                 };
             }
             var unit = _unitMap.GetValue(idString, StringComparison.OrdinalIgnoreCase);
+
             return new JObject(unit["Cost"]);
         }
 
@@ -90,10 +94,13 @@ namespace wolven531WebsiteDotnet22.Services
             var idString = $"{unitId}";
             if (!_unitMap.ContainsKey(idString))
             {
-                //return "";
-                return new JObject();
+                return new JObject
+                {
+                    ["Description"] = "Unknown"
+                };
             }
             var unit = _unitMap.GetValue(idString, StringComparison.OrdinalIgnoreCase);
+
             return new JObject(unit["Info"]);
         }
     }
