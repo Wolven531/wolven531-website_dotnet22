@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace wolven531WebsiteDotnet22.Services
 {
-    interface IUnitStore
+    public interface IUnitStore
     {
         JObject getUnitCost(int unitId);
 

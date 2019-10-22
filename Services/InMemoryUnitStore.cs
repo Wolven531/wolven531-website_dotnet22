@@ -21,7 +21,7 @@ namespace wolven531WebsiteDotnet22.Services
                 // TODO: strongly type the following structure
                 _unitMap = new JObject
                 {
-                    [0] = new JObject
+                    ["0"] = new JObject
                     {
                         ["Cost"] = new JObject
                         {
@@ -36,7 +36,7 @@ namespace wolven531WebsiteDotnet22.Services
                         },
                         ["Name"] = "None"
                     },
-                    [1] = new JObject
+                    ["1"] = new JObject
                     {
                         ["Cost"] = new JObject
                         {
@@ -51,7 +51,7 @@ namespace wolven531WebsiteDotnet22.Services
                         },
                         ["Name"] = "Archer"
                     },
-                    [2] = new JObject
+                    ["2"] = new JObject
                     {
                         ["Cost"] = new JObject
                         {
@@ -102,9 +102,8 @@ namespace wolven531WebsiteDotnet22.Services
                     ["Description"] = "Unknown"
                 };
             }
-            var unit = _unitMap.GetValue(idString, StringComparison.OrdinalIgnoreCase);
 
-            return new JObject(unit["Info"]);
+            return (JObject)_unitMap[idString]["Info"];
         }
     }
 }
