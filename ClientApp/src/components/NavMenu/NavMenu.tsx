@@ -43,7 +43,7 @@ class NavMenu extends PureComponent<{}, { collapsed: boolean }> {
 								</NavItem>
 								*/}
 								<NavItem>
-									<NavLink tag={Link} className="text-dark" to="/money">Money</NavLink>
+									<NavLink tag={Link} className="text-dark" to="/resources">Resources</NavLink>
 								</NavItem>
 								<NavItem>
 									<NavLink tag={Link} className="text-dark" to="/info">Server Info</NavLink>
