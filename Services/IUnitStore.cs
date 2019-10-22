@@ -8,10 +8,12 @@ namespace wolven531WebsiteDotnet22.Services
 {
     public interface IUnitStore
     {
-        JObject getUnitCost(int unitId);
+        JObject GetCompleteUnitInfo();
 
-        int getUnitCount(int unitId);
+        JObject GetUnitCost(int unitId);
 
-        JObject getUnitInfo(int unitId);
+        int GetUnitCount(int unitId);
+
+        JObject GetUnitInfo(int unitId);
     }
 }

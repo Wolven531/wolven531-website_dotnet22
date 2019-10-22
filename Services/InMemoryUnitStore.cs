@@ -70,7 +70,12 @@ namespace wolven531WebsiteDotnet22.Services
             }
         }
 
-        public JObject getUnitCost(int unitId)
+        public JObject GetCompleteUnitInfo()
+        {
+            return _unitMap;
+        }
+
+        public JObject GetUnitCost(int unitId)
         {
             var idString = $"{unitId}";
             if (!_unitMap.ContainsKey(idString))
@@ -87,12 +92,12 @@ namespace wolven531WebsiteDotnet22.Services
             return new JObject(unit["Cost"]);
         }
 
-        public int getUnitCount(int unitId)
+        public int GetUnitCount(int unitId)
         {
             throw new NotImplementedException();
         }
 
-        public JObject getUnitInfo(int unitId)
+        public JObject GetUnitInfo(int unitId)
         {
             var idString = $"{unitId}";
             if (!_unitMap.ContainsKey(idString))
