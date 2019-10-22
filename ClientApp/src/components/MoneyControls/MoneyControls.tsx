@@ -1,4 +1,4 @@
-import React, { useState, FC, memo } from 'react'
+import React, { useState, FC, memo, useEffect } from 'react'
 
 import { useInterval } from '../../hooks/useInterval'
 
@@ -29,7 +29,7 @@ import { monify } from '../utils'
 
 import './MoneyControls.scss'
 
-const MoneyControls: FC = () => {
+const MoneyControls: FC = memo(() => {
 	const [gatherIncomeLevel, setGatherIncomeLevel] = useState(initGatherIncomeLevel)
 	const [gatherSpeedLevel, setGatherSpeedLevel] = useState(initGatherSpeedLevel)
 	const [gatherTick, setGatherTick] = useState(GATHERER_INITIAL_TICK)
@@ -85,13 +85,19 @@ const MoneyControls: FC = () => {
 	// 	return
 	// }
 
-	// // NOTE: This happens after render (only once)
-	// const handleMounted = () => {
+	// NOTE: This happens after render (only once)
+	const handleMounted = () => {
+		fetch('/api/units/info/1')
+			.then(resp => resp.json())
+			.then(info => {
+				console.log(`[ handleMounted | MoneyControls ] info=`, JSON.stringify(info, null, 4), info)
+			})
+			.catch(err => console.error(err))
 	// 	return handleUnmount
-	// }
+	}
 
-	// // NOTE: empty (no arg) to track nothing, fires on mount/unmount
-	// useEffect(handleMounted, [])
+	// NOTE: empty (no arg) to track nothing, fires on mount/unmount
+	useEffect(handleMounted, [])
 
 	useInterval(executeGatherTick, calcGatherTime())
 	useInterval(() => AutoSave.saveToLocal({
@@ -179,6 +185,6 @@ const MoneyControls: FC = () => {
 			*/}
 		</article>
 	)
-}
+})
 
 export { MoneyControls }
