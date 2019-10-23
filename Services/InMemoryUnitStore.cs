@@ -40,18 +40,33 @@ namespace wolven531WebsiteDotnet22.Services
                     {
                         ["Cost"] = new JObject
                         {
-                            ["Food"] = 0,
+                            ["Food"] = 100,
                             ["Stone"] = 0,
                             ["Wood"] = 0
                         },
                         ["Id"] = 1,
                         ["Info"] = new JObject
                         {
+                            ["Description"] = "A non-military unit that may be tasked with gathering a resource"
+                        },
+                        ["Name"] = "Villager"
+                    },
+                    ["2"] = new JObject
+                    {
+                        ["Cost"] = new JObject
+                        {
+                            ["Food"] = 0,
+                            ["Stone"] = 0,
+                            ["Wood"] = 0
+                        },
+                        ["Id"] = 2,
+                        ["Info"] = new JObject
+                        {
                             ["Description"] = "A unit that adds decent attack, but not many hitpoints"
                         },
                         ["Name"] = "Archer"
                     },
-                    ["2"] = new JObject
+                    ["3"] = new JObject
                     {
                         ["Cost"] = new JObject
                         {
