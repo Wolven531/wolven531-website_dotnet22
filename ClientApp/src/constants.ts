@@ -5,6 +5,8 @@ export const GATHERER_MAX_SPEED = 10
 export const GATHERER_TICK_RATE = 10
 export const GATHERER_TIME_SECONDS = 2
 
+export const INITIAL_RESOURCE_FOOD = 400
+
 export const STORAGEKEY_ACHIEVEMENT_LEVEL_GATHER = 'critter-manager.achievements.gather'
 export const STORAGEKEY_ACHIEVEMENT_LEVEL_MONEY = 'critter-manager.achievements.money'
 export const STORAGEKEY_FOODCOUNT = 'critter-manager.resources.food'
