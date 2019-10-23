@@ -12,6 +12,8 @@ import {
 	INITIAL_RESOURCE_FOOD
 } from '../../constants'
 
+import { Unit } from '../../models/Unit'
+
 //import { Achievements } from '../../components/Achievements/Achievements'
 import { AssignmentPanel } from '../AssignmentPanel/AssignmentPanel'
 import { Modal } from '../Modal/Modal'
@@ -40,6 +42,9 @@ const ResourceControls: FC = memo(() => {
 	const [foodCount, setFoodCount] = useState(initFoodCount)
 	const [stoneCount, setStoneCount] = useState(initStoneCount)
 	const [woodCount, setWoodCount] = useState(initWoodCount)
+
+	const [areUnitsLoading, setAreUnitsLoading] = useState(true)
+	const [units, setUnits] = useState<Unit[]>([])
 
 	const addGatherer = () => {
 		setMoney(staleMoney => staleMoney - GATHERER_COST)
@@ -96,7 +101,9 @@ const ResourceControls: FC = memo(() => {
 		window.document.title = 'Resources - Wolven531 Web'
 		fetch('/api/units/info')
 			.then(resp => resp.json())
-			.then(info => {
+			.then(unitArray => {
+				setAreUnitsLoading(false)
+				setUnits(unitArray)
 				// console.log(`[ handleMounted | ResourceControls ] info=`, JSON.stringify(info, null, 4), info)
 			})
 			.catch(err => console.error(err))
@@ -153,6 +160,13 @@ const ResourceControls: FC = memo(() => {
 						</tr>
 					</tbody>
 				</table>
+				{areUnitsLoading
+					? <p>Units Loading...</p>
+					: units.map(unit => <article>
+						<p>{unit.Name}</p>
+						<p>{unit.Info.Description}</p>
+					</article>)}
+				{/*
 				{gatherCount > 0 && <article>
 						<p>Gatherers: {gatherCount} ({monify(calcGatherTotalIncome())} per collection)</p>
 						<p>Gatherer Income Level: {gatherIncomeLevel} ({monify(calcGatherIncome())} per gatherer)</p>
@@ -177,6 +191,7 @@ const ResourceControls: FC = memo(() => {
 							onWoodElapsed={(assigned: number) => { setWoodCount(staleCount => staleCount + assigned) }}
 							/>
 					</article>}
+				*/}
 			</section>
 			<section>
 				<button className="add-money" onClick={() => { addMoney() }}>Add Money</button>
