@@ -8,7 +8,8 @@ import {
 	GATHERER_INITIAL_TICK,
 	GATHERER_MAX_SPEED,
 	GATHERER_TICK_RATE,
-	GATHERER_TIME_SECONDS
+	GATHERER_TIME_SECONDS,
+	INITIAL_RESOURCE_FOOD
 } from '../../constants'
 
 //import { Achievements } from '../../components/Achievements/Achievements'
@@ -78,6 +79,11 @@ const ResourceControls: FC = memo(() => {
 		setGatherCount(0)
 		setGatherIncomeLevel(0)
 		setGatherSpeedLevel(1)
+
+		// reset other resources
+		setFoodCount(INITIAL_RESOURCE_FOOD)
+		setStoneCount(0)
+		setWoodCount(0)
 	}
 
 	// // NOTE: This happens before un-render (only once)

@@ -9,7 +9,8 @@ import {
 	STORAGEKEY_GATHERSPEEDLEVEL,
 	STORAGEKEY_MONEY,
 	STORAGEKEY_STONECOUNT,
-	STORAGEKEY_WOODCOUNT
+	STORAGEKEY_WOODCOUNT,
+	INITIAL_RESOURCE_FOOD
 } from '../constants'
 
 //const initAchievements = (achievementType: string): any[] => {
@@ -37,7 +38,7 @@ import {
 const initFoodCount = (): number => {
 	const foodStr = window.localStorage.getItem(STORAGEKEY_FOODCOUNT)
 	if (!foodStr || foodStr.length < 1) {
-		return 0
+		return INITIAL_RESOURCE_FOOD
 	}
 	return parseInt(foodStr, 10)
 }
