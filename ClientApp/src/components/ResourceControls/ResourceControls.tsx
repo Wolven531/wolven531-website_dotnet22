@@ -9,7 +9,8 @@ import {
 	GATHERER_MAX_SPEED,
 	GATHERER_TICK_RATE,
 	GATHERER_TIME_SECONDS,
-	INITIAL_RESOURCE_FOOD
+	INITIAL_RESOURCE_FOOD,
+	UNIT_ID_NONE
 } from '../../constants'
 
 import { Unit } from '../../models/Unit'
@@ -162,10 +163,17 @@ const ResourceControls: FC = memo(() => {
 				</table>
 				{areUnitsLoading
 					? <p>Units Loading...</p>
-					: units.map(unit => <article>
-						<p>{unit.Name}</p>
-						<p>{unit.Info.Description}</p>
-					</article>)}
+					: units.map(unit => {
+						if (unit.Id === UNIT_ID_NONE) {
+							return null
+						}
+						return (
+							<article>
+								<p>{unit.Name}</p>
+								<p>{unit.Info.Description}</p>
+							</article>
+						)
+					})}
 				{/*
 				{gatherCount > 0 && <article>
 						<p>Gatherers: {gatherCount} ({monify(calcGatherTotalIncome())} per collection)</p>
