@@ -7,6 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
+//using Newtonsoft.Json.Converters;
+//using Newtonsoft.Json.Serialization;
 using System;
 using wolven531WebsiteDotnet22.Services;
 
@@ -37,6 +39,15 @@ namespace wolven531WebsiteDotnet22
             //services.AddCors();
             //services.AddCors(builder => builder.AllowAnyHeader());
             //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddWebApiConventions();
+
+            // TODO: these settings did NOT change JSON serialization for Unit model
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options =>
+            //{
+            ////options.SerializerSettings.Converters.Clear();
+            //options.SerializerSettings.Converters.Add(new StringEnumConverter(false));
+            ////options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            //});
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // In production, the React files will be served from this directory
