@@ -42,6 +42,8 @@ namespace wolven531WebsiteDotnet22
             services.AddSingleton<IBookstoreDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<BookstoreDatabaseSettings>>().Value);
 
+            services.AddSingleton<IBookService, BookService>();
+
             // TODO: this does NOT allow API web access after publish...
             //services.AddCors();
             //services.AddCors(builder => builder.AllowAnyHeader());
