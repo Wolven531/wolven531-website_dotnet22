@@ -49,15 +49,17 @@ namespace wolven531WebsiteDotnet22
             //services.AddCors(builder => builder.AllowAnyHeader());
             //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddWebApiConventions();
 
-            // TODO: these settings did NOT change JSON serialization for Unit model
-            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options =>
+            // NOTE: these settings did NOT change JSON serialization for Unit model, but the AddJsonOptions() below does
+            //services.AddMvc().AddJsonOptions(options =>
             //{
             ////options.SerializerSettings.Converters.Clear();
             //options.SerializerSettings.Converters.Add(new StringEnumConverter(false));
             ////options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             //});
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                .AddJsonOptions(options => options.UseMemberCasing())
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

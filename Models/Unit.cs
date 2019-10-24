@@ -9,16 +9,16 @@ namespace wolven531WebsiteDotnet22.Models
 {
     public class Unit
     {
-        [JsonProperty(PropertyName = "Cost")]
+        //[JsonProperty(PropertyName = "Cost")]
         public JObject Cost { get; set; }
 
-        [JsonProperty(PropertyName = "Id")]
+        //[JsonProperty(PropertyName = "Id")]
         public int Id { get; set; }
 
-        [JsonProperty(PropertyName = "Info")]
+        //[JsonProperty(PropertyName = "Info")]
         public JObject Info { get; set; }
 
-        [JsonProperty(PropertyName = "Name")]
+        //[JsonProperty(PropertyName = "Name")]
         public string Name { get; set; }
     }
 }
