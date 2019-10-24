@@ -7,9 +7,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 //using Newtonsoft.Json.Converters;
 //using Newtonsoft.Json.Serialization;
 using System;
+using wolven531WebsiteDotnet22.Models;
 using wolven531WebsiteDotnet22.Services;
 
 namespace wolven531WebsiteDotnet22
@@ -34,6 +36,11 @@ namespace wolven531WebsiteDotnet22
         {
             services.TryAddSingleton(_infoService);
             services.TryAddSingleton<IUnitStore, InMemoryUnitStore>();
+
+            services.Configure<BookstoreDatabaseSettings>(Configuration.GetSection(nameof(BookstoreDatabaseSettings)));
+
+            services.AddSingleton<IBookstoreDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<BookstoreDatabaseSettings>>().Value);
 
             // TODO: this does NOT allow API web access after publish...
             //services.AddCors();
