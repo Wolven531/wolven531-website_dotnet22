@@ -19,9 +19,9 @@ const UnitDisplay: FC<IUnitDisplayProps> = memo(({ unit }) => {
 			<p>{unit.Name}</p>
 			<p>{unit.Info.Description}</p>
 			<ul className="unit-cost">
-				<li>Food: {unit.Cost.Food}</li>
-				<li>Stone: {unit.Cost.Stone}</li>
-				<li>Wood: {unit.Cost.Wood}</li>
+				{unit.Cost.Food > 0 && <li>Food (🥩): {unit.Cost.Food}</li>}
+				{unit.Cost.Stone > 0 && <li>Stone (⛰): {unit.Cost.Stone}</li>}
+				{unit.Cost.Wood > 0 && <li>Wood (🌳): {unit.Cost.Wood}</li>}
 			</ul>
 		</article>
 	)
