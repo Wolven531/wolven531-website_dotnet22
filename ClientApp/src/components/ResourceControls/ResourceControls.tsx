@@ -150,15 +150,15 @@ const ResourceControls: FC = memo(() => {
 						</tr>
 						<tr>
 							<td>Food</td>
-							<td>🥩 {foodCount}</td>
+							<td title={`${foodCount} food`}>🥩 {foodCount}</td>
 						</tr>
 						<tr>
 							<td>Stone</td>
-							<td>⛰ {stoneCount}</td>
+							<td title={`${stoneCount} stone`}>⛰ {stoneCount}</td>
 						</tr>
 						<tr>
 							<td>Wood</td>
-							<td>🌳 {woodCount}</td>
+							<td title={`${woodCount} wood`}>🌳 {woodCount}</td>
 						</tr>
 					</tbody>
 				</table>
