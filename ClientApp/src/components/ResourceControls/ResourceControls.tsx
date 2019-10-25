@@ -28,6 +28,7 @@ import {
 	initStoneCount,
 	initWoodCount
 } from '../../state/initializers'
+import { UnitDisplay } from '../UnitDisplay/UnitDisplay'
 import { UpgradeDisplay } from '../UpgradeDisplay/UpgradeDisplay'
 import { monify } from '../utils'
 
@@ -163,17 +164,7 @@ const ResourceControls: FC = memo(() => {
 				</table>
 				{areUnitsLoading
 					? <p>Units Loading...</p>
-					: units.map(unit => {
-						if (unit.Id === UNIT_ID_NONE) {
-							return null
-						}
-						return (
-							<article>
-								<p>{unit.Name}</p>
-								<p>{unit.Info.Description}</p>
-							</article>
-						)
-					})}
+					: units.map(unit => <UnitDisplay key={unit.Id} unit={unit} />)}
 				{/*
 				{gatherCount > 0 && <article>
 						<p>Gatherers: {gatherCount} ({monify(calcGatherTotalIncome())} per collection)</p>
