@@ -18,6 +18,11 @@ const UnitDisplay: FC<IUnitDisplayProps> = memo(({ unit }) => {
 		<article className="unit-display">
 			<p>{unit.Name}</p>
 			<p>{unit.Info.Description}</p>
+			<ul className="unit-cost">
+				<li>Food: {unit.Cost.Food}</li>
+				<li>Stone: {unit.Cost.Stone}</li>
+				<li>Wood: {unit.Cost.Wood}</li>
+			</ul>
 		</article>
 	)
 })
