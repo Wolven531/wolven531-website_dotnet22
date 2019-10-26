@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route } from 'react-router'
 
-import { appActions } from '../../redux/actions/appActions'
+import { redux_setAppLoaded } from '../../redux/actions/appActions'
 
 //import { Counter } from '../Counter/Counter'
 // import { FetchData } from '../FetchData/FetchData'
@@ -11,7 +11,10 @@ import { InfoDisplay } from '../InfoDisplay/InfoDisplay'
 import { Layout } from '../Layout/Layout'
 import { ResourceControls } from '../ResourceControls/ResourceControls'
 
-class App extends Component {
+class App extends Component<{
+	appIsLoaded: boolean
+	redux_setAppLoaded: (boolean) => void
+}> {
 	public componentDidMount() {
 		window.document.title = 'Wolven531 Web'
 		/*
@@ -33,6 +36,7 @@ class App extends Component {
 		} as RequestInit)
 			.then(() => {
 				console.info(`[ componentDidMount | App ] pinged for unique page hit`)
+				this.props.redux_setAppLoaded(true)
 			})
 			.catch(err => console.error(`An error ocurred`, err))
 	}
@@ -51,11 +55,12 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-	return { }
+	return { appIsLoaded: state.appReducer.appIsLoaded }
 }
 
 const mapDispatchToProps = {
-	...appActions
+	// ...appActions
+	redux_setAppLoaded
 }
 
 const AppConnected = connect(
