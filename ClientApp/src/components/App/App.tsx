@@ -35,7 +35,7 @@ class App extends Component<{
 			method: 'post'
 		} as RequestInit)
 			.then(() => {
-				console.info(`[ componentDidMount | App ] pinged for unique page hit`)
+				// console.info(`[ componentDidMount | App ] pinged for unique page hit`)
 				this.props.redux_setAppLoaded(true)
 			})
 			.catch(err => console.error(`An error ocurred`, err))
