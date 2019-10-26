@@ -8,11 +8,6 @@ interface IUpgradeDisplayProps {
 }
 
 class UpgradeDisplay extends PureComponent<IUpgradeDisplayProps> {
-
-	constructor(props) {
-		super(props)
-	}
-
 	public render() {
 		// console.info(`[ render | UpgradeDisplay] `)
 
