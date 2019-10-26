@@ -1,4 +1,5 @@
-import React, { useState, FC, memo, useEffect } from 'react'
+// import React, { useState, FC, memo, useEffect } from 'react'
+import React, { useState, FC, useEffect } from 'react'
 
 import { useInterval } from '../../hooks/useInterval'
 
@@ -6,17 +7,16 @@ import {
 	GATHERER_COST,
 	GATHERER_INCOME,
 	GATHERER_INITIAL_TICK,
-	GATHERER_MAX_SPEED,
+	// GATHERER_MAX_SPEED,
 	GATHERER_TICK_RATE,
 	GATHERER_TIME_SECONDS,
-	INITIAL_RESOURCE_FOOD,
-	UNIT_ID_NONE
+	INITIAL_RESOURCE_FOOD
 } from '../../constants'
 
 import { Unit } from '../../models/Unit'
 
 //import { Achievements } from '../../components/Achievements/Achievements'
-import { AssignmentPanel } from '../AssignmentPanel/AssignmentPanel'
+// import { AssignmentPanel } from '../AssignmentPanel/AssignmentPanel'
 import { Modal } from '../Modal/Modal'
 import { AutoSave } from '../../models/AutoSave'
 import {
@@ -34,7 +34,8 @@ import { monify } from '../utils'
 
 import './ResourceControls.scss'
 
-const ResourceControls: FC = memo(() => {
+// const ResourceControls: FC = memo(() => {
+const ResourceControls: FC = () => {
 	const [gatherIncomeLevel, setGatherIncomeLevel] = useState(initGatherIncomeLevel)
 	const [gatherSpeedLevel, setGatherSpeedLevel] = useState(initGatherSpeedLevel)
 	const [gatherTick, setGatherTick] = useState(GATHERER_INITIAL_TICK)
@@ -55,8 +56,8 @@ const ResourceControls: FC = memo(() => {
 	const addMoney = (funds = 1) => setMoney(staleMoney => staleMoney + funds)
 	const calcGatherTime = (): number => 1000 / GATHERER_TICK_RATE / gatherSpeedLevel
 	const calcGatherIncome = (): number => GATHERER_INCOME * (gatherIncomeLevel + 1)
-	const calcGatherIncomeUpgradeCost = (): number => Math.pow(gatherIncomeLevel + 1, 2) * 33
-	const calcGatherSpeedUpgradeCost = (): number => Math.pow(gatherSpeedLevel + 1, 3) * 66
+	// const calcGatherIncomeUpgradeCost = (): number => Math.pow(gatherIncomeLevel + 1, 2) * 33
+	// const calcGatherSpeedUpgradeCost = (): number => Math.pow(gatherSpeedLevel + 1, 3) * 66
 	const calcGatherTotalIncome = (): number => gatherCount * calcGatherIncome()
 	const collectFromGatherers = () => addMoney(calcGatherTotalIncome())
 	const executeGatherTick = () => {
@@ -70,17 +71,17 @@ const ResourceControls: FC = memo(() => {
 		}
 		setGatherTick(staleGatherTick => staleGatherTick + 1)
 	}
-	const handleUpgradeGatherIncome = () => {
-		addMoney(-1 * calcGatherIncomeUpgradeCost())
-		setGatherIncomeLevel(staleGatherIncomeLevel => staleGatherIncomeLevel + 1)
-	}
-	const handleUpgradeGatherSpeed = () => {
-		if (gatherSpeedLevel >= GATHERER_MAX_SPEED) {
-			return
-		}
-		addMoney(-1 * calcGatherSpeedUpgradeCost())
-		setGatherSpeedLevel(staleGatherSpeedLevel => staleGatherSpeedLevel + 1)
-	}
+	// const handleUpgradeGatherIncome = () => {
+	// 	addMoney(-1 * calcGatherIncomeUpgradeCost())
+	// 	setGatherIncomeLevel(staleGatherIncomeLevel => staleGatherIncomeLevel + 1)
+	// }
+	// const handleUpgradeGatherSpeed = () => {
+	// 	if (gatherSpeedLevel >= GATHERER_MAX_SPEED) {
+	// 		return
+	// 	}
+	// 	addMoney(-1 * calcGatherSpeedUpgradeCost())
+	// 	setGatherSpeedLevel(staleGatherSpeedLevel => staleGatherSpeedLevel + 1)
+	// }
 	const resetProgress = () => {
 		setMoney(0)
 		setGatherCount(0)
@@ -206,6 +207,6 @@ const ResourceControls: FC = memo(() => {
 			*/}
 		</article>
 	)
-})
+}
 
 export { ResourceControls }
