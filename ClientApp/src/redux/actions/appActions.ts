@@ -1,9 +1,9 @@
-// import { ADD_ITEM, DELETE_ITEM } from '../actionTypes'
+import { SET_APP_LOADED } from '../actionTypes'
 
-// const redux_add = (todo) => ({
-// 	type: ADD_ITEM,
-// 	payload: todo
-// })
+const redux_setAppLoaded = (isLoaded: boolean) => ({
+	type: SET_APP_LOADED,
+	payload: isLoaded
+})
 
 // const redux_delete = (id) => ({
 // 	type: DELETE_ITEM,
@@ -11,8 +11,11 @@
 // })
 
 const appActions = {
-	// redux_add,
+	redux_setAppLoaded,
 	// redux_delete
 }
 
-export { appActions }
+export {
+	appActions,
+	redux_setAppLoaded
+}
