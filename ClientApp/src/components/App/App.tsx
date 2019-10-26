@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Route } from 'react-router'
+
+import { appActions } from '../../redux/actions/appActions'
 
 //import { Counter } from '../Counter/Counter'
 // import { FetchData } from '../FetchData/FetchData'
@@ -47,4 +50,17 @@ class App extends Component {
 	}
 }
 
-export { App }
+const mapStateToProps = (state) => {
+	return { }
+}
+
+const mapDispatchToProps = {
+	...appActions
+}
+
+const AppConnected = connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(App)
+
+export { App, AppConnected }
