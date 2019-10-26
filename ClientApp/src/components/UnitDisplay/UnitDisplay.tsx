@@ -23,6 +23,10 @@ const UnitDisplay: FC<IUnitDisplayProps> = memo(({ unit }) => {
 				{unit.Cost.Stone > 0 && <li>Stone (⛰): {unit.Cost.Stone}</li>}
 				{unit.Cost.Wood > 0 && <li>Wood (🌳): {unit.Cost.Wood}</li>}
 			</ul>
+			{/*
+			<br />
+			<button onClick={() => { return }}>Purchase</button>
+			*/}
 		</article>
 	)
 })
