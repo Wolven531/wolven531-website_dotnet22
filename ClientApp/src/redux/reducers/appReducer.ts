@@ -1,20 +1,24 @@
-// import { ADD_ITEM, DELETE_ITEM } from '../actionTypes'
+import { SET_APP_LOADED } from '../actionTypes'
 
-const initialState = { }
+const initialState = {
+	appIsLoaded: false
+}
 
 const appReducer = (state = initialState, action) => {
-  switch (action.type) {
-    // case ADD_ITEM:
-    //   state = {
-    //   };
-    //   return state;
-    // case DELETE_ITEM:
-    //   state = {
-    //   };
-    //   return state;
-    default:
-      return state
-  }
+	switch (action.type) {
+		case SET_APP_LOADED:
+			state = {
+				...state,
+				appIsLoaded: action.payload
+			};
+			return state;
+		// case DELETE_ITEM:
+		//   state = {
+		//   };
+		//   return state;
+		default:
+			return state
+	}
 }
 
 export { appReducer }
