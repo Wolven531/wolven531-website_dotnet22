@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { configureStore } from './redux/store/configureStore'
 
-import { App } from './components/App/App'
+import { AppConnected } from './components/App/App'
 
 import registerServiceWorker from './registerServiceWorker'
 
@@ -18,7 +18,7 @@ const store = configureStore
 ReactDOM.render(
 	<Provider store={store}>
 		<BrowserRouter basename={baseUrl}>
-			<App />
+			<AppConnected />
 		</BrowserRouter>
 	</Provider>,
 	rootElement)
