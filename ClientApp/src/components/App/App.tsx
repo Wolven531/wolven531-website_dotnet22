@@ -55,7 +55,8 @@ class App extends Component<{
 }
 
 const mapStateToProps = (state) => {
-	return { appIsLoaded: state.appReducer.appIsLoaded }
+	return { appIsLoaded: false } // TODO: fix
+	// return { appIsLoaded: state.appReducer.appIsLoaded }
 }
 
 const mapDispatchToProps = {
