@@ -9,7 +9,10 @@ import { Provider } from 'react-redux'
 
 import { configureStore } from './redux/store/configureStore'
 
-import { AppConnected } from './components/App/App'
+import {
+	App,
+	// AppConnected
+} from './components/App/App'
 
 import registerServiceWorker from './registerServiceWorker'
 
@@ -21,7 +24,8 @@ const store = configureStore(history)
 ReactDOM.render(
 	<Provider store={store}>
 		<ConnectedRouter history={history}>
-			<AppConnected />
+			{/* <AppConnected /> */}
+			<App />
 		</ConnectedRouter>
 	</Provider>,
 	rootElement)
