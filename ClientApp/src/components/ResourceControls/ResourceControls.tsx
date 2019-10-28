@@ -13,12 +13,10 @@ import {
 	INITIAL_RESOURCE_FOOD
 } from '../../constants'
 
+import { monify } from '../utils'
+
 import { Unit } from '../../models/Unit'
 
-//import { Achievements } from '../../components/Achievements/Achievements'
-// import { AssignmentPanel } from '../AssignmentPanel/AssignmentPanel'
-import { Modal } from '../Modal/Modal'
-import { AutoSave } from '../../models/AutoSave'
 import {
 	initFoodCount,
 	initGatherCount,
@@ -28,9 +26,16 @@ import {
 	initStoneCount,
 	initWoodCount
 } from '../../state/initializers'
+
+//import { Achievements } from '../../components/Achievements/Achievements'
+// import { AssignmentPanel } from '../AssignmentPanel/AssignmentPanel'
+import { Modal } from '../Modal/Modal'
+import { AutoSave } from '../../models/AutoSave'
 import { UnitDisplay } from '../UnitDisplay/UnitDisplay'
 import { UpgradeDisplay } from '../UpgradeDisplay/UpgradeDisplay'
-import { monify } from '../utils'
+import { FoodEmoji } from '../Emoji/FoodEmoji'
+import { StoneEmoji } from '../Emoji/StoneEmoji'
+import { WoodEmoji } from '../Emoji/WoodEmoji'
 
 import './ResourceControls.scss'
 
@@ -151,15 +156,15 @@ const ResourceControls: FC = () => {
 						</tr>
 						<tr>
 							<td>Food</td>
-							<td title={`${foodCount} food`}>🥩 {foodCount}</td>
+							<td title={`${foodCount} food`}><FoodEmoji /> {foodCount}</td>
 						</tr>
 						<tr>
 							<td>Stone</td>
-							<td title={`${stoneCount} stone`}>⛰ {stoneCount}</td>
+							<td title={`${stoneCount} stone`}><StoneEmoji /> {stoneCount}</td>
 						</tr>
 						<tr>
 							<td>Wood</td>
-							<td title={`${woodCount} wood`}>🌳 {woodCount}</td>
+							<td title={`${woodCount} wood`}><WoodEmoji /> {woodCount}</td>
 						</tr>
 					</tbody>
 				</table>
