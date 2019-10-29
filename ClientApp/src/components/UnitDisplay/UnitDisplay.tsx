@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react'
+import React, { FC } from 'react'
 import { connect } from 'react-redux'
 
 import {
@@ -52,6 +52,8 @@ const mapDispatchToProps = {
 }
 
 const UnitDisplayConnected = connect(mapStateToProps, mapDispatchToProps)(UnitDisplay)
+// TODO: does memo() provide a benefit here?
+// const UnitDisplayConnected = memo(connect(mapStateToProps, mapDispatchToProps)(UnitDisplay))
 
 export {
 	UnitDisplay,
