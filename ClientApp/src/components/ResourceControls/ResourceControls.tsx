@@ -31,7 +31,7 @@ import {
 // import { AssignmentPanel } from '../AssignmentPanel/AssignmentPanel'
 import { Modal } from '../Modal/Modal'
 import { AutoSave } from '../../models/AutoSave'
-import { UnitDisplay } from '../UnitDisplay/UnitDisplay'
+import { UnitDisplayConnected } from '../UnitDisplay/UnitDisplay'
 import { UpgradeDisplay } from '../UpgradeDisplay/UpgradeDisplay'
 import { FoodEmoji } from '../Emoji/FoodEmoji'
 import { StoneEmoji } from '../Emoji/StoneEmoji'
@@ -170,7 +170,7 @@ const ResourceControls: FC = () => {
 				</table>
 				{areUnitsLoading
 					? <p>Units Loading...</p>
-					: units.map(unit => <UnitDisplay key={unit.Id} unit={unit} />)}
+					: units.map(unit => <UnitDisplayConnected key={unit.Id} unit={unit} />)}
 				{/*
 				{gatherCount > 0 && <article>
 						<p>Gatherers: {gatherCount} ({monify(calcGatherTotalIncome())} per collection)</p>
