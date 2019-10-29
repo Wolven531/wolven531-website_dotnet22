@@ -74,7 +74,7 @@ namespace wolven531WebsiteDotnet22.Services
                             ["Stone"] = 0,
                             ["Wood"] = 0
                         },
-                        ["Id"] = 2,
+                        ["Id"] = 3,
                         ["Info"] = new JObject
                         {
                             ["Description"] = "A unit that adds a small but dependable amount of both attack and hitpoints"
