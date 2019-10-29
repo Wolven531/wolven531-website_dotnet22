@@ -1,21 +1,33 @@
-import { SET_APP_LOADED } from '../actionTypes'
+import {
+	ADD_MONEY,
+	SET_APP_LOADED,
+	SET_MONEY
+} from '../actionTypes'
 
+// NOTE: app section
 const redux_setAppLoaded = (isLoaded: boolean) => ({
-	type: SET_APP_LOADED,
-	payload: isLoaded
+	payload: isLoaded,
+	type: SET_APP_LOADED
 })
 
-// const redux_delete = (id) => ({
-// 	type: DELETE_ITEM,
-// 	payload: id
-// })
+// NOTE: money section
+const redux_addMoney = (additionalAmount: number) => ({
+	payload: additionalAmount,
+	type: ADD_MONEY
+})
+
+const redux_setMoney = (newAmount: number) => ({
+	payload: newAmount,
+	type: SET_MONEY
+})
 
 const appActions = {
-	redux_setAppLoaded,
-	// redux_delete
+	redux_setAppLoaded
 }
 
 export {
 	appActions,
-	redux_setAppLoaded
+	redux_addMoney,
+	redux_setAppLoaded,
+	redux_setMoney
 }
