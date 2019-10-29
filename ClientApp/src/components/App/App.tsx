@@ -13,7 +13,7 @@ import { ResourceControls } from '../ResourceControls/ResourceControls'
 
 class App extends Component<{
 	appIsLoaded: boolean
-	redux_setAppLoaded: (boolean) => void
+	redux_setAppLoaded: (boolean) => any
 }> {
 	public componentDidMount() {
 		window.document.title = 'Wolven531 Web'
@@ -36,7 +36,8 @@ class App extends Component<{
 		} as RequestInit)
 			.then(() => {
 				// console.info(`[ componentDidMount | App ] pinged for unique page hit`)
-				this.props.redux_setAppLoaded(true)
+				// NOTE: conditional since it may or may not be connected
+				this.props.redux_setAppLoaded && this.props.redux_setAppLoaded(true)
 			})
 			.catch(err => console.error(`An error ocurred`, err))
 	}
