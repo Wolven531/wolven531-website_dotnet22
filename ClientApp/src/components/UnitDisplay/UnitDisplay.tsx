@@ -1,4 +1,5 @@
 import React, { FC, memo } from 'react'
+import { connect } from 'react-redux'
 
 import {
 	UNIT_ID_NONE
@@ -6,18 +7,25 @@ import {
 
 import { Unit } from '../../models/Unit'
 
+// import { redux_addMoney } from '../../redux/actions/appActions'
+
 import { FoodEmoji } from '../Emoji/FoodEmoji'
 import { StoneEmoji } from '../Emoji/StoneEmoji'
 import { WoodEmoji } from '../Emoji/WoodEmoji'
 
 interface IUnitDisplayProps {
+	money: number
+	// redux_addMoney: (number) => any
 	unit: Unit
 }
 
-const UnitDisplay: FC<IUnitDisplayProps> = memo(({ unit }) => {
+const UnitDisplay: FC<IUnitDisplayProps> = (props) => {
+	const unit = props.unit
+	
 	if (unit.Id === UNIT_ID_NONE) {
 		return null
 	}
+
 	return (
 		<article className="unit-display">
 			<p>{unit.Name}</p>
@@ -33,6 +41,19 @@ const UnitDisplay: FC<IUnitDisplayProps> = memo(({ unit }) => {
 			*/}
 		</article>
 	)
-})
+}
 
-export { UnitDisplay }
+const mapStateToProps = (state) => {
+	return { money: state.appReducer.money }
+}
+
+const mapDispatchToProps = {
+	// redux_addMoney
+}
+
+const UnitDisplayConnected = connect(mapStateToProps, mapDispatchToProps)(UnitDisplay)
+
+export {
+	UnitDisplay,
+	UnitDisplayConnected
+}
