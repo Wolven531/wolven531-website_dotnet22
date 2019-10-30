@@ -1,3 +1,5 @@
+import { INITIAL_RESOURCE_FOOD } from '../../constants'
+
 import {
 	ADD_MONEY,
 	SET_MONEY
@@ -11,7 +13,7 @@ export interface IResourceReducerProps {
 }
 
 const initialState: IResourceReducerProps = {
-	food: 0,
+	food: INITIAL_RESOURCE_FOOD,
 	money: 0,
 	stone: 0,
 	wood: 0
