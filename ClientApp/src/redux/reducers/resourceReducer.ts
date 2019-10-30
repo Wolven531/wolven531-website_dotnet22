@@ -3,7 +3,11 @@ import {
 	SET_MONEY
 } from '../actionTypes'
 
-const initialState = {
+export interface IResourceReducerProps {
+	money: number
+}
+
+const initialState: IResourceReducerProps = {
 	money: 0
 }
 

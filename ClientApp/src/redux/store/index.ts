@@ -1,9 +1,11 @@
 // import { rootReducer } from '../reducers'
 import { appReducer } from '../reducers/appReducer'
-import { resourceReducer } from '../reducers/resourceReducer'
+import { resourceReducer, IResourceReducerProps } from '../reducers/resourceReducer'
 
 // The top-level state object
-export interface ApplicationState {
+export interface IApplicationState {
+	appReducer: any
+	resourceReducer: IResourceReducerProps
 	// counter: Counter.CounterState | undefined
 	// weatherForecasts: WeatherForecasts.WeatherForecastsState | undefined
 }
@@ -24,5 +26,5 @@ export const reducers = {
 // This type can be used as a hint on action creators so that its 'dispatch' and 'getState' params are
 // correctly typed to match your store
 export interface AppThunkAction<TAction> {
-	(dispatch: (action: TAction) => void, getState: () => ApplicationState): void
+	(dispatch: (action: TAction) => void, getState: () => IApplicationState): void
 }

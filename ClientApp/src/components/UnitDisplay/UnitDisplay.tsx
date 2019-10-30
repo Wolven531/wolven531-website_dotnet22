@@ -8,6 +8,7 @@ import {
 import { Unit } from '../../models/Unit'
 
 // import { redux_addMoney } from '../../redux/actions/appActions'
+import { IApplicationState } from '../../redux/store'
 
 import { FoodEmoji } from '../Emoji/FoodEmoji'
 import { StoneEmoji } from '../Emoji/StoneEmoji'
@@ -43,8 +44,8 @@ const UnitDisplay: FC<IUnitDisplayProps> = (props) => {
 	)
 }
 
-const mapStateToProps = (state) => {
-	return { money: state.appReducer.money }
+const mapStateToProps = ({ resourceReducer }: IApplicationState) => {
+	return { money: resourceReducer.money }
 }
 
 const mapDispatchToProps = {
