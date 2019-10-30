@@ -1,5 +1,6 @@
 // import { rootReducer } from '../reducers'
 import { appReducer } from '../reducers/appReducer'
+import { resourceReducer } from '../reducers/resourceReducer'
 
 // The top-level state object
 export interface ApplicationState {
@@ -16,7 +17,8 @@ export interface ApplicationState {
 // };
 // export const reducers = rootReducer
 export const reducers = {
-	appReducer
+	appReducer,
+	resourceReducer
 }
 
 // This type can be used as a hint on action creators so that its 'dispatch' and 'getState' params are
