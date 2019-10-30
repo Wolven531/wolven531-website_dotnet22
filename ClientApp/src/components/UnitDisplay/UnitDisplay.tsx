@@ -15,9 +15,12 @@ import { StoneEmoji } from '../Emoji/StoneEmoji'
 import { WoodEmoji } from '../Emoji/WoodEmoji'
 
 interface IUnitDisplayProps {
+	food: number
 	money: number
 	// redux_addMoney: (number) => any
+	stone: number
 	unit: Unit
+	wood: number
 }
 
 const UnitDisplay: FC<IUnitDisplayProps> = (props) => {
@@ -37,15 +40,24 @@ const UnitDisplay: FC<IUnitDisplayProps> = (props) => {
 				{unit.Cost.Wood > 0 && <li>Wood (<WoodEmoji />): {unit.Cost.Wood}</li>}
 			</ul>
 			{/*
-			<br />
-			<button onClick={() => { return }}>Purchase</button>
 			*/}
+			<br />
+			<button
+				disabled={props.food < unit.Cost.Food ||
+					props.stone < unit.Cost.Stone ||
+					props.wood < unit.Cost.Wood}
+				onClick={() => { return }}>Purchase</button>
 		</article>
 	)
 }
 
 const mapStateToProps = ({ resourceReducer }: IApplicationState) => {
-	return { money: resourceReducer.money }
+	return {
+		food: resourceReducer.food,
+		money: resourceReducer.money,
+		stone: resourceReducer.stone,
+		wood: resourceReducer.wood
+	}
 }
 
 const mapDispatchToProps = {
