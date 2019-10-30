@@ -14,6 +14,8 @@ import { FoodEmoji } from '../Emoji/FoodEmoji'
 import { StoneEmoji } from '../Emoji/StoneEmoji'
 import { WoodEmoji } from '../Emoji/WoodEmoji'
 
+import './UnitDisplay.scss'
+
 interface IUnitDisplayProps {
 	food: number
 	money: number
