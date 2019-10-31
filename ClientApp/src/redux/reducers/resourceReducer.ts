@@ -1,7 +1,9 @@
 import { INITIAL_RESOURCE_FOOD } from '../../constants'
 
 import {
+	ADD_FOOD,
 	ADD_MONEY,
+	SET_FOOD,
 	SET_MONEY
 } from '../actionTypes'
 
@@ -21,10 +23,22 @@ const initialState: IResourceReducerProps = {
 
 const resourceReducer = (state = initialState, action) => {
 	switch (action.type) {
+		case ADD_FOOD:
+			state = {
+				...state,
+				food: state.food + action.payload
+			}
+			return state
 		case ADD_MONEY:
 			state = {
 				...state,
 				money: state.money + action.payload
+			}
+			return state
+		case SET_FOOD:
+			state = {
+				...state,
+				food: action.payload
 			}
 			return state
 		case SET_MONEY:
