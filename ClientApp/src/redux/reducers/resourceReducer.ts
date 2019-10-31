@@ -4,9 +4,11 @@ import {
 	ADD_FOOD,
 	ADD_MONEY,
 	ADD_STONE,
+	ADD_WOOD,
 	SET_FOOD,
 	SET_MONEY,
-	SET_STONE
+	SET_STONE,
+	SET_WOOD
 } from '../actionTypes'
 
 export interface IResourceReducerProps {
@@ -43,6 +45,12 @@ const resourceReducer = (state = initialState, action) => {
 				stone: state.stone + action.payload
 			}
 			return state
+		case ADD_WOOD:
+			state = {
+				...state,
+				wood: state.wood + action.payload
+			}
+			return state
 		case SET_FOOD:
 			state = {
 				...state,
@@ -59,6 +67,12 @@ const resourceReducer = (state = initialState, action) => {
 			state = {
 				...state,
 				stone: action.payload
+			}
+			return state
+		case SET_WOOD:
+			state = {
+				...state,
+				wood: action.payload
 			}
 			return state
 		default:
