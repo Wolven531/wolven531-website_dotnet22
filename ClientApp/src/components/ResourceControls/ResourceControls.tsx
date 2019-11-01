@@ -46,6 +46,7 @@ import './ResourceControls.scss'
 interface IResourceControlsProps {
 	food: number
 	money: number
+	redux_addMoney: (additionalAmount: number) => void
 	stone: number
 	wood: number
 }
@@ -206,7 +207,7 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 				*/}
 			</section>
 			<section>
-				<button className="add-money" onClick={() => { redux_addMoney(1) }}>Add Money</button>
+				<button className="add-money" onClick={() => { props.redux_addMoney(1) }}>Add Money</button>
 				<UpgradeDisplay
 					disabled={props.money < GATHERER_COST}
 					onUpgrade={() => { addGatherer() }}
@@ -221,7 +222,9 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 	)
 }
 
-const mapDispatchToProps = { }
+const mapDispatchToProps = {
+	redux_addMoney
+}
 
 const mapStateToProps = (state: IApplicationState) => {
 	return {
