@@ -20,6 +20,7 @@ import { Unit } from '../../models/Unit'
 
 import { IApplicationState } from '../../redux/store'
 import { redux_addMoney } from '../../redux/actions/resourceActions'
+import { redux_setUnits } from '../../redux/actions/unitActions'
 
 import {
 	// initFoodCount,
@@ -47,7 +48,9 @@ interface IResourceControlsProps {
 	food: number
 	money: number
 	redux_addMoney: (additionalAmount: number) => void
+	redux_setUnits: (units: Unit[]) => void
 	stone: number
+	units: Unit[]
 	wood: number
 }
 
@@ -60,7 +63,7 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 	const [gatherCount, setGatherCount] = useState(initGatherCount)
 
 	const [areUnitsLoading, setAreUnitsLoading] = useState(true)
-	const [units, setUnits] = useState<Unit[]>([])
+	// const [units, setUnits] = useState<Unit[]>([])
 
 	const addGatherer = () => {
 		// setMoney(staleMoney => staleMoney - GATHERER_COST)
@@ -119,7 +122,8 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 			.then(resp => resp.json())
 			.then(unitArray => {
 				setAreUnitsLoading(false)
-				setUnits(unitArray)
+				props.redux_setUnits(unitArray)
+				// setUnits(unitArray)
 				// console.log(`[ handleMounted | ResourceControls ] info=`, JSON.stringify(info, null, 4), info)
 			})
 			.catch(err => console.error(err))
@@ -178,7 +182,7 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 				</table>
 				{areUnitsLoading
 					? <p>Units Loading...</p>
-					: units.map(unit => <UnitDisplayConnected key={unit.Id} unit={unit} />)}
+					: props.units.map(unit => <UnitDisplayConnected key={unit.Id} unit={unit} />)}
 				{/*
 				{gatherCount > 0 && <article>
 						<p>Gatherers: {gatherCount} ({monify(calcGatherTotalIncome())} per collection)</p>
@@ -223,7 +227,8 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 }
 
 const mapDispatchToProps = {
-	redux_addMoney
+	redux_addMoney,
+	redux_setUnits
 }
 
 const mapStateToProps = (state: IApplicationState) => {
@@ -231,6 +236,7 @@ const mapStateToProps = (state: IApplicationState) => {
 		food: state.resourceReducer.food,
 		money: state.resourceReducer.money,
 		stone: state.resourceReducer.stone,
+		units: state.unitReducer.units,
 		wood: state.resourceReducer.wood
 	}
 }
