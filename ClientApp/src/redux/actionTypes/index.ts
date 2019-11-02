@@ -10,3 +10,6 @@ export const SET_FOOD = 'SET_FOOD'
 export const SET_MONEY = 'SET_MONEY'
 export const SET_STONE = 'SET_STONE'
 export const SET_WOOD = 'SET_WOOD'
+
+// NOTE: unit section
+export const SET_UNITS = 'SET_UNITS'
