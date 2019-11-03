@@ -5,13 +5,13 @@ import { connect } from 'react-redux'
 import { useInterval } from '../../hooks/useInterval'
 
 import {
-	GATHERER_COST,
+	// GATHERER_COST,
 	// GATHERER_INCOME,
 	GATHERER_INITIAL_TICK,
 	// GATHERER_MAX_SPEED,
 	GATHERER_TICK_RATE,
 	GATHERER_TIME_SECONDS,
-	// INITIAL_RESOURCE_FOOD
+	INITIAL_RESOURCE_FOOD
 } from '../../constants'
 
 import { monify } from '../utils'
@@ -19,7 +19,10 @@ import { monify } from '../utils'
 import { Unit } from '../../models/Unit'
 
 import { IApplicationState } from '../../redux/store'
-import { redux_addMoney } from '../../redux/actions/resourceActions'
+import {
+	redux_addMoney,
+	redux_setFoodCount
+} from '../../redux/actions/resourceActions'
 import { redux_setUnits } from '../../redux/actions/unitActions'
 
 import {
@@ -37,7 +40,7 @@ import {
 import { Modal } from '../Modal/Modal'
 import { AutoSave } from '../../models/AutoSave'
 import { UnitDisplayConnected } from '../UnitDisplay/UnitDisplay'
-import { UpgradeDisplay } from '../UpgradeDisplay/UpgradeDisplay'
+// import { UpgradeDisplay } from '../UpgradeDisplay/UpgradeDisplay'
 import { FoodEmoji } from '../Emoji/FoodEmoji'
 import { StoneEmoji } from '../Emoji/StoneEmoji'
 import { WoodEmoji } from '../Emoji/WoodEmoji'
@@ -47,8 +50,9 @@ import './ResourceControls.scss'
 interface IResourceControlsProps {
 	food: number
 	money: number
-	redux_addMoney: (additionalAmount: number) => void
-	redux_setUnits: (units: Unit[]) => void
+	redux_addMoney: (additionalAmount: number) => any
+	redux_setFoodCount: (foodCount: number) => any
+	redux_setUnits: (units: Unit[]) => any
 	stone: number
 	units: Unit[]
 	wood: number
@@ -105,7 +109,7 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 		setGatherSpeedLevel(1)
 
 		// reset other resources
-		// setFoodCount(INITIAL_RESOURCE_FOOD)
+		props.redux_setFoodCount(INITIAL_RESOURCE_FOOD)
 		// setStoneCount(0)
 		// setWoodCount(0)
 	}
@@ -228,6 +232,7 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 
 const mapDispatchToProps = {
 	redux_addMoney,
+	redux_setFoodCount,
 	redux_setUnits
 }
 
