@@ -1,4 +1,5 @@
 import {
+	PURCHASE_UNIT,
 	SET_UNITS
 } from '../actionTypes'
 
@@ -17,15 +18,31 @@ const initialState: IUnitReducerProps = {
 const unitReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case SET_UNITS:
-			const newUnitCount = { };
-			(action.payload as Unit[]).forEach(unit => {
+			const newUnitCount = { }
+			const newUnits: Unit[] = action.payload
+
+			newUnits.forEach(unit => {
 				newUnitCount[unit.Id] = 0
 			})
-			state = {
+
+			return {
 				unitCount: newUnitCount,
 				units: action.payload
 			}
-			return state
+		case PURCHASE_UNIT:
+			const unit: Unit = action.payload
+			const updatedUnitCount = { }
+
+			Object.keys(state.unitCount).forEach(staleId => {
+				updatedUnitCount[staleId] = parseInt(staleId, 10) === unit.Id
+					? state.unitCount[unit.Id] + 1
+					: state.unitCount[staleId]
+			})
+
+			return {
+				...state,
+				unitCount: updatedUnitCount
+			}
 		default:
 			return state
 	}
