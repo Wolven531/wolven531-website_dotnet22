@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Route } from 'react-router'
 
 import { redux_setAppLoaded } from '../../redux/actions/appActions'
+import { IApplicationState } from '../../redux/store'
 
 //import { Counter } from '../Counter/Counter'
 // import { FetchData } from '../FetchData/FetchData'
@@ -46,18 +47,18 @@ class App extends Component<{
 		return (
 			<Layout>
 				<Route exact path='/' component={Home} />
-				{/*<Route path='/counter' component={Counter} />*/}
+				{/* <Route path='/counter' component={Counter} /> */}
 				{/* <Route path='/fetch-data' component={FetchData} /> */}
-				<Route path='/resources' component={ResourceControls} />
+				{/* NOTE: must use function for ResourceControls because it is connected */}
+				<Route path='/resources' component={() => <ResourceControls />} />
 				<Route path='/info' component={InfoDisplay} />
 			</Layout>
 		)
 	}
 }
 
-const mapStateToProps = (state) => {
-	return { appIsLoaded: false } // TODO: fix
-	// return { appIsLoaded: state.appReducer.appIsLoaded }
+const mapStateToProps = ({ appReducer }: IApplicationState) => {
+	return { appIsLoaded: appReducer.appIsLoaded }
 }
 
 const mapDispatchToProps = {
