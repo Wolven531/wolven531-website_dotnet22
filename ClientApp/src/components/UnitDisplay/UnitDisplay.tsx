@@ -8,6 +8,7 @@ import {
 import { Unit } from '../../models/Unit'
 
 // import { redux_addMoney } from '../../redux/actions/appActions'
+// import { redux_expendUnitCost } from '../../redux/actions/resourceActions'
 import { redux_purchaseUnit } from '../../redux/actions/unitActions'
 import { IApplicationState } from '../../redux/store'
 
@@ -21,6 +22,7 @@ interface IUnitDisplayProps {
 	food: number
 	money: number
 	// redux_addMoney: (number) => any
+	// redux_expendUnitCost: (unit: Unit) => any
 	redux_purchaseUnit: (unit: Unit) => any
 	stone: number
 	unit: Unit
@@ -51,7 +53,10 @@ const UnitDisplay: FC<IUnitDisplayProps> = (props) => {
 					props.food < unit.Cost.Food ||
 					props.stone < unit.Cost.Stone ||
 					props.wood < unit.Cost.Wood}
-				onClick={() => { props.redux_purchaseUnit(unit) }}>Purchase</button>
+				onClick={() => {
+					// props.redux_expendUnitCost(unit)
+					props.redux_purchaseUnit(unit)
+				}}>Purchase</button>
 		</article>
 	)
 }
@@ -68,6 +73,7 @@ const mapStateToProps = ({ resourceReducer, unitReducer }: IApplicationState) =>
 
 const mapDispatchToProps = {
 	// redux_addMoney
+	// redux_expendUnitCost,
 	redux_purchaseUnit
 }
 
