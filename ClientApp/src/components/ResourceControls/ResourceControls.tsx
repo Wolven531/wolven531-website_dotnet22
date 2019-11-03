@@ -65,10 +65,10 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 	const [areUnitsLoading, setAreUnitsLoading] = useState(true)
 	// const [units, setUnits] = useState<Unit[]>([])
 
-	const addGatherer = () => {
-		// setMoney(staleMoney => staleMoney - GATHERER_COST)
-		setGatherCount(staleGatherCount => staleGatherCount + 1)
-	}
+	// const addGatherer = () => {
+	// 	// setMoney(staleMoney => staleMoney - GATHERER_COST)
+	// 	setGatherCount(staleGatherCount => staleGatherCount + 1)
+	// }
 	// const addMoney = (funds = 1) => setMoney(staleMoney => staleMoney + funds)
 	const calcGatherTime = (): number => 1000 / GATHERER_TICK_RATE / gatherSpeedLevel
 	// const calcGatherIncome = (): number => GATHERER_INCOME * (gatherIncomeLevel + 1)
@@ -210,6 +210,8 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 					</article>}
 				*/}
 			</section>
+			<button onClick={() => { setIsShowingModal(true) }}>Show Options</button>
+			{/*
 			<section>
 				<button className="add-money" onClick={() => { props.redux_addMoney(1) }}>Add Money</button>
 				<UpgradeDisplay
@@ -218,8 +220,6 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 					displayText={`Buy Gatherer (${monify(GATHERER_COST)})`}
 					/>
 			</section>
-			<button onClick={() => { setIsShowingModal(true) }}>Show Options</button>
-			{/*
 			<Achievements />
 			*/}
 		</article>
