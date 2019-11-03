@@ -1,4 +1,9 @@
-import { INITIAL_RESOURCE_FOOD } from '../../constants'
+import {
+	initFoodCount,
+	initMoney,
+	initStoneCount,
+	initWoodCount
+} from '../../state/initializers'
 
 import {
 	ADD_FOOD,
@@ -19,10 +24,10 @@ export interface IResourceReducerProps {
 }
 
 const initialState: IResourceReducerProps = {
-	food: INITIAL_RESOURCE_FOOD,
-	money: 0,
-	stone: 0,
-	wood: 0
+	food: initFoodCount(),
+	money: initMoney(),
+	stone: initStoneCount(),
+	wood: initWoodCount()
 }
 
 const resourceReducer = (state = initialState, action) => {
