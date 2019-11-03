@@ -1,13 +1,13 @@
 // import { rootReducer } from '../reducers'
 import { appReducer } from '../reducers/appReducer'
-import { resourceReducer, IResourceReducerProps } from '../reducers/resourceReducer'
-import { unitReducer } from '../reducers/unitReducer'
+import { IResourceReducerProps, resourceReducer } from '../reducers/resourceReducer'
+import { IUnitReducerProps, unitReducer } from '../reducers/unitReducer'
 
 // The top-level state object
 export interface IApplicationState {
 	appReducer: any
 	resourceReducer: IResourceReducerProps
-	unitReducer: any
+	unitReducer: IUnitReducerProps
 	// counter: Counter.CounterState | undefined
 	// weatherForecasts: WeatherForecasts.WeatherForecastsState | undefined
 }
