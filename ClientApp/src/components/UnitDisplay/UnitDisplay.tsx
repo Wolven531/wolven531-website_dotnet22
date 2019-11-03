@@ -35,6 +35,8 @@ const UnitDisplay: FC<IUnitDisplayProps> = (props) => {
 		return null
 	}
 
+	const allCostsAreZero = unit.Cost.Food === 0 && unit.Cost.Stone === 0 && unit.Cost.Wood === 0
+
 	return (
 		<article className="unit-display">
 			<p>{unit.Name} (count: {props.unitCount[unit.Id]})</p>
@@ -45,7 +47,8 @@ const UnitDisplay: FC<IUnitDisplayProps> = (props) => {
 				{unit.Cost.Wood > 0 && <li>Wood (<WoodEmoji />): {unit.Cost.Wood}</li>}
 			</ul>
 			<button
-				disabled={props.food < unit.Cost.Food ||
+				disabled={allCostsAreZero ||
+					props.food < unit.Cost.Food ||
 					props.stone < unit.Cost.Stone ||
 					props.wood < unit.Cost.Wood}
 				onClick={() => { props.redux_purchaseUnit(unit) }}>Purchase</button>
