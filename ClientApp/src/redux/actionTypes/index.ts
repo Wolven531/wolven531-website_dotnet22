@@ -12,4 +12,5 @@ export const SET_STONE = 'SET_STONE'
 export const SET_WOOD = 'SET_WOOD'
 
 // NOTE: unit section
+export const PURCHASE_UNIT = 'PURCHASE_UNIT'
 export const SET_UNITS = 'SET_UNITS'
