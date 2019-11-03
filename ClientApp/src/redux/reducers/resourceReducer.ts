@@ -1,3 +1,4 @@
+import { Unit } from '../../models/Unit'
 import {
 	initFoodCount,
 	initMoney,
@@ -10,6 +11,7 @@ import {
 	ADD_MONEY,
 	ADD_STONE,
 	ADD_WOOD,
+	PURCHASE_UNIT,
 	SET_FOOD,
 	SET_MONEY,
 	SET_STONE,
@@ -33,53 +35,54 @@ const initialState: IResourceReducerProps = {
 const resourceReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_FOOD:
-			state = {
+			return {
 				...state,
 				food: state.food + action.payload
 			}
-			return state
 		case ADD_MONEY:
-			state = {
+			return {
 				...state,
 				money: state.money + action.payload
 			}
-			return state
 		case ADD_STONE:
-			state = {
+			return {
 				...state,
 				stone: state.stone + action.payload
 			}
-			return state
 		case ADD_WOOD:
-			state = {
+			return {
 				...state,
 				wood: state.wood + action.payload
 			}
-			return state
+		case PURCHASE_UNIT:
+			const cost = (action.payload as Unit).Cost
+
+			return {
+				...state,
+				food: state.food - cost.Food,
+				stone: state.stone - cost.Stone,
+				wood: state.wood - cost.Wood
+			}
 		case SET_FOOD:
-			state = {
+			return {
 				...state,
 				food: action.payload
 			}
-			return state
 		case SET_MONEY:
-			state = {
+			return {
 				...state,
 				money: action.payload
 			}
-			return state
 		case SET_STONE:
-			state = {
+			return {
 				...state,
 				stone: action.payload
 			}
-			return state
 		case SET_WOOD:
-			state = {
+			return {
 				...state,
 				wood: action.payload
 			}
-			return state
 		default:
 			return state
 	}
