@@ -20,7 +20,7 @@ import { Unit } from '../../models/Unit'
 
 import { IApplicationState } from '../../redux/store'
 import {
-	redux_addMoney,
+	// redux_addMoney,
 	redux_setFoodCount
 } from '../../redux/actions/resourceActions'
 import { redux_setUnits } from '../../redux/actions/unitActions'
@@ -50,7 +50,7 @@ import './ResourceControls.scss'
 interface IResourceControlsProps {
 	food: number
 	money: number
-	redux_addMoney: (additionalAmount: number) => any
+	// redux_addMoney: (additionalAmount: number) => any
 	redux_setFoodCount: (foodCount: number) => any
 	redux_setUnits: (units: Unit[]) => any
 	stone: number
@@ -231,7 +231,7 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 }
 
 const mapDispatchToProps = {
-	redux_addMoney,
+	// redux_addMoney,
 	redux_setFoodCount,
 	redux_setUnits
 }
