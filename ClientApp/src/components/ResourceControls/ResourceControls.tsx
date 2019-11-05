@@ -21,9 +21,10 @@ import { Unit } from '../../models/Unit'
 import { IApplicationState } from '../../redux/store'
 import {
 	// redux_addMoney,
-	redux_setFoodCount
-} from '../../redux/actions/resourceActions'
-import { redux_setUnits } from '../../redux/actions/unitActions'
+	redux_setFoodCount,
+	redux_setUnits
+} from '../../redux/actions/gameActions'
+// import { redux_setUnits } from '../../redux/actions/unitActions'
 
 import {
 	// initFoodCount,
@@ -236,13 +237,13 @@ const mapDispatchToProps = {
 	redux_setUnits
 }
 
-const mapStateToProps = (state: IApplicationState) => {
+const mapStateToProps = ({ gameReducer }: IApplicationState) => {
 	return {
-		food: state.resourceReducer.food,
-		money: state.resourceReducer.money,
-		stone: state.resourceReducer.stone,
-		units: state.unitReducer.units,
-		wood: state.resourceReducer.wood
+		food: gameReducer.food,
+		money: gameReducer.money,
+		stone: gameReducer.stone,
+		units: gameReducer.units,
+		wood: gameReducer.wood
 	}
 }
 
