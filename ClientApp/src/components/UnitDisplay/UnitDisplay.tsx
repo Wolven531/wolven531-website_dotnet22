@@ -9,7 +9,7 @@ import { Unit } from '../../models/Unit'
 
 // import { redux_addMoney } from '../../redux/actions/appActions'
 // import { redux_expendUnitCost } from '../../redux/actions/resourceActions'
-import { redux_purchaseUnit } from '../../redux/actions/unitActions'
+import { redux_purchaseUnit } from '../../redux/actions/gameActions'
 import { IApplicationState } from '../../redux/store'
 
 import { FoodEmoji } from '../Emoji/FoodEmoji'
@@ -61,13 +61,13 @@ const UnitDisplay: FC<IUnitDisplayProps> = (props) => {
 	)
 }
 
-const mapStateToProps = ({ resourceReducer, unitReducer }: IApplicationState) => {
+const mapStateToProps = ({ gameReducer }: IApplicationState) => {
 	return {
-		food: resourceReducer.food,
-		money: resourceReducer.money,
-		stone: resourceReducer.stone,
-		unitCount: unitReducer.unitCount,
-		wood: resourceReducer.wood
+		food: gameReducer.food,
+		money: gameReducer.money,
+		stone: gameReducer.stone,
+		unitCount: gameReducer.unitCount,
+		wood: gameReducer.wood
 	}
 }
 
