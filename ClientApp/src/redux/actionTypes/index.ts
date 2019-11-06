@@ -13,4 +13,5 @@ export const SET_WOOD = 'SET_WOOD'
 
 // NOTE: unit section
 export const PURCHASE_UNIT = 'PURCHASE_UNIT'
+export const RESET_UNIT_COUNT = 'RESET_UNIT_COUNT'
 export const SET_UNITS = 'SET_UNITS'
