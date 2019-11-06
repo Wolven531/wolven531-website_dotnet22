@@ -18,6 +18,10 @@ import {
 	// SET_STONE,
 	// SET_WOOD
 } from '../actionTypes'
+import {
+	INITIAL_VILLAGER_COUNT,
+	UNIT_ID_VILLAGER
+} from '../../constants'
 
 export interface IGameReducerProps {
 	food: number
@@ -67,6 +71,10 @@ const gameReducer = (state = initialState, action) => {
 			const newUnits: Unit[] = action.payload
 
 			newUnits.forEach(unit => {
+				if (unit.Id === UNIT_ID_VILLAGER) {
+					newUnitCount[UNIT_ID_VILLAGER] = INITIAL_VILLAGER_COUNT
+					return
+				}
 				newUnitCount[unit.Id] = 0
 			})
 
