@@ -2,6 +2,7 @@ import { Unit } from '../../models/Unit'
 
 import {
 	PURCHASE_UNIT,
+	RESET_UNIT_COUNT,
 	SET_FOOD,
 	SET_UNITS
 } from '../actionTypes'
@@ -9,6 +10,11 @@ import {
 const redux_purchaseUnit = (unit: Unit) => ({
 	payload: unit,
 	type: PURCHASE_UNIT
+})
+
+const redux_resetUnitCount = () => ({
+	payload: null,
+	type: RESET_UNIT_COUNT
 })
 
 const redux_setFoodCount = (foodCount: number) => ({
@@ -23,6 +29,7 @@ const redux_setUnits = (units: Unit[]) => ({
 
 const gameActions = {
 	redux_purchaseUnit,
+	redux_resetUnitCount,
 	redux_setFoodCount,
 	redux_setUnits
 }
@@ -30,6 +37,7 @@ const gameActions = {
 export {
 	gameActions,
 	redux_purchaseUnit,
+	redux_resetUnitCount,
 	redux_setFoodCount,
 	redux_setUnits
 }
