@@ -12,8 +12,9 @@ import {
 	// ADD_STONE,
 	// ADD_WOOD,
 	PURCHASE_UNIT,
+	RESET_UNIT_COUNT,
 	SET_FOOD,
-	SET_UNITS,
+	SET_UNITS
 	// SET_MONEY,
 	// SET_STONE,
 	// SET_WOOD
@@ -60,6 +61,21 @@ const gameReducer = (state = initialState, action) => {
 				stone: state.stone - cost.Stone,
 				unitCount: updatedUnitCount,
 				wood: state.wood - cost.Wood
+			}
+		case RESET_UNIT_COUNT:
+			const resetUnitCount = { }
+
+			state.units.forEach(unit => {
+				if (unit.Id === UNIT_ID_VILLAGER) {
+					resetUnitCount[UNIT_ID_VILLAGER] = INITIAL_VILLAGER_COUNT
+					return
+				}
+				resetUnitCount[unit.Id] = 0
+			})
+
+			return {
+				...state,
+				unitCount: resetUnitCount
 			}
 		case SET_FOOD:
 			return {
