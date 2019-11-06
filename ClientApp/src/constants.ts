@@ -7,6 +7,9 @@ export const GATHERER_TIME_SECONDS = 2
 
 export const INITIAL_RESOURCE_FOOD = 400
 
+export const INITIAL_VILLAGER_COUNT = 3
+export const UNIT_ID_VILLAGER = 1
+
 export const STORAGEKEY_ACHIEVEMENT_LEVEL_GATHER = 'critter-manager.achievements.gather'
 export const STORAGEKEY_ACHIEVEMENT_LEVEL_MONEY = 'critter-manager.achievements.money'
 export const STORAGEKEY_FOODCOUNT = 'critter-manager.resources.food'
