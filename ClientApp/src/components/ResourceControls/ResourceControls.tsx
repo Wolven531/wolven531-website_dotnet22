@@ -21,6 +21,7 @@ import { Unit } from '../../models/Unit'
 import { IApplicationState } from '../../redux/store'
 import {
 	// redux_addMoney,
+	redux_resetUnitCount,
 	redux_setFoodCount,
 	redux_setUnits
 } from '../../redux/actions/gameActions'
@@ -52,6 +53,7 @@ interface IResourceControlsProps {
 	food: number
 	money: number
 	// redux_addMoney: (additionalAmount: number) => any
+	redux_resetUnitCount: () => any
 	redux_setFoodCount: (foodCount: number) => any
 	redux_setUnits: (units: Unit[]) => any
 	stone: number
@@ -110,6 +112,7 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 		setGatherSpeedLevel(1)
 
 		// reset other resources
+		props.redux_resetUnitCount()
 		props.redux_setFoodCount(INITIAL_RESOURCE_FOOD)
 		// setStoneCount(0)
 		// setWoodCount(0)
@@ -233,6 +236,7 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 
 const mapDispatchToProps = {
 	// redux_addMoney,
+	redux_resetUnitCount,
 	redux_setFoodCount,
 	redux_setUnits
 }
