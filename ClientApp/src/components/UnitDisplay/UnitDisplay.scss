@@ -1,3 +1,20 @@
 .unit-display {
 	border: 1px solid #333;
+	padding: 5px;
+
+	.name {
+		font-size: 1.5rem;
+		font-weight: bolder;
+		text-align: center;
+
+		.count {
+			font-size: 1rem;
+			font-weight: normal;
+
+			.value {
+				color: #555;
+				font-weight: bolder;
+			}
+		}
+	}
 }
