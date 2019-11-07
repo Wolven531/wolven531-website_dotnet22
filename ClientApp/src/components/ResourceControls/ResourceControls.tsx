@@ -188,9 +188,11 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 						</tr>
 					</tbody>
 				</table>
-				{areUnitsLoading
-					? <p>Units Loading...</p>
-					: props.units.map(unit => <UnitDisplayConnected key={unit.Id} unit={unit} />)}
+				<section className="unit-container">
+					{areUnitsLoading
+						? <p>Units Loading...</p>
+						: props.units.map(unit => <UnitDisplayConnected key={unit.Id} unit={unit} />)}
+				</section>
 				{/*
 				{gatherCount > 0 && <article>
 						<p>Gatherers: {gatherCount} ({monify(calcGatherTotalIncome())} per collection)</p>

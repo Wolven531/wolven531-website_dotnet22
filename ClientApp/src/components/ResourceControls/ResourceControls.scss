@@ -57,4 +57,20 @@
 			grid-row: 3;
 		}
 	}
+
+	.unit-container {
+		display: grid;
+		gap: 5px;
+		grid-auto-columns: 1fr;
+		margin-top: 1rem;
+		padding: 5px;
+
+		@media screen and (min-width: 600px) {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		@media screen and (min-width: 900px) {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+	}
 }
