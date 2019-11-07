@@ -12,6 +12,7 @@ import { Unit } from '../../models/Unit'
 import { redux_purchaseUnit } from '../../redux/actions/gameActions'
 import { IApplicationState } from '../../redux/store'
 
+import { AssignmentPanel } from '../AssignmentPanel/AssignmentPanel'
 import { FoodEmoji } from '../Emoji/FoodEmoji'
 import { StoneEmoji } from '../Emoji/StoneEmoji'
 import { WoodEmoji } from '../Emoji/WoodEmoji'
@@ -38,11 +39,12 @@ const UnitDisplay: FC<IUnitDisplayProps> = (props) => {
 	}
 
 	const allCostsAreZero = unit.Cost.Food === 0 && unit.Cost.Stone === 0 && unit.Cost.Wood === 0
+	const count = props.unitCount[unit.Id]
 
 	return (
 		<article className="unit-display">
 			<p className="name">
-				{unit.Name} <span className="count">(count: <span className="value">{props.unitCount[unit.Id]}</span>)</span>
+				{unit.Name} <span className="count">(count: <span className="value">{count}</span>)</span>
 			</p>
 			<p className="desc">{unit.Info.Description}</p>
 			{allCostsAreZero && <p>No cost</p>}
@@ -52,6 +54,12 @@ const UnitDisplay: FC<IUnitDisplayProps> = (props) => {
 					{unit.Cost.Stone > 0 && <li>{unit.Cost.Stone} <StoneEmoji /></li>}
 					{unit.Cost.Wood > 0 && <li>{unit.Cost.Wood} <WoodEmoji /></li>}
 				</ul>}
+			{count > 0 &&
+				<AssignmentPanel gatherCount={count}
+					onFoodElapsed={(assigned: number) => { /* setFoodCount(staleCount => staleCount + assigned) */ }}
+					onStoneElapsed={(assigned: number) => { /* setStoneCount(staleCount => staleCount + assigned) */ }}
+					onWoodElapsed={(assigned: number) => { /* setWoodCount(staleCount => staleCount + assigned) */ }}
+					/>}
 			<button
 				disabled={allCostsAreZero ||
 					props.food < unit.Cost.Food ||
