@@ -162,7 +162,7 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 					</article>
 				</Modal>)}
 			<section>
-				<table>
+				<table className="resource-counts">
 					<thead>
 						<tr>
 							<th>Resource</th>
