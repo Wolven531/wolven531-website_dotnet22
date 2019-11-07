@@ -48,9 +48,9 @@ const UnitDisplay: FC<IUnitDisplayProps> = (props) => {
 			{allCostsAreZero && <p>No cost</p>}
 			{!allCostsAreZero &&
 				<ul className="unit-cost">
-					{unit.Cost.Food > 0 && <li>Food (<FoodEmoji />): {unit.Cost.Food}</li>}
-					{unit.Cost.Stone > 0 && <li>Stone (<StoneEmoji />): {unit.Cost.Stone}</li>}
-					{unit.Cost.Wood > 0 && <li>Wood (<WoodEmoji />): {unit.Cost.Wood}</li>}
+					{unit.Cost.Food > 0 && <li>{unit.Cost.Food} <FoodEmoji /></li>}
+					{unit.Cost.Stone > 0 && <li>{unit.Cost.Stone} <StoneEmoji /></li>}
+					{unit.Cost.Wood > 0 && <li>{unit.Cost.Wood} <WoodEmoji /></li>}
 				</ul>}
 			<button
 				disabled={allCostsAreZero ||
