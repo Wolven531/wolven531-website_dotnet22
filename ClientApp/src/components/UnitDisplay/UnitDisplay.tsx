@@ -45,11 +45,13 @@ const UnitDisplay: FC<IUnitDisplayProps> = (props) => {
 				{unit.Name} <span className="count">(count: <span className="value">{props.unitCount[unit.Id]}</span>)</span>
 			</p>
 			<p className="desc">{unit.Info.Description}</p>
-			<ul className="unit-cost">
-				{unit.Cost.Food > 0 && <li>Food (<FoodEmoji />): {unit.Cost.Food}</li>}
-				{unit.Cost.Stone > 0 && <li>Stone (<StoneEmoji />): {unit.Cost.Stone}</li>}
-				{unit.Cost.Wood > 0 && <li>Wood (<WoodEmoji />): {unit.Cost.Wood}</li>}
-			</ul>
+			{allCostsAreZero && <p>No cost</p>}
+			{!allCostsAreZero &&
+				<ul className="unit-cost">
+					{unit.Cost.Food > 0 && <li>Food (<FoodEmoji />): {unit.Cost.Food}</li>}
+					{unit.Cost.Stone > 0 && <li>Stone (<StoneEmoji />): {unit.Cost.Stone}</li>}
+					{unit.Cost.Wood > 0 && <li>Wood (<WoodEmoji />): {unit.Cost.Wood}</li>}
+				</ul>}
 			<button
 				disabled={allCostsAreZero ||
 					props.food < unit.Cost.Food ||
