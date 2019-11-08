@@ -1,68 +1,10 @@
 .assignment {
-	.resource {
-		display: grid;
-		grid-template-areas:
-			".      lbl      ."
-			"minus  val  plus"
-			"prog  prog  prog";
-
-		.count {
-			font-size: 2rem;
-			grid-area: val;
-			text-align: center;
-		}
-
-		.minus {
-			grid-area: minus;
-		}
-
-		.name {
-			grid-area: lbl;
-		}
-
-		.plus {
-			grid-area: plus;
-		}
-
-		progress {
-			grid-area: prog;
-		}
-	}
-
 	h3 {
 		text-align: center;
 	}
 
 	h4 {
 		text-align: right;
-	}
-
-	ul {
-		padding: 0;
-
-		li {
-			list-style-type: none;
-	
-			button {
-				border-radius: 15px;
-				// margin: 0 10px;
-				padding-bottom: 0;
-				padding-top: 0;
-			}
-	
-			input[type="text"] {
-				padding-right: 5px;
-				text-align: right;
-				width: 50px;
-			}
-	
-			button,
-			input[type="text"] {
-				height: 2.6rem;
-				line-height: 2.6rem;
-				vertical-align: middle;
-			}
-		}
 	}
 
 	progress {
@@ -97,6 +39,64 @@
 		&.wood::-webkit-progress-value {
 			background-color: #aa4;
 			color: #aa4;
+		}
+	}
+
+	ul {
+		padding: 0;
+
+		li {
+			list-style-type: none;
+	
+			button {
+				border-radius: 15px;
+				// margin: 0 10px;
+				padding-bottom: 0;
+				padding-top: 0;
+			}
+	
+			input[type="text"] {
+				padding-right: 5px;
+				text-align: right;
+				width: 50px;
+			}
+	
+			button,
+			input[type="text"] {
+				height: 2.6rem;
+				line-height: 2.6rem;
+				vertical-align: middle;
+			}
+		}
+	}
+
+	.resource {
+		display: grid;
+		grid-template-areas:
+			".      lbl      ."
+			"minus  val  plus"
+			"prog  prog  prog";
+
+		progress {
+			grid-area: prog;
+		}
+
+		.count {
+			font-size: 2rem;
+			grid-area: val;
+			text-align: center;
+		}
+
+		.minus {
+			grid-area: minus;
+		}
+
+		.name {
+			grid-area: lbl;
+		}
+
+		.plus {
+			grid-area: plus;
 		}
 	}
 }
