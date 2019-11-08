@@ -44,25 +44,30 @@ const AssignmentPanel: FC<{
 		<section className="assignment">
 			<h3>Gatherer Assignment ({calcNumberIdle()} / {props.gatherCount} idle)</h3>
 			<ul>
-				<li>Food
-					<button disabled={assignedToFood <= 0}
-						onClick={() => {
-						if (assignedToFood <= 0) {
-							return
-						}
-						setAssignedToFood(staleFood => staleFood - 1)
-					}}>-</button>
-					{/* <input type="text" readOnly={true} value={assignedToFood} /> */}
-					{assignedToFood}
-					<button disabled={calcNumberIdle() <= 0}
-						onClick={() => {
-						if (assignedToFood >= props.gatherCount) {
-							return
-						}
-						setAssignedToFood(staleFood => staleFood + 1)
-						}}>+</button>
-					<ElapsedProgress extraClasses="food"
-						resourceCount={assignedToFood} onElapsed={() => { props.onFoodElapsed(assignedToFood) }} />
+				<li>
+					<div className="resource food">
+						<span className="name">Food</span>
+						<button disabled={assignedToFood <= 0}
+							className="minus"
+							onClick={() => {
+							if (assignedToFood <= 0) {
+								return
+							}
+							setAssignedToFood(staleFood => staleFood - 1)
+						}}>-</button>
+						{/* <input type="text" readOnly={true} value={assignedToFood} /> */}
+						<span className="count">{assignedToFood}</span>
+						<button disabled={calcNumberIdle() <= 0}
+							className="plus"
+							onClick={() => {
+							if (assignedToFood >= props.gatherCount) {
+								return
+							}
+							setAssignedToFood(staleFood => staleFood + 1)
+							}}>+</button>
+						<ElapsedProgress extraClasses="food"
+							resourceCount={assignedToFood} onElapsed={() => { props.onFoodElapsed(assignedToFood) }} />
+					</div>
 				</li>
 				<li>Stone
 					<button disabled={assignedToStone <= 0}
