@@ -42,7 +42,8 @@ const AssignmentPanel: FC<{
 
 	return (
 		<section className="assignment">
-			<h3>Gatherer Assignment ({calcNumberIdle()} / {props.gatherCount} idle)</h3>
+			<h3>Gatherer Assignment</h3>
+			<h4>{calcNumberIdle()} / {props.gatherCount} idle</h4>
 			<ul>
 				<li>
 					<div className="resource food">
