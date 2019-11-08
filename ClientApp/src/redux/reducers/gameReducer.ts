@@ -7,10 +7,10 @@ import {
 } from '../../state/initializers'
 
 import {
-	// ADD_FOOD,
 	// ADD_MONEY,
 	// ADD_STONE,
 	// ADD_WOOD,
+	ADD_FOOD,
 	PURCHASE_UNIT,
 	RESET_UNIT_COUNT,
 	SET_FOOD,
@@ -44,6 +44,11 @@ const initialState: IGameReducerProps = {
 
 const gameReducer = (state = initialState, action) => {
 	switch (action.type) {
+		case ADD_FOOD:
+			return {
+				...state,
+				food: state.food + action.payload
+			}
 		case PURCHASE_UNIT:
 			const unit: Unit = action.payload
 			const updatedUnitCount = { }
