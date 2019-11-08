@@ -9,7 +9,10 @@ import { Unit } from '../../models/Unit'
 
 // import { redux_addMoney } from '../../redux/actions/appActions'
 // import { redux_expendUnitCost } from '../../redux/actions/resourceActions'
-import { redux_purchaseUnit } from '../../redux/actions/gameActions'
+import {
+	redux_addFood,
+	redux_purchaseUnit
+} from '../../redux/actions/gameActions'
 import { IApplicationState } from '../../redux/store'
 
 import { AssignmentPanel } from '../AssignmentPanel/AssignmentPanel'
@@ -24,6 +27,7 @@ interface IUnitDisplayProps {
 	money: number
 	// redux_addMoney: (number) => any
 	// redux_expendUnitCost: (unit: Unit) => any
+	redux_addFood: (additionalAmount: number) => any
 	redux_purchaseUnit: (unit: Unit) => any
 	stone: number
 	unit: Unit
@@ -56,7 +60,7 @@ const UnitDisplay: FC<IUnitDisplayProps> = (props) => {
 				</ul>}
 			{count > 0 &&
 				<AssignmentPanel gatherCount={count}
-					onFoodElapsed={(assigned: number) => { /* setFoodCount(staleCount => staleCount + assigned) */ }}
+					onFoodElapsed={(assigned: number) => { props.redux_addFood(assigned) }}
 					onStoneElapsed={(assigned: number) => { /* setStoneCount(staleCount => staleCount + assigned) */ }}
 					onWoodElapsed={(assigned: number) => { /* setWoodCount(staleCount => staleCount + assigned) */ }}
 					/>}
@@ -86,6 +90,7 @@ const mapStateToProps = ({ gameReducer }: IApplicationState) => {
 const mapDispatchToProps = {
 	// redux_addMoney
 	// redux_expendUnitCost,
+	redux_addFood,
 	redux_purchaseUnit
 }
 
