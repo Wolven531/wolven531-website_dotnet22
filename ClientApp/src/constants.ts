@@ -18,6 +18,7 @@ export const STORAGEKEY_GATHERINCOMELEVEL = 'critter-manager.gatherROILevel'
 export const STORAGEKEY_GATHERSPEEDLEVEL = 'critter-manager.gatherSpeedLevel'
 export const STORAGEKEY_MONEY = 'critter-manager.money'
 export const STORAGEKEY_STONECOUNT = 'critter-manager.resources.stone'
+export const STORAGEKEY_UNITCOUNT = 'critter-manager.resources.unitCount'
 export const STORAGEKEY_WOODCOUNT = 'critter-manager.resources.wood'
 
 export const UNIT_ID_NONE = 0
