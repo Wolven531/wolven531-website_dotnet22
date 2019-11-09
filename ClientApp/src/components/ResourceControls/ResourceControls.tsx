@@ -39,8 +39,8 @@ import {
 
 //import { Achievements } from '../../components/Achievements/Achievements'
 // import { AssignmentPanel } from '../AssignmentPanel/AssignmentPanel'
+import { AutoSave } from '../AutoSave/AutoSave'
 import { Modal } from '../Modal/Modal'
-import { AutoSave } from '../../models/AutoSave'
 import { UnitDisplayConnected } from '../UnitDisplay/UnitDisplay'
 // import { UpgradeDisplay } from '../UpgradeDisplay/UpgradeDisplay'
 import { FoodEmoji } from '../Emoji/FoodEmoji'
@@ -70,7 +70,6 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 	const [gatherCount, setGatherCount] = useState(initGatherCount)
 
 	const [areUnitsLoading, setAreUnitsLoading] = useState(true)
-	// const [units, setUnits] = useState<Unit[]>([])
 
 	// const addGatherer = () => {
 	// 	// setMoney(staleMoney => staleMoney - GATHERER_COST)
@@ -131,8 +130,6 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 			.then(unitArray => {
 				setAreUnitsLoading(false)
 				props.redux_setUnits(unitArray)
-				// setUnits(unitArray)
-				// console.log(`[ handleMounted | ResourceControls ] info=`, JSON.stringify(info, null, 4), info)
 			})
 			.catch(err => console.error(err))
 	// 	return handleUnmount
@@ -142,18 +139,10 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 	useEffect(handleMounted, [])
 
 	useInterval(executeGatherTick, calcGatherTime())
-	useInterval(() => AutoSave.saveToLocal({
-		foodCount: props.food,
-		gatherCount,
-		gatherIncomeLevel,
-		gatherSpeedLevel,
-		money: props.money,
-		stoneCount: props.stone,
-		woodCount: props.wood
-	}), 1000)
 
 	return (
 		<article className="resource-controls">
+			<AutoSave />
 			{isShowingModal && (
 				<Modal handleModalDialogClose={() => { setIsShowingModal(false) }}>
 					<article>
@@ -211,12 +200,6 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 							/>
 						<br />
 						<progress value={gatherTick} max={GATHERER_TIME_SECONDS * GATHERER_TICK_RATE} />
-						<br/>
-						<AssignmentPanel gatherCount={gatherCount}
-							onFoodElapsed={(assigned: number) => { setFoodCount(staleCount => staleCount + assigned) }}
-							onStoneElapsed={(assigned: number) => { setStoneCount(staleCount => staleCount + assigned) }}
-							onWoodElapsed={(assigned: number) => { setWoodCount(staleCount => staleCount + assigned) }}
-							/>
 					</article>}
 				*/}
 			</section>
