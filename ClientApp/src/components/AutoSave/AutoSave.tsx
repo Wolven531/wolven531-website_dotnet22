@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, memo, useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import { useInterval } from '../../hooks/useInterval'
@@ -57,6 +57,6 @@ const mapStateToProps = ({ gameReducer }: IApplicationState) => {
 	}
 }
 
-const AutoSave = connect(mapStateToProps, mapDispatchToProps)(AutoSaveUnconnected)
+const AutoSave = connect(mapStateToProps, mapDispatchToProps)(memo(AutoSaveUnconnected))
 
 export { AutoSave }
