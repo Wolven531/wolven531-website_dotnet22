@@ -3,6 +3,7 @@ import {
 	initFoodCount,
 	initMoney,
 	initStoneCount,
+	initUnitCount,
 	initWoodCount
 } from '../../state/initializers'
 
@@ -37,7 +38,7 @@ const initialState: IGameReducerProps = {
 	food: initFoodCount(),
 	money: initMoney(),
 	stone: initStoneCount(),
-	unitCount: { },
+	unitCount: initUnitCount(),
 	units: [],
 	wood: initWoodCount()
 }
@@ -88,20 +89,8 @@ const gameReducer = (state = initialState, action) => {
 				food: action.payload
 			}
 		case SET_UNITS:
-			const newUnitCount = { }
-			const newUnits: Unit[] = action.payload
-
-			newUnits.forEach(unit => {
-				if (unit.Id === UNIT_ID_VILLAGER) {
-					newUnitCount[UNIT_ID_VILLAGER] = INITIAL_VILLAGER_COUNT
-					return
-				}
-				newUnitCount[unit.Id] = 0
-			})
-
 			return {
 				...state,
-				unitCount: newUnitCount,
 				units: action.payload
 			}
 		default:
