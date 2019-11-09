@@ -3,14 +3,15 @@
 import {
 	// STORAGEKEY_ACHIEVEMENT_LEVEL_GATHER,
 	// STORAGEKEY_ACHIEVEMENT_LEVEL_MONEY,
+	INITIAL_RESOURCE_FOOD,
 	STORAGEKEY_FOODCOUNT,
 	STORAGEKEY_GATHERCOUNT,
 	STORAGEKEY_GATHERINCOMELEVEL,
 	STORAGEKEY_GATHERSPEEDLEVEL,
 	STORAGEKEY_MONEY,
 	STORAGEKEY_STONECOUNT,
-	STORAGEKEY_WOODCOUNT,
-	INITIAL_RESOURCE_FOOD
+	STORAGEKEY_UNITCOUNT,
+	STORAGEKEY_WOODCOUNT
 } from '../constants'
 
 //const initAchievements = (achievementType: string): any[] => {
@@ -83,6 +84,14 @@ const initStoneCount = (): number => {
 	return parseInt(stoneStr, 10)
 }
 
+const initUnitCount = (): any => {
+	const unitCountStr = window.localStorage.getItem(STORAGEKEY_UNITCOUNT)
+	if (!unitCountStr || unitCountStr.length < 1) {
+		return { }
+	}
+	return JSON.parse(unitCountStr)
+}
+
 const initWoodCount = (): number => {
 	const woodStr = window.localStorage.getItem(STORAGEKEY_WOODCOUNT)
 	if (!woodStr || woodStr.length < 1) {
@@ -99,5 +108,6 @@ export {
 	initGatherSpeedLevel,
 	initMoney,
 	initStoneCount,
+	initUnitCount,
 	initWoodCount
 }
