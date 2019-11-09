@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 
 import { useInterval } from '../../hooks/useInterval'
 
-import { Unit } from '../../models/Unit'
-
 import { IApplicationState } from '../../redux/store'
 
 import { AutoSave as AutoSaveModel } from '../../models/AutoSave'
@@ -13,7 +11,7 @@ interface IAutoSaveProps {
 	food: number
 	money: number
 	stone: number
-	units: Unit[]
+	unitCount: any
 	wood: number
 }
 
@@ -34,11 +32,11 @@ const AutoSaveUnconnected: FC<IAutoSaveProps> = (props) => {
 
 	useInterval(() => AutoSaveModel.saveToLocal({
 		foodCount: props.food,
-		// gatherCount,
 		// gatherIncomeLevel,
 		// gatherSpeedLevel,
 		money: props.money,
 		stoneCount: props.stone,
+		unitCount: props.unitCount,
 		woodCount: props.wood
 	}), AUTOSAVE_TIMEOUT)
 
@@ -52,7 +50,7 @@ const mapStateToProps = ({ gameReducer }: IApplicationState) => {
 		food: gameReducer.food,
 		money: gameReducer.money,
 		stone: gameReducer.stone,
-		units: gameReducer.units,
+		unitCount: gameReducer.unitCount,
 		wood: gameReducer.wood
 	}
 }
