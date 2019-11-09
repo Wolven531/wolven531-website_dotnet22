@@ -1,4 +1,4 @@
-import React, { FC, memo, useEffect } from 'react'
+import { FC, memo, useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import { useInterval } from '../../hooks/useInterval'

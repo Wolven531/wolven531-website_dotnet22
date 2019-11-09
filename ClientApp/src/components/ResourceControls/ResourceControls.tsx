@@ -2,15 +2,8 @@
 import React, { useState, FC, useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { useInterval } from '../../hooks/useInterval'
-
 import {
-	// GATHERER_COST,
-	// GATHERER_INCOME,
-	GATHERER_INITIAL_TICK,
 	// GATHERER_MAX_SPEED,
-	GATHERER_TICK_RATE,
-	GATHERER_TIME_SECONDS,
 	INITIAL_RESOURCE_FOOD
 } from '../../constants'
 
@@ -25,7 +18,6 @@ import {
 	redux_setFoodCount,
 	redux_setUnits
 } from '../../redux/actions/gameActions'
-// import { redux_setUnits } from '../../redux/actions/unitActions'
 
 import {
 	initGatherIncomeLevel,
