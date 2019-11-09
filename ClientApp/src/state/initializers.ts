@@ -5,7 +5,6 @@ import {
 	// STORAGEKEY_ACHIEVEMENT_LEVEL_MONEY,
 	INITIAL_RESOURCE_FOOD,
 	STORAGEKEY_FOODCOUNT,
-	STORAGEKEY_GATHERCOUNT,
 	STORAGEKEY_GATHERINCOMELEVEL,
 	STORAGEKEY_GATHERSPEEDLEVEL,
 	STORAGEKEY_MONEY,
@@ -42,14 +41,6 @@ const initFoodCount = (): number => {
 		return INITIAL_RESOURCE_FOOD
 	}
 	return parseInt(foodStr, 10)
-}
-
-const initGatherCount = (): number => {
-	const gathererStr = window.localStorage.getItem(STORAGEKEY_GATHERCOUNT)
-	if (!gathererStr || gathererStr.length < 1) {
-		return 0
-	}
-	return parseInt(gathererStr, 10)
 }
 
 const initGatherIncomeLevel = (): number => {
@@ -103,7 +94,6 @@ const initWoodCount = (): number => {
 export {
 	//initAchievements,
 	initFoodCount,
-	initGatherCount,
 	initGatherIncomeLevel,
 	initGatherSpeedLevel,
 	initMoney,

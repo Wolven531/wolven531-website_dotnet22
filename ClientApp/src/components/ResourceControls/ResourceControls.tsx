@@ -28,17 +28,11 @@ import {
 // import { redux_setUnits } from '../../redux/actions/unitActions'
 
 import {
-	// initFoodCount,
-	initGatherCount,
 	initGatherIncomeLevel,
-	initGatherSpeedLevel,
-	// initMoney,
-	// initStoneCount,
-	// initWoodCount
+	initGatherSpeedLevel
 } from '../../state/initializers'
 
 //import { Achievements } from '../../components/Achievements/Achievements'
-// import { AssignmentPanel } from '../AssignmentPanel/AssignmentPanel'
 import { AutoSave } from '../AutoSave/AutoSave'
 import { Modal } from '../Modal/Modal'
 import { UnitDisplayConnected } from '../UnitDisplay/UnitDisplay'
@@ -65,34 +59,13 @@ interface IResourceControlsProps {
 const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 	const [gatherIncomeLevel, setGatherIncomeLevel] = useState(initGatherIncomeLevel)
 	const [gatherSpeedLevel, setGatherSpeedLevel] = useState(initGatherSpeedLevel)
-	const [gatherTick, setGatherTick] = useState(GATHERER_INITIAL_TICK)
 	const [isShowingModal, setIsShowingModal] = useState(false)
-	const [gatherCount, setGatherCount] = useState(initGatherCount)
 
 	const [areUnitsLoading, setAreUnitsLoading] = useState(true)
 
-	// const addGatherer = () => {
-	// 	// setMoney(staleMoney => staleMoney - GATHERER_COST)
-	// 	setGatherCount(staleGatherCount => staleGatherCount + 1)
-	// }
-	// const addMoney = (funds = 1) => setMoney(staleMoney => staleMoney + funds)
-	const calcGatherTime = (): number => 1000 / GATHERER_TICK_RATE / gatherSpeedLevel
-	// const calcGatherIncome = (): number => GATHERER_INCOME * (gatherIncomeLevel + 1)
 	// const calcGatherIncomeUpgradeCost = (): number => Math.pow(gatherIncomeLevel + 1, 2) * 33
 	// const calcGatherSpeedUpgradeCost = (): number => Math.pow(gatherSpeedLevel + 1, 3) * 66
-	// const calcGatherTotalIncome = (): number => gatherCount * calcGatherIncome()
-	// const collectFromGatherers = () => addMoney(calcGatherTotalIncome())
-	const executeGatherTick = () => {
-		if (gatherCount < 1) {
-			return
-		}
-		if (gatherTick >= GATHERER_TIME_SECONDS * GATHERER_TICK_RATE) {
-			// collectFromGatherers()
-			setGatherTick(GATHERER_INITIAL_TICK)
-			return
-		}
-		setGatherTick(staleGatherTick => staleGatherTick + 1)
-	}
+	
 	// const handleUpgradeGatherIncome = () => {
 	// 	addMoney(-1 * calcGatherIncomeUpgradeCost())
 	// 	setGatherIncomeLevel(staleGatherIncomeLevel => staleGatherIncomeLevel + 1)
@@ -105,8 +78,6 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 	// 	setGatherSpeedLevel(staleGatherSpeedLevel => staleGatherSpeedLevel + 1)
 	// }
 	const resetProgress = () => {
-		// setMoney(0)
-		setGatherCount(0)
 		setGatherIncomeLevel(0)
 		setGatherSpeedLevel(1)
 
@@ -125,6 +96,7 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 	// NOTE: This happens after render (only once)
 	const handleMounted = () => {
 		window.document.title = 'Resources - Wolven531 Web'
+
 		fetch('/api/units/info')
 			.then(resp => resp.json())
 			.then(unitArray => {
@@ -137,8 +109,6 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 
 	// NOTE: empty (no arg) to track nothing, fires on mount/unmount
 	useEffect(handleMounted, [])
-
-	useInterval(executeGatherTick, calcGatherTime())
 
 	return (
 		<article className="resource-controls">
@@ -184,7 +154,6 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 				</section>
 				{/*
 				{gatherCount > 0 && <article>
-						<p>Gatherers: {gatherCount} ({monify(calcGatherTotalIncome())} per collection)</p>
 						<p>Gatherer Income Level: {gatherIncomeLevel} ({monify(calcGatherIncome())} per gatherer)</p>
 						<p>Gatherer Speed Level: {gatherSpeedLevel} / {GATHERER_MAX_SPEED} (every {calcGatherTime().toFixed(2)} ms)</p>
 						<UpgradeDisplay
@@ -205,14 +174,7 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 			</section>
 			<button onClick={() => { setIsShowingModal(true) }}>Show Options</button>
 			{/*
-			<section>
-				<button className="add-money" onClick={() => { props.redux_addMoney(1) }}>Add Money</button>
-				<UpgradeDisplay
-					disabled={props.money < GATHERER_COST}
-					onUpgrade={() => { addGatherer() }}
-					displayText={`Buy Gatherer (${monify(GATHERER_COST)})`}
-					/>
-			</section>
+			<button className="add-money" onClick={() => { props.redux_addMoney(1) }}>Add Money</button>
 			<Achievements />
 			*/}
 		</article>
