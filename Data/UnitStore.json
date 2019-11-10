@@ -26,8 +26,8 @@
 	"2": {
 		"Cost": {
 			"Food": 0,
-			"Stone": 0,
-			"Wood": 0
+			"Stone": 50,
+			"Wood": 50
 		},
 		"Id": 2,
 		"Info": {
@@ -37,9 +37,9 @@
 	},
 	"3": {
 		"Cost": {
-			"Food": 0,
+			"Food": 50,
 			"Stone": 0,
-			"Wood": 0
+			"Wood": 50
 		},
 		"Id": 3,
 		"Info": {
