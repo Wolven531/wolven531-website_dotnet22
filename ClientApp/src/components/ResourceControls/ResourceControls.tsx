@@ -3,7 +3,9 @@ import { connect } from 'react-redux'
 
 import {
 	// GATHERER_MAX_SPEED,
-	INITIAL_RESOURCE_FOOD
+	INITIAL_RESOURCE_FOOD,
+	INITIAL_RESOURCE_STONE,
+	INITIAL_RESOURCE_WOOD
 } from '../../constants'
 
 import { monify } from '../utils'
@@ -20,10 +22,10 @@ import {
 	redux_setUnits
 } from '../../redux/actions/gameActions'
 
-import {
-	initGatherIncomeLevel,
-	initGatherSpeedLevel
-} from '../../state/initializers'
+// import {
+// 	initGatherIncomeLevel,
+// 	initGatherSpeedLevel
+// } from '../../state/initializers'
 
 //import { Achievements } from '../../components/Achievements/Achievements'
 import { AutoSave } from '../AutoSave/AutoSave'
@@ -52,10 +54,9 @@ interface IResourceControlsProps {
 
 // const ResourceControls: FC = memo(() => {
 const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
-	const [gatherIncomeLevel, setGatherIncomeLevel] = useState(initGatherIncomeLevel)
-	const [gatherSpeedLevel, setGatherSpeedLevel] = useState(initGatherSpeedLevel)
+	// const [gatherIncomeLevel, setGatherIncomeLevel] = useState(initGatherIncomeLevel)
+	// const [gatherSpeedLevel, setGatherSpeedLevel] = useState(initGatherSpeedLevel)
 	const [isShowingModal, setIsShowingModal] = useState(false)
-
 	const [areUnitsLoading, setAreUnitsLoading] = useState(true)
 
 	// const calcGatherIncomeUpgradeCost = (): number => Math.pow(gatherIncomeLevel + 1, 2) * 33
@@ -73,14 +74,14 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 	// 	setGatherSpeedLevel(staleGatherSpeedLevel => staleGatherSpeedLevel + 1)
 	// }
 	const resetProgress = () => {
-		setGatherIncomeLevel(0)
-		setGatherSpeedLevel(1)
+		// setGatherIncomeLevel(0)
+		// setGatherSpeedLevel(1)
 
 		// reset other resources
 		props.redux_resetUnitCount()
 		props.redux_setFoodCount(INITIAL_RESOURCE_FOOD)
-		props.redux_setStoneCount(0)
-		props.redux_setWoodCount(0)
+		props.redux_setStoneCount(INITIAL_RESOURCE_STONE)
+		props.redux_setWoodCount(INITIAL_RESOURCE_WOOD)
 	}
 
 	// // NOTE: This happens before un-render (only once)
