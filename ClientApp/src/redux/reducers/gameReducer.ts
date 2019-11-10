@@ -15,10 +15,10 @@ import {
 	PURCHASE_UNIT,
 	RESET_UNIT_COUNT,
 	SET_FOOD,
-	SET_UNITS
+	SET_STONE,
+	SET_UNITS,
+	SET_WOOD
 	// SET_MONEY,
-	// SET_STONE,
-	// SET_WOOD
 } from '../actionTypes'
 import {
 	INITIAL_VILLAGER_COUNT,
@@ -97,6 +97,16 @@ const gameReducer = (state = initialState, action) => {
 			return {
 				...state,
 				food: action.payload
+			}
+		case SET_STONE:
+			return {
+				...state,
+				stone: action.payload
+			}
+		case SET_WOOD:
+			return {
+				...state,
+				wood: action.payload
 			}
 		case SET_UNITS:
 			return {
