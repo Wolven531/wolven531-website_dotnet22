@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,69 +20,7 @@ namespace wolven531WebsiteDotnet22.Services
             else
             {
                 // TODO: strongly type the following structure
-                _unitMap = new JObject
-                {
-                    ["0"] = new JObject
-                    {
-                        ["Cost"] = new JObject
-                        {
-                            ["Food"] = 0,
-                            ["Stone"] = 0,
-                            ["Wood"] = 0
-                        },
-                        ["Id"] = 0,
-                        ["Info"] = new JObject
-                        {
-                            ["Description"] = "None"
-                        },
-                        ["Name"] = "None"
-                    },
-                    ["1"] = new JObject
-                    {
-                        ["Cost"] = new JObject
-                        {
-                            ["Food"] = 100,
-                            ["Stone"] = 0,
-                            ["Wood"] = 0
-                        },
-                        ["Id"] = 1,
-                        ["Info"] = new JObject
-                        {
-                            ["Description"] = "A non-military unit that may be tasked with gathering a resource"
-                        },
-                        ["Name"] = "Villager"
-                    },
-                    ["2"] = new JObject
-                    {
-                        ["Cost"] = new JObject
-                        {
-                            ["Food"] = 0,
-                            ["Stone"] = 0,
-                            ["Wood"] = 0
-                        },
-                        ["Id"] = 2,
-                        ["Info"] = new JObject
-                        {
-                            ["Description"] = "A unit that adds decent attack, but not many hitpoints"
-                        },
-                        ["Name"] = "Archer"
-                    },
-                    ["3"] = new JObject
-                    {
-                        ["Cost"] = new JObject
-                        {
-                            ["Food"] = 0,
-                            ["Stone"] = 0,
-                            ["Wood"] = 0
-                        },
-                        ["Id"] = 3,
-                        ["Info"] = new JObject
-                        {
-                            ["Description"] = "A unit that adds a small but dependable amount of both attack and hitpoints"
-                        },
-                        ["Name"] = "Clubman"
-                    }
-                };
+                _unitMap = JObject.Parse(File.ReadAllText(Path.Combine("Data", "UnitStore.json")));
             }
         }
 
