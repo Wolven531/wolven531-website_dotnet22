@@ -1,4 +1,3 @@
-// import React, { useState, FC, memo, useEffect } from 'react'
 import React, { useState, FC, useEffect } from 'react'
 import { connect } from 'react-redux'
 
@@ -16,6 +15,8 @@ import {
 	// redux_addMoney,
 	redux_resetUnitCount,
 	redux_setFoodCount,
+	redux_setStoneCount,
+	redux_setWoodCount,
 	redux_setUnits
 } from '../../redux/actions/gameActions'
 
@@ -40,7 +41,9 @@ interface IResourceControlsProps {
 	money: number
 	// redux_addMoney: (additionalAmount: number) => any
 	redux_resetUnitCount: () => any
-	redux_setFoodCount: (foodCount: number) => any
+	redux_setFoodCount: (count: number) => any
+	redux_setStoneCount: (count: number) => any
+	redux_setWoodCount: (count: number) => any
 	redux_setUnits: (units: Unit[]) => any
 	stone: number
 	units: Unit[]
@@ -76,8 +79,8 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 		// reset other resources
 		props.redux_resetUnitCount()
 		props.redux_setFoodCount(INITIAL_RESOURCE_FOOD)
-		// setStoneCount(0)
-		// setWoodCount(0)
+		props.redux_setStoneCount(0)
+		props.redux_setWoodCount(0)
 	}
 
 	// // NOTE: This happens before un-render (only once)
@@ -177,6 +180,8 @@ const mapDispatchToProps = {
 	// redux_addMoney,
 	redux_resetUnitCount,
 	redux_setFoodCount,
+	redux_setStoneCount,
+	redux_setWoodCount,
 	redux_setUnits
 }
 
