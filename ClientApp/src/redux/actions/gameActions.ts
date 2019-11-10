@@ -7,7 +7,9 @@ import {
 	PURCHASE_UNIT,
 	RESET_UNIT_COUNT,
 	SET_FOOD,
-	SET_UNITS
+	SET_STONE,
+	SET_UNITS,
+	SET_WOOD
 } from '../actionTypes'
 
 const redux_addFood = (additionalAmount: number) => ({
@@ -35,9 +37,19 @@ const redux_resetUnitCount = () => ({
 	type: RESET_UNIT_COUNT
 })
 
-const redux_setFoodCount = (foodCount: number) => ({
-	payload: foodCount,
+const redux_setFoodCount = (count: number) => ({
+	payload: count,
 	type: SET_FOOD
+})
+
+const redux_setStoneCount = (count: number) => ({
+	payload: count,
+	type: SET_STONE
+})
+
+const redux_setWoodCount = (count: number) => ({
+	payload: count,
+	type: SET_WOOD
 })
 
 const redux_setUnits = (units: Unit[]) => ({
@@ -52,6 +64,8 @@ const gameActions = {
 	redux_purchaseUnit,
 	redux_resetUnitCount,
 	redux_setFoodCount,
+	redux_setStoneCount,
+	redux_setWoodCount,
 	redux_setUnits
 }
 
@@ -63,5 +77,7 @@ export {
 	redux_purchaseUnit,
 	redux_resetUnitCount,
 	redux_setFoodCount,
+	redux_setStoneCount,
+	redux_setWoodCount,
 	redux_setUnits
 }
