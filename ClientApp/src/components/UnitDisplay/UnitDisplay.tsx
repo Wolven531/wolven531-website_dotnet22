@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import { connect } from 'react-redux'
 
 import {
@@ -11,6 +11,8 @@ import { Unit } from '../../models/Unit'
 // import { redux_expendUnitCost } from '../../redux/actions/resourceActions'
 import {
 	redux_addFood,
+	redux_addStone,
+	redux_addWood,
 	redux_purchaseUnit
 } from '../../redux/actions/gameActions'
 import { IApplicationState } from '../../redux/store'
@@ -28,6 +30,8 @@ interface IUnitDisplayProps {
 	// redux_addMoney: (number) => any
 	// redux_expendUnitCost: (unit: Unit) => any
 	redux_addFood: (additionalAmount: number) => any
+	redux_addStone: (additionalAmount: number) => any
+	redux_addWood: (additionalAmount: number) => any
 	redux_purchaseUnit: (unit: Unit) => any
 	stone: number
 	unit: Unit
@@ -61,9 +65,9 @@ const UnitDisplay: FC<IUnitDisplayProps> = (props) => {
 			{count > 0 &&
 				<AssignmentPanel gatherCount={count}
 					onFoodElapsed={(assigned: number) => { props.redux_addFood(assigned) }}
-					onStoneElapsed={(assigned: number) => { /* setStoneCount(staleCount => staleCount + assigned) */ }}
-					onWoodElapsed={(assigned: number) => { /* setWoodCount(staleCount => staleCount + assigned) */ }}
-					/>}
+					onStoneElapsed={(assigned: number) => { props.redux_addStone(assigned) }}
+					onWoodElapsed={(assigned: number) => { props.redux_addWood(assigned) }}
+				/>}
 			<button
 				disabled={allCostsAreZero ||
 					props.food < unit.Cost.Food ||
@@ -91,12 +95,20 @@ const mapDispatchToProps = {
 	// redux_addMoney
 	// redux_expendUnitCost,
 	redux_addFood,
+	redux_addStone,
+	redux_addWood,
 	redux_purchaseUnit
 }
 
-const UnitDisplayConnected = connect(mapStateToProps, mapDispatchToProps)(UnitDisplay)
-// TODO: does memo() provide a benefit here?
+// NOTE: no memoization
+// const UnitDisplayConnected = connect(mapStateToProps, mapDispatchToProps)(UnitDisplay)
+
+// NOTE: memoize the component after it is connected
 // const UnitDisplayConnected = memo(connect(mapStateToProps, mapDispatchToProps)(UnitDisplay))
+
+// NOTE: memoize the component before it is connected
+// TODO: does memo() provide a benefit here?
+const UnitDisplayConnected = connect(mapStateToProps, mapDispatchToProps)(memo(UnitDisplay))
 
 export {
 	UnitDisplay,
