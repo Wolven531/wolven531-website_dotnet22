@@ -41,6 +41,12 @@
     <None Include="wolven531WebsiteDotnet22.sln" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Data\UnitStore.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">
