@@ -9,9 +9,9 @@ import {
 
 import {
 	// ADD_MONEY,
-	// ADD_STONE,
-	// ADD_WOOD,
 	ADD_FOOD,
+	ADD_STONE,
+	ADD_WOOD,
 	PURCHASE_UNIT,
 	RESET_UNIT_COUNT,
 	SET_FOOD,
@@ -49,6 +49,16 @@ const gameReducer = (state = initialState, action) => {
 			return {
 				...state,
 				food: state.food + action.payload
+			}
+		case ADD_STONE:
+			return {
+				...state,
+				stone: state.stone + action.payload
+			}
+		case ADD_WOOD:
+			return {
+				...state,
+				wood: state.wood + action.payload
 			}
 		case PURCHASE_UNIT:
 			const unit: Unit = action.payload
