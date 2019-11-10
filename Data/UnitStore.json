@@ -1,0 +1,50 @@
+{
+	"0": {
+		"Cost": {
+			"Food": 0,
+			"Stone": 0,
+			"Wood": 0
+		},
+		"Id": 0,
+		"Info": {
+			"Description": "None"
+		},
+		"Name": "None"
+	},
+	"1": {
+		"Cost": {
+			"Food": 100,
+			"Stone": 0,
+			"Wood": 0
+		},
+		"Id": 1,
+		"Info": {
+			"Description": "A non-military unit that may be tasked with gathering a resource"
+		},
+		"Name": "Villager"
+	},
+	"2": {
+		"Cost": {
+			"Food": 0,
+			"Stone": 0,
+			"Wood": 0
+		},
+		"Id": 2,
+		"Info": {
+			"Description": "A unit that adds decent attack, but not many hitpoints"
+		},
+		"Name": "Archer"
+	},
+	"3": {
+		"Cost": {
+			"Food": 0,
+			"Stone": 0,
+			"Wood": 0
+		},
+		"Id": 3,
+		"Info": {
+			"Description": "A unit that adds a small but dependable amount of both attack and hitpoints"
+		},
+		"Name": "Clubman"
+	}
+}
