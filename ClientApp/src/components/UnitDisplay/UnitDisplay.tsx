@@ -2,7 +2,8 @@ import React, { FC, memo } from 'react'
 import { connect } from 'react-redux'
 
 import {
-	UNIT_ID_NONE
+	UNIT_ID_NONE,
+	UNIT_ID_VILLAGER
 } from '../../constants'
 
 import { Unit } from '../../models/Unit'
@@ -62,7 +63,7 @@ const UnitDisplay: FC<IUnitDisplayProps> = (props) => {
 					{unit.Cost.Stone > 0 && <li>{unit.Cost.Stone} <StoneEmoji /></li>}
 					{unit.Cost.Wood > 0 && <li>{unit.Cost.Wood} <WoodEmoji /></li>}
 				</ul>}
-			{count > 0 &&
+			{unit.Id === UNIT_ID_VILLAGER && count > 0 &&
 				<AssignmentPanel gatherCount={count}
 					onFoodElapsed={(assigned: number) => { props.redux_addFood(assigned) }}
 					onStoneElapsed={(assigned: number) => { props.redux_addStone(assigned) }}
