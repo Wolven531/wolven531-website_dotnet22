@@ -9,6 +9,7 @@ export const INITIAL_RESOURCE_FOOD = 400
 export const INITIAL_RESOURCE_STONE = 0
 export const INITIAL_RESOURCE_WOOD = 0
 
+export const INITIAL_POPULATION_CAP = 5
 export const INITIAL_VILLAGER_COUNT = 3
 export const UNIT_ID_NONE = 0
 export const UNIT_ID_VILLAGER = 1
