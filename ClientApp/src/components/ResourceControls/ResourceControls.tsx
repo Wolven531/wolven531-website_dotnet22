@@ -41,6 +41,7 @@ import './ResourceControls.scss'
 interface IResourceControlsProps {
 	food: number
 	money: number
+	populationCap: number
 	// redux_addMoney: (additionalAmount: number) => any
 	redux_resetUnitCount: () => any
 	redux_setFoodCount: (count: number) => any
@@ -141,6 +142,10 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 							<td>Wood</td>
 							<td title={`${props.wood} wood`}><WoodEmoji /> {props.wood}</td>
 						</tr>
+						<tr>
+							<td>Pop Cap</td>
+							<td title={`${props.populationCap} max population (capacity)`}>{props.populationCap}</td>
+						</tr>
 					</tbody>
 				</table>
 				<section className="unit-container">
@@ -190,6 +195,7 @@ const mapStateToProps = ({ gameReducer }: IApplicationState) => {
 	return {
 		food: gameReducer.food,
 		money: gameReducer.money,
+		populationCap: gameReducer.populationCap,
 		stone: gameReducer.stone,
 		units: gameReducer.units,
 		wood: gameReducer.wood
