@@ -3,6 +3,7 @@
 import {
 	// STORAGEKEY_ACHIEVEMENT_LEVEL_GATHER,
 	// STORAGEKEY_ACHIEVEMENT_LEVEL_MONEY,
+	INITIAL_POPULATION_CAP,
 	INITIAL_RESOURCE_FOOD,
 	STORAGEKEY_FOODCOUNT,
 	STORAGEKEY_GATHERINCOMELEVEL,
@@ -71,7 +72,7 @@ const initMoney = (): number => {
 const initPopulationCap = (): number => {
 	const populationCapStr = window.localStorage.getItem(STORAGEKEY_POPULATION_CAP)
 	if (!populationCapStr || populationCapStr.length < 1) {
-		return 0
+		return INITIAL_POPULATION_CAP
 	}
 	return parseInt(populationCapStr, 10)
 }
