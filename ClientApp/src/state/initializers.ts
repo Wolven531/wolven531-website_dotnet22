@@ -8,6 +8,7 @@ import {
 	STORAGEKEY_GATHERINCOMELEVEL,
 	STORAGEKEY_GATHERSPEEDLEVEL,
 	STORAGEKEY_MONEY,
+	STORAGEKEY_POPULATION_CAP,
 	STORAGEKEY_STONECOUNT,
 	STORAGEKEY_UNITCOUNT,
 	STORAGEKEY_WOODCOUNT
@@ -67,6 +68,14 @@ const initMoney = (): number => {
 	return parseInt(moneyStr, 10)
 }
 
+const initPopulationCap = (): number => {
+	const populationCapStr = window.localStorage.getItem(STORAGEKEY_POPULATION_CAP)
+	if (!populationCapStr || populationCapStr.length < 1) {
+		return 0
+	}
+	return parseInt(populationCapStr, 10)
+}
+
 const initStoneCount = (): number => {
 	const stoneStr = window.localStorage.getItem(STORAGEKEY_STONECOUNT)
 	if (!stoneStr || stoneStr.length < 1) {
@@ -97,6 +106,7 @@ export {
 	initGatherIncomeLevel,
 	initGatherSpeedLevel,
 	initMoney,
+	initPopulationCap,
 	initStoneCount,
 	initUnitCount,
 	initWoodCount
