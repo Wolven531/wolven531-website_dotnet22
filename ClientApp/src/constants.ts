@@ -10,6 +10,7 @@ export const INITIAL_RESOURCE_STONE = 0
 export const INITIAL_RESOURCE_WOOD = 0
 
 export const INITIAL_VILLAGER_COUNT = 3
+export const UNIT_ID_NONE = 0
 export const UNIT_ID_VILLAGER = 1
 
 export const STORAGEKEY_ACHIEVEMENT_LEVEL_GATHER = 'critter-manager.achievements.gather'
@@ -21,5 +22,3 @@ export const STORAGEKEY_MONEY = 'critter-manager.money'
 export const STORAGEKEY_STONECOUNT = 'critter-manager.resources.stone'
 export const STORAGEKEY_UNITCOUNT = 'critter-manager.resources.unitCount'
 export const STORAGEKEY_WOODCOUNT = 'critter-manager.resources.wood'
-
-export const UNIT_ID_NONE = 0
