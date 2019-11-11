@@ -2,6 +2,7 @@ import { Unit } from '../../models/Unit'
 import {
 	initFoodCount,
 	initMoney,
+	initPopulationCap,
 	initStoneCount,
 	initUnitCount,
 	initWoodCount
@@ -28,6 +29,7 @@ import {
 export interface IGameReducerProps {
 	food: number
 	money: number
+	populationCap: number
 	stone: number
 	unitCount: any
 	units: Unit[]
@@ -37,6 +39,7 @@ export interface IGameReducerProps {
 const initialState: IGameReducerProps = {
 	food: initFoodCount(),
 	money: initMoney(),
+	populationCap: initPopulationCap(),
 	stone: initStoneCount(),
 	unitCount: initUnitCount(),
 	units: [],
