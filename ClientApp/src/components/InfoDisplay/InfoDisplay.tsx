@@ -18,6 +18,9 @@ class InfoDisplay extends Component<{}, { data?: ServerInfo, loading: boolean }>
 		return (
 			<article>
 				<h2>Server Info</h2>
+				<p>
+					<a href="/Blog">Development Blog</a>
+				</p>
 				{this.state.loading || !this.state.data
 					? <p>Loading...</p>
 					: <section>
