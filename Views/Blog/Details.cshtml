@@ -1,0 +1,18 @@
+﻿@page
+@{
+	Layout = "~/Pages/Shared/_Layout.cshtml";
+	string entryHtml = ViewBag.EntryHtml == null ? "" : ViewBag.EntryHtml;
+}
+
+@if (entryHtml.Length > 0)
+{
+	<section>
+		<article>
+			@Html.Raw(entryHtml)
+		</article>
+	</section>
+}
+else
+{
+	<p>Entry not found</p>
+}
