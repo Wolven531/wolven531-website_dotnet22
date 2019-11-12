@@ -13,6 +13,8 @@ namespace wolven531WebsiteDotnet22.Controllers
         // GET: Blog
         public ActionResult Index()
         {
+            ViewData["Title"] = "Development Blog";
+
             return View();
         }
 
