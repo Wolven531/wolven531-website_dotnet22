@@ -4,7 +4,7 @@
 	string entryHtml = ViewBag.EntryHtml == null ? "" : ViewBag.EntryHtml;
 }
 
-<a href="/Blog">Blog Home</a>
+<a href="@ViewBag.BasePath/Blog">Blog Home</a>
 
 @if (entryHtml.Length > 0)
 {
