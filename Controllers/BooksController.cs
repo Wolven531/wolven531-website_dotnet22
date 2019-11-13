@@ -12,66 +12,66 @@ namespace wolven531WebsiteDotnet22.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        private readonly IBookService _bookService;
+        // private readonly IBookService _bookService;
 
-        public BooksController(IBookService bookService)
-        {
-            _bookService = bookService;
-        }
+        // public BooksController(IBookService bookService)
+        // {
+        //     _bookService = bookService;
+        // }
 
-        [HttpGet(Name = "GetAllBooks")]
-        public ActionResult<List<Book>> GetAllBooks() =>
-            _bookService.GetAllBooks();
+        // [HttpGet(Name = "GetAllBooks")]
+        // public ActionResult<List<Book>> GetAllBooks() =>
+        //     _bookService.GetAllBooks();
 
-        [HttpGet("{id:length(24)}", Name = "GetBook")]
-        public ActionResult<Book> GetBook(string id)
-        {
-            var book = _bookService.GetBook(id);
+        // [HttpGet("{id:length(24)}", Name = "GetBook")]
+        // public ActionResult<Book> GetBook(string id)
+        // {
+        //     var book = _bookService.GetBook(id);
 
-            if (book == null)
-            {
-                return NotFound();
-            }
+        //     if (book == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-            return book;
-        }
+        //     return book;
+        // }
 
-        [HttpPost(Name = "CreateBook")]
-        public ActionResult<Book> Create(Book book)
-        {
-            _bookService.Create(book);
+        // [HttpPost(Name = "CreateBook")]
+        // public ActionResult<Book> Create(Book book)
+        // {
+        //     _bookService.Create(book);
 
-            return CreatedAtRoute("GetBook", new { id = book.Id.ToString() }, book);
-        }
+        //     return CreatedAtRoute("GetBook", new { id = book.Id.ToString() }, book);
+        // }
 
-        [HttpPut("{id:length(24)}", Name = "UpdateBook")]
-        public IActionResult Update(string id, Book bookIn)
-        {
-            var book = _bookService.GetBook(id);
+        // [HttpPut("{id:length(24)}", Name = "UpdateBook")]
+        // public IActionResult Update(string id, Book bookIn)
+        // {
+        //     var book = _bookService.GetBook(id);
 
-            if (book == null)
-            {
-                return NotFound();
-            }
+        //     if (book == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-            _bookService.Update(id, bookIn);
+        //     _bookService.Update(id, bookIn);
 
-            return NoContent();
-        }
+        //     return NoContent();
+        // }
 
-        [HttpDelete("{id:length(24)}", Name = "DeleteBook")]
-        public IActionResult Delete(string id)
-        {
-            var book = _bookService.GetBook(id);
+        // [HttpDelete("{id:length(24)}", Name = "DeleteBook")]
+        // public IActionResult Delete(string id)
+        // {
+        //     var book = _bookService.GetBook(id);
 
-            if (book == null)
-            {
-                return NotFound();
-            }
+        //     if (book == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-            _bookService.Remove(book.Id);
+        //     _bookService.Remove(book.Id);
 
-            return NoContent();
-        }
+        //     return NoContent();
+        // }
     }
 }
