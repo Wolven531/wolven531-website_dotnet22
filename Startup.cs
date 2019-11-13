@@ -31,18 +31,17 @@ namespace wolven531WebsiteDotnet22
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // This method gets called by the runtime. Use this method to add services to the container
         public void ConfigureServices(IServiceCollection services)
         {
             services.TryAddSingleton(_infoService);
             services.TryAddSingleton<IUnitStore, InMemoryUnitStore>();
 
-            services.Configure<BookstoreDatabaseSettings>(Configuration.GetSection(nameof(BookstoreDatabaseSettings)));
-
-            services.AddSingleton<IBookstoreDatabaseSettings>(sp =>
-                sp.GetRequiredService<IOptions<BookstoreDatabaseSettings>>().Value);
-
-            services.AddSingleton<IBookService, BookService>();
+            // NOTE: BookStore setup
+            // services.Configure<BookstoreDatabaseSettings>(Configuration.GetSection(nameof(BookstoreDatabaseSettings)));
+            // services.AddSingleton<IBookstoreDatabaseSettings>(sp =>
+            //     sp.GetRequiredService<IOptions<BookstoreDatabaseSettings>>().Value);
+            // services.AddSingleton<IBookService, BookService>();
 
             // TODO: this does NOT allow API web access after publish...
             //services.AddCors();
@@ -68,7 +67,7 @@ namespace wolven531WebsiteDotnet22
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -78,7 +77,7 @@ namespace wolven531WebsiteDotnet22
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                // HSTS default value == 30 days. May change for prod, see https://aka.ms/aspnetcore-hsts
                 app.UseHsts();
             }
 
@@ -107,13 +106,8 @@ namespace wolven531WebsiteDotnet22
             //app.UseCors();
             //app.UseMiddleware();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
                 //routes.MapWebApiRoute("DefaultApi", "api/{controller}/{id?}");
-            });
+            app.UseMvc(routes => routes.MapRoute("default", "{controller}/{action=Index}/{id?}"));
 
             app.UseSpa(spa =>
             {
