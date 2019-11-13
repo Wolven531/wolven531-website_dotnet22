@@ -15,11 +15,13 @@ class InfoDisplay extends Component<{}, { data?: ServerInfo, loading: boolean }>
 	}
 
 	public render() {
+		const basePath = `${window.location.protocol}//${window.location.host}`
+
 		return (
 			<article>
 				<h2>Server Info</h2>
 				<p>
-					<a href="/Blog">Development Blog</a>
+					<a href={`${basePath}/Blog`}>Development Blog</a>
 				</p>
 				{this.state.loading || !this.state.data
 					? <p>Loading...</p>
