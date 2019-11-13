@@ -15,6 +15,10 @@ namespace wolven531WebsiteDotnet22.Controllers
         {
             ViewData["Title"] = "Development Blog";
 
+            var req = HttpContext.Request;
+            var basePath = $"{req.Scheme}://{req.Host}";
+            ViewBag.BasePath = basePath;
+
             return View();
         }
 
@@ -22,6 +26,10 @@ namespace wolven531WebsiteDotnet22.Controllers
         public ActionResult Details(int id)
         {
             var blogEntryPath = Path.Combine("Data", "Blog", $"{id}.html");
+
+            var req = HttpContext.Request;
+            var basePath = $"{req.Scheme}://{req.Host}";
+            ViewBag.BasePath = basePath;
 
             if (System.IO.File.Exists(blogEntryPath))
             {
