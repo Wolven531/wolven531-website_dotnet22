@@ -20,7 +20,10 @@ import {
 	redux_setWoodCount,
 	redux_setUnits
 } from '../../redux/actions/gameActions'
-import { selectCurrentPopulation } from '../../redux/selectors/gameSelectors'
+import {
+	selectAttackSum,
+	selectCurrentPopulation
+} from '../../redux/selectors/gameSelectors'
 import { IApplicationState } from '../../redux/store'
 
 // import {
@@ -51,6 +54,7 @@ interface IResourceControlsProps {
 	redux_setWoodCount: (count: number) => any
 	redux_setUnits: (units: Unit[]) => any
 	stone: number
+	totalAttack: number
 	units: Unit[]
 	wood: number
 }
@@ -150,6 +154,12 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 								{props.currentPopulation} / {props.populationCap}
 							</td>
 						</tr>
+						<tr>
+							<td>Attack Total</td>
+							<td title={`${props.totalAttack} total attack power`}>
+								{props.totalAttack}
+							</td>
+						</tr>
 					</tbody>
 				</table>
 				<section className="unit-container">
@@ -204,6 +214,7 @@ const mapStateToProps = (state: IApplicationState) => {
 		money: gameReducer.money,
 		populationCap: gameReducer.populationCap,
 		stone: gameReducer.stone,
+		totalAttack: selectAttackSum(state),
 		units: gameReducer.units,
 		wood: gameReducer.wood
 	}
