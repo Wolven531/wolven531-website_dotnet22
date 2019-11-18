@@ -16,6 +16,7 @@ import {
 	redux_addWood,
 	redux_purchaseUnit
 } from '../../redux/actions/gameActions'
+import { selectCurrentPopulation } from '../../redux/selectors/gameSelectors'
 import { IApplicationState } from '../../redux/store'
 
 import { AssignmentPanel } from '../AssignmentPanel/AssignmentPanel'
@@ -26,8 +27,10 @@ import { WoodEmoji } from '../Emoji/WoodEmoji'
 import './UnitDisplay.scss'
 
 interface IUnitDisplayProps {
+	currentPopulation: number
 	food: number
 	money: number
+	populationCap: number
 	// redux_addMoney: (number) => any
 	// redux_expendUnitCost: (unit: Unit) => any
 	redux_addFood: (additionalAmount: number) => any
@@ -42,7 +45,7 @@ interface IUnitDisplayProps {
 
 const UnitDisplay: FC<IUnitDisplayProps> = (props) => {
 	const unit = props.unit
-	
+
 	if (unit.Id === UNIT_ID_NONE) {
 		return null
 	}
@@ -73,7 +76,8 @@ const UnitDisplay: FC<IUnitDisplayProps> = (props) => {
 				disabled={allCostsAreZero ||
 					props.food < unit.Cost.Food ||
 					props.stone < unit.Cost.Stone ||
-					props.wood < unit.Cost.Wood}
+					props.wood < unit.Cost.Wood ||
+					props.currentPopulation >= props.populationCap}
 				onClick={() => {
 					// props.redux_expendUnitCost(unit)
 					props.redux_purchaseUnit(unit)
@@ -82,10 +86,14 @@ const UnitDisplay: FC<IUnitDisplayProps> = (props) => {
 	)
 }
 
-const mapStateToProps = ({ gameReducer }: IApplicationState) => {
+const mapStateToProps = (state: IApplicationState) => {
+	const gameReducer = state.gameReducer
+
 	return {
+		currentPopulation: selectCurrentPopulation(state),
 		food: gameReducer.food,
 		money: gameReducer.money,
+		populationCap: gameReducer.populationCap,
 		stone: gameReducer.stone,
 		unitCount: gameReducer.unitCount,
 		wood: gameReducer.wood
