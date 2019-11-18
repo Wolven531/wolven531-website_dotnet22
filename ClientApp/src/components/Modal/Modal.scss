@@ -55,6 +55,7 @@
 			transition-duration: .25s;
 			transition-property: all;
 			transition-timing-function: ease-in-out;
+			width: 3rem;
 
 			&:hover {
 				background-image: linear-gradient(to right top, #f00, #600);
@@ -64,6 +65,7 @@
 				font-size: 1.3em;
 				padding: 10px;
 				text-shadow: 3px 3px #444;
+				width: 3.5rem;
 			}
 		}
 	}
