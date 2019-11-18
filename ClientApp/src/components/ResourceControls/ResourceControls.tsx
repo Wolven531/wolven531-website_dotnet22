@@ -12,7 +12,6 @@ import { monify } from '../utils'
 
 import { Unit } from '../../models/Unit'
 
-import { IApplicationState } from '../../redux/store'
 import {
 	// redux_addMoney,
 	redux_resetUnitCount,
@@ -21,6 +20,8 @@ import {
 	redux_setWoodCount,
 	redux_setUnits
 } from '../../redux/actions/gameActions'
+import { selectCurrentPopulation } from '../../redux/selectors/gameSelectors'
+import { IApplicationState } from '../../redux/store'
 
 // import {
 // 	initGatherIncomeLevel,
@@ -39,6 +40,7 @@ import { WoodEmoji } from '../Emoji/WoodEmoji'
 import './ResourceControls.scss'
 
 interface IResourceControlsProps {
+	currentPopulation: number
 	food: number
 	money: number
 	populationCap: number
@@ -62,7 +64,7 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 
 	// const calcGatherIncomeUpgradeCost = (): number => Math.pow(gatherIncomeLevel + 1, 2) * 33
 	// const calcGatherSpeedUpgradeCost = (): number => Math.pow(gatherSpeedLevel + 1, 3) * 66
-	
+
 	// const handleUpgradeGatherIncome = () => {
 	// 	addMoney(-1 * calcGatherIncomeUpgradeCost())
 	// 	setGatherIncomeLevel(staleGatherIncomeLevel => staleGatherIncomeLevel + 1)
@@ -144,7 +146,9 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 						</tr>
 						<tr>
 							<td>Pop Cap</td>
-							<td title={`${props.populationCap} max population (capacity)`}>{props.populationCap}</td>
+							<td title={`${props.currentPopulation} of ${props.populationCap} max population (capacity)`}>
+								{props.currentPopulation} / {props.populationCap}
+							</td>
 						</tr>
 					</tbody>
 				</table>
@@ -191,8 +195,11 @@ const mapDispatchToProps = {
 	redux_setUnits
 }
 
-const mapStateToProps = ({ gameReducer }: IApplicationState) => {
+const mapStateToProps = (state: IApplicationState) => {
+	const gameReducer = state.gameReducer
+
 	return {
+		currentPopulation: selectCurrentPopulation(state),
 		food: gameReducer.food,
 		money: gameReducer.money,
 		populationCap: gameReducer.populationCap,
