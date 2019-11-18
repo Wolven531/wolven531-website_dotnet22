@@ -19,6 +19,7 @@
 		},
 		"Id": 1,
 		"Info": {
+			"Attack": 1,
 			"Description": "A non-military unit that may be tasked with gathering a resource"
 		},
 		"Name": "Villager"
@@ -31,6 +32,7 @@
 		},
 		"Id": 2,
 		"Info": {
+			"Attack": 5,
 			"Description": "A unit that adds decent attack, but not many hitpoints"
 		},
 		"Name": "Archer"
@@ -43,6 +45,7 @@
 		},
 		"Id": 3,
 		"Info": {
+			"Attack": 3,
 			"Description": "A unit that adds a small but dependable amount of both attack and hitpoints"
 		},
 		"Name": "Clubman"
