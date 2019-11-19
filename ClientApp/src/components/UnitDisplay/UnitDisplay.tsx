@@ -16,7 +16,10 @@ import {
 	redux_addWood,
 	redux_purchaseUnit
 } from '../../redux/actions/gameActions'
-import { selectCurrentPopulation } from '../../redux/selectors/gameSelectors'
+import {
+	selectCurrentPopulation,
+	selectUnitCount
+} from '../../redux/selectors/gameSelectors'
 import { IApplicationState } from '../../redux/store'
 
 import { AssignmentPanel } from '../AssignmentPanel/AssignmentPanel'
@@ -39,7 +42,7 @@ interface IUnitDisplayProps {
 	redux_purchaseUnit: (unit: Unit) => any
 	stone: number
 	unit: Unit
-	unitCount: any
+	unitCount: number
 	wood: number
 }
 
@@ -51,12 +54,11 @@ const UnitDisplay: FC<IUnitDisplayProps> = (props) => {
 	}
 
 	const allCostsAreZero = unit.Cost.Food === 0 && unit.Cost.Stone === 0 && unit.Cost.Wood === 0
-	const count = props.unitCount[unit.Id]
 
 	return (
 		<article className="unit-display">
 			<p className="name">
-				{unit.Name} <span className="count">(count: <span className="value">{count}</span>)</span>
+				{unit.Name} <span className="count">(count: <span className="value">{props.unitCount}</span>)</span>
 			</p>
 			<p className="desc">{unit.Info.Description}</p>
 			{allCostsAreZero && <p>No cost</p>}
@@ -66,8 +68,8 @@ const UnitDisplay: FC<IUnitDisplayProps> = (props) => {
 					{unit.Cost.Stone > 0 && <li>{unit.Cost.Stone} <StoneEmoji /></li>}
 					{unit.Cost.Wood > 0 && <li>{unit.Cost.Wood} <WoodEmoji /></li>}
 				</ul>}
-			{unit.Id === UNIT_ID_VILLAGER && count > 0 &&
-				<AssignmentPanel gatherCount={count}
+			{unit.Id === UNIT_ID_VILLAGER && props.unitCount > 0 &&
+				<AssignmentPanel gatherCount={props.unitCount}
 					onFoodElapsed={(assigned: number) => { props.redux_addFood(assigned) }}
 					onStoneElapsed={(assigned: number) => { props.redux_addStone(assigned) }}
 					onWoodElapsed={(assigned: number) => { props.redux_addWood(assigned) }}
@@ -86,7 +88,7 @@ const UnitDisplay: FC<IUnitDisplayProps> = (props) => {
 	)
 }
 
-const mapStateToProps = (state: IApplicationState) => {
+const mapStateToProps = (state: IApplicationState, ownProps: IUnitDisplayProps) => {
 	const gameReducer = state.gameReducer
 
 	return {
@@ -95,7 +97,7 @@ const mapStateToProps = (state: IApplicationState) => {
 		money: gameReducer.money,
 		populationCap: gameReducer.populationCap,
 		stone: gameReducer.stone,
-		unitCount: gameReducer.unitCount,
+		unitCount: selectUnitCount(String(ownProps.unit.Id))(state),
 		wood: gameReducer.wood
 	}
 }
