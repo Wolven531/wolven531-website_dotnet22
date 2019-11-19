@@ -1,15 +1,11 @@
 // import { rootReducer } from '../reducers'
 import { appReducer } from '../reducers/appReducer'
 import { IGameReducerProps, gameReducer } from '../reducers/gameReducer'
-import { IResourceReducerProps, resourceReducer } from '../reducers/resourceReducer'
-import { IUnitReducerProps, unitReducer } from '../reducers/unitReducer'
 
 // The top-level state object
 export interface IApplicationState {
 	appReducer: any
 	gameReducer: IGameReducerProps
-	resourceReducer: IResourceReducerProps
-	unitReducer: IUnitReducerProps
 	// counter: Counter.CounterState | undefined
 	// weatherForecasts: WeatherForecasts.WeatherForecastsState | undefined
 }
@@ -24,9 +20,7 @@ export interface IApplicationState {
 // export const reducers = rootReducer
 export const reducers = {
 	appReducer,
-	gameReducer,
-	resourceReducer,
-	unitReducer
+	gameReducer
 }
 
 // This type can be used as a hint on action creators so that its 'dispatch' and 'getState' params are
