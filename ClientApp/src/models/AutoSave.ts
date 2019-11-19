@@ -4,7 +4,7 @@ import {
 	STORAGEKEY_GATHERSPEEDLEVEL,
 	STORAGEKEY_MONEY,
 	STORAGEKEY_STONECOUNT,
-	STORAGEKEY_UNITCOUNT,
+	STORAGEKEY_UNITCOUNTMAP,
 	STORAGEKEY_WOODCOUNT
 } from '../constants'
 
@@ -27,8 +27,8 @@ class AutoSave {
 				case 'stoneCount':
 					window.localStorage.setItem(STORAGEKEY_STONECOUNT, JSON.stringify(saveInfo[key]))
 					break
-				case 'unitCount':
-					window.localStorage.setItem(STORAGEKEY_UNITCOUNT, JSON.stringify(saveInfo[key]))
+				case 'unitCountMap':
+					window.localStorage.setItem(STORAGEKEY_UNITCOUNTMAP, JSON.stringify(saveInfo[key]))
 					break
 				case 'woodCount':
 					window.localStorage.setItem(STORAGEKEY_WOODCOUNT, JSON.stringify(saveInfo[key]))

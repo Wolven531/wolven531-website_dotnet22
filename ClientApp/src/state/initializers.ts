@@ -11,7 +11,7 @@ import {
 	STORAGEKEY_MONEY,
 	STORAGEKEY_POPULATION_CAP,
 	STORAGEKEY_STONECOUNT,
-	STORAGEKEY_UNITCOUNT,
+	STORAGEKEY_UNITCOUNTMAP,
 	STORAGEKEY_WOODCOUNT
 } from '../constants'
 
@@ -85,12 +85,12 @@ const initStoneCount = (): number => {
 	return parseInt(stoneStr, 10)
 }
 
-const initUnitCount = (): any => {
-	const unitCountStr = window.localStorage.getItem(STORAGEKEY_UNITCOUNT)
-	if (!unitCountStr || unitCountStr.length < 1) {
+const initUnitCountMap = (): any => {
+	const unitCountMapStr = window.localStorage.getItem(STORAGEKEY_UNITCOUNTMAP)
+	if (!unitCountMapStr || unitCountMapStr.length < 1) {
 		return { }
 	}
-	return JSON.parse(unitCountStr)
+	return JSON.parse(unitCountMapStr)
 }
 
 const initWoodCount = (): number => {
@@ -109,6 +109,6 @@ export {
 	initMoney,
 	initPopulationCap,
 	initStoneCount,
-	initUnitCount,
+	initUnitCountMap,
 	initWoodCount
 }

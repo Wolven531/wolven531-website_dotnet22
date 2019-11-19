@@ -4,7 +4,7 @@ import {
 	initMoney,
 	initPopulationCap,
 	initStoneCount,
-	initUnitCount,
+	initUnitCountMap,
 	initWoodCount
 } from '../../state/initializers'
 
@@ -31,7 +31,7 @@ export interface IGameReducerProps {
 	money: number
 	populationCap: number
 	stone: number
-	unitCount: any
+	unitCountMap: any
 	units: Unit[]
 	wood: number
 }
@@ -41,7 +41,7 @@ const initialState: IGameReducerProps = {
 	money: initMoney(),
 	populationCap: initPopulationCap(),
 	stone: initStoneCount(),
-	unitCount: initUnitCount(),
+	unitCountMap: initUnitCountMap(),
 	units: [],
 	wood: initWoodCount()
 }
@@ -65,36 +65,36 @@ const gameReducer = (state = initialState, action) => {
 			}
 		case PURCHASE_UNIT:
 			const unit: Unit = action.payload
-			const updatedUnitCount = { }
+			const updatedUnitCountMap = { }
 			const cost = unit.Cost
 
-			Object.keys(state.unitCount).forEach(staleId => {
-				updatedUnitCount[staleId] = parseInt(staleId, 10) === unit.Id
-					? state.unitCount[unit.Id] + 1
-					: state.unitCount[staleId]
+			Object.keys(state.unitCountMap).forEach(staleId => {
+				updatedUnitCountMap[staleId] = parseInt(staleId, 10) === unit.Id
+					? state.unitCountMap[unit.Id] + 1
+					: state.unitCountMap[staleId]
 			})
 
 			return {
 				...state,
 				food: state.food - cost.Food,
 				stone: state.stone - cost.Stone,
-				unitCount: updatedUnitCount,
+				unitCountMap: updatedUnitCountMap,
 				wood: state.wood - cost.Wood
 			}
 		case RESET_UNIT_COUNT:
-			const resetUnitCount = { }
+			const resetUnitCountMap = { }
 
 			state.units.forEach(unit => {
 				if (unit.Id === UNIT_ID_VILLAGER) {
-					resetUnitCount[UNIT_ID_VILLAGER] = INITIAL_VILLAGER_COUNT
+					resetUnitCountMap[UNIT_ID_VILLAGER] = INITIAL_VILLAGER_COUNT
 					return
 				}
-				resetUnitCount[unit.Id] = 0
+				resetUnitCountMap[unit.Id] = 0
 			})
 
 			return {
 				...state,
-				unitCount: resetUnitCount
+				unitCountMap: resetUnitCountMap
 			}
 		case SET_FOOD:
 			return {

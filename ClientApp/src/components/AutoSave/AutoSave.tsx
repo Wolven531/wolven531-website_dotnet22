@@ -11,7 +11,7 @@ interface IAutoSaveProps {
 	food: number
 	money: number
 	stone: number
-	unitCount: any
+	unitCountMap: any
 	wood: number
 }
 
@@ -36,7 +36,7 @@ const AutoSaveUnconnected: FC<IAutoSaveProps> = (props) => {
 		// gatherSpeedLevel,
 		money: props.money,
 		stoneCount: props.stone,
-		unitCount: props.unitCount,
+		unitCountMap: props.unitCountMap,
 		woodCount: props.wood
 	}), AUTOSAVE_TIMEOUT)
 
@@ -50,7 +50,7 @@ const mapStateToProps = ({ gameReducer }: IApplicationState) => {
 		food: gameReducer.food,
 		money: gameReducer.money,
 		stone: gameReducer.stone,
-		unitCount: gameReducer.unitCount,
+		unitCountMap: gameReducer.unitCountMap,
 		wood: gameReducer.wood
 	}
 }
