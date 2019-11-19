@@ -43,6 +43,12 @@
 		}
 	}
 
+	.tab-switcher {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+	}
+
 	.unit-container {
 		display: grid;
 		gap: 5px;

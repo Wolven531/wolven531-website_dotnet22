@@ -61,10 +61,13 @@ interface IResourceControlsProps {
 
 // const ResourceControls: FC = memo(() => {
 const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
+	const TAB_BUILDINGS = 1
+	const TAB_UNITS = 0
 	// const [gatherIncomeLevel, setGatherIncomeLevel] = useState(initGatherIncomeLevel)
 	// const [gatherSpeedLevel, setGatherSpeedLevel] = useState(initGatherSpeedLevel)
 	const [isShowingModal, setIsShowingModal] = useState(false)
 	const [areUnitsLoading, setAreUnitsLoading] = useState(true)
+	const [currentTab, setCurrentTab] = useState(TAB_UNITS)
 
 	// const calcGatherIncomeUpgradeCost = (): number => Math.pow(gatherIncomeLevel + 1, 2) * 33
 	// const calcGatherSpeedUpgradeCost = (): number => Math.pow(gatherSpeedLevel + 1, 3) * 66
@@ -124,6 +127,10 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 					</article>
 				</Modal>)}
 			<section>
+				<div className="tab-switcher">
+					<button onClick={() => { setCurrentTab(TAB_UNITS) }}>Units</button>
+					<button onClick={() => { setCurrentTab(TAB_BUILDINGS) }}>Buildings</button>
+				</div>
 				<table className="resource-counts">
 					<thead>
 						<tr>
@@ -162,11 +169,11 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 						</tr>
 					</tbody>
 				</table>
-				<section className="unit-container">
+				{currentTab === TAB_UNITS && <section className="unit-container">
 					{areUnitsLoading
 						? <p>Units Loading...</p>
 						: props.units.map(unit => <UnitDisplayConnected key={unit.Id} unit={unit} />)}
-				</section>
+				</section>}
 				{/*
 				{gatherCount > 0 && <article>
 						<p>Gatherer Income Level: {gatherIncomeLevel} ({monify(calcGatherIncome())} per gatherer)</p>
