@@ -7,7 +7,7 @@ import {
 } from '../../redux/selectors/gameSelectors'
 import { IApplicationState } from '../../redux/store'
 
-import { monify } from '../utils'
+// import { monify } from '../utils'
 
 import { FoodEmoji } from '../Emoji/FoodEmoji'
 import { StoneEmoji } from '../Emoji/StoneEmoji'
@@ -27,44 +27,41 @@ interface IResourceDisplayProps {
 
 const ResourceDisplayUnconnected: FC<IResourceDisplayProps> = (props) => {
 	return (
-		<table className="resource-display">
-			<thead>
-				<tr>
-					<th>Resource</th>
-					<th>Amount</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Money</td>
-					<td>{monify(props.money)}</td>
-				</tr>
-				<tr>
-					<td>Food</td>
-					<td title={`${props.food} food`}><FoodEmoji /> {props.food}</td>
-				</tr>
-				<tr>
-					<td>Stone</td>
-					<td title={`${props.stone} stone`}><StoneEmoji /> {props.stone}</td>
-				</tr>
-				<tr>
-					<td>Wood</td>
-					<td title={`${props.wood} wood`}><WoodEmoji /> {props.wood}</td>
-				</tr>
-				<tr>
-					<td>Pop Cap</td>
-					<td title={`${props.currentPopulation} of ${props.populationCap} max population (capacity)`}>
-						{props.currentPopulation} / {props.populationCap}
-					</td>
-				</tr>
-				<tr>
-					<td>Attack Total</td>
-					<td title={`${props.totalAttack} total attack power`}>
-						{props.totalAttack}
-					</td>
-				</tr>
-			</tbody>
-		</table>
+		// <tbody>
+		// 		<tr>
+		// 			<td>Money</td>
+		// 			<td>{monify(props.money)}</td>
+		// 		</tr>
+		// 		<tr>
+		// 			<td>Pop Cap</td>
+		// 			<td title={`${props.currentPopulation} of ${props.populationCap} max population (capacity)`}>
+		// 				{props.currentPopulation} / {props.populationCap}
+		// 			</td>
+		// 		</tr>
+		// 		<tr>
+		// 			<td>Attack Total</td>
+		// 			<td title={`${props.totalAttack} total attack power`}>
+		// 				{props.totalAttack}
+		// 			</td>
+		// 		</tr>
+		// 	</tbody>
+		<article className="resource-display">
+			<section
+				className="resource food-display"
+				title={`${props.food} food`}>
+				{props.food} <FoodEmoji />
+			</section>
+			<section
+				className="resource stone-display"
+				title={`${props.stone} stone`}>
+				{props.stone} <StoneEmoji />
+			</section>
+			<section
+				className="resource wood-display"
+				title={`${props.wood} wood`}>
+				{props.wood} <WoodEmoji />
+			</section>
+		</article>
 	)
 }
 
