@@ -1,12 +1,4 @@
 .assignment {
-	h3 {
-		text-align: center;
-	}
-
-	h4 {
-		text-align: right;
-	}
-
 	progress {
 		&.food,
 		&.food::-webkit-progress-bar {
@@ -47,20 +39,20 @@
 
 		li {
 			list-style-type: none;
-	
+
 			button {
 				border-radius: 15px;
 				// margin: 0 10px;
 				padding-bottom: 0;
 				padding-top: 0;
 			}
-	
+
 			input[type="text"] {
 				padding-right: 5px;
 				text-align: right;
 				width: 50px;
 			}
-	
+
 			button,
 			input[type="text"] {
 				height: 2.6rem;
@@ -68,6 +60,10 @@
 				vertical-align: middle;
 			}
 		}
+	}
+
+	.main-label {
+		text-align: center;
 	}
 
 	.resource {
@@ -98,5 +94,9 @@
 		.plus {
 			grid-area: plus;
 		}
+	}
+
+	.sub-label {
+		text-align: right;
 	}
 }
