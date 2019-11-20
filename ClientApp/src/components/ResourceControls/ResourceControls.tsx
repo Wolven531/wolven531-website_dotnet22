@@ -8,8 +8,6 @@ import {
 	INITIAL_RESOURCE_WOOD
 } from '../../constants'
 
-import { monify } from '../utils'
-
 import { Unit } from '../../models/Unit'
 
 import {
@@ -20,10 +18,6 @@ import {
 	redux_setWoodCount,
 	redux_setUnits
 } from '../../redux/actions/gameActions'
-import {
-	selectAttackSum,
-	selectCurrentPopulation
-} from '../../redux/selectors/gameSelectors'
 import { IApplicationState } from '../../redux/store'
 
 // import {
@@ -34,29 +28,20 @@ import { IApplicationState } from '../../redux/store'
 //import { Achievements } from '../../components/Achievements/Achievements'
 import { AutoSave } from '../AutoSave/AutoSave'
 import { Modal } from '../Modal/Modal'
+import { ResourceDisplay } from '../ResourceDisplay/ResourceDisplay'
 import { UnitDisplayConnected } from '../UnitDisplay/UnitDisplay'
 // import { UpgradeDisplay } from '../UpgradeDisplay/UpgradeDisplay'
-import { FoodEmoji } from '../Emoji/FoodEmoji'
-import { StoneEmoji } from '../Emoji/StoneEmoji'
-import { WoodEmoji } from '../Emoji/WoodEmoji'
 
 import './ResourceControls.scss'
 
 interface IResourceControlsProps {
-	currentPopulation: number
-	food: number
-	money: number
-	populationCap: number
 	// redux_addMoney: (additionalAmount: number) => any
 	redux_resetUnitCount: () => any
 	redux_setFoodCount: (count: number) => any
 	redux_setStoneCount: (count: number) => any
 	redux_setWoodCount: (count: number) => any
 	redux_setUnits: (units: Unit[]) => any
-	stone: number
-	totalAttack: number
 	units: Unit[]
-	wood: number
 }
 
 // const ResourceControls: FC = memo(() => {
@@ -131,44 +116,7 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 					<button onClick={() => { setCurrentTab(TAB_UNITS) }}>Units</button>
 					<button onClick={() => { setCurrentTab(TAB_BUILDINGS) }}>Buildings</button>
 				</div>
-				<table className="resource-counts">
-					<thead>
-						<tr>
-							<th>Resource</th>
-							<th>Amount</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Money</td>
-							<td>{monify(props.money)}</td>
-						</tr>
-						<tr>
-							<td>Food</td>
-							<td title={`${props.food} food`}><FoodEmoji /> {props.food}</td>
-						</tr>
-						<tr>
-							<td>Stone</td>
-							<td title={`${props.stone} stone`}><StoneEmoji /> {props.stone}</td>
-						</tr>
-						<tr>
-							<td>Wood</td>
-							<td title={`${props.wood} wood`}><WoodEmoji /> {props.wood}</td>
-						</tr>
-						<tr>
-							<td>Pop Cap</td>
-							<td title={`${props.currentPopulation} of ${props.populationCap} max population (capacity)`}>
-								{props.currentPopulation} / {props.populationCap}
-							</td>
-						</tr>
-						<tr>
-							<td>Attack Total</td>
-							<td title={`${props.totalAttack} total attack power`}>
-								{props.totalAttack}
-							</td>
-						</tr>
-					</tbody>
-				</table>
+				<ResourceDisplay />
 				{currentTab === TAB_UNITS && <section className="unit-container">
 					{areUnitsLoading
 						? <p>Units Loading...</p>
@@ -196,8 +144,8 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 			</section>
 			<button onClick={() => { setIsShowingModal(true) }}>Show Options</button>
 			{/*
-			<button className="add-money" onClick={() => { props.redux_addMoney(1) }}>Add Money</button>
-			<Achievements />
+				<button className="add-money" onClick={() => { props.redux_addMoney(1) }}>Add Money</button>
+				<Achievements />
 			*/}
 		</article>
 	)
@@ -208,23 +156,12 @@ const mapDispatchToProps = {
 	redux_resetUnitCount,
 	redux_setFoodCount,
 	redux_setStoneCount,
-	redux_setWoodCount,
-	redux_setUnits
+	redux_setUnits,
+	redux_setWoodCount
 }
 
-const mapStateToProps = (state: IApplicationState) => {
-	const gameReducer = state.gameReducer
-
-	return {
-		currentPopulation: selectCurrentPopulation(state),
-		food: gameReducer.food,
-		money: gameReducer.money,
-		populationCap: gameReducer.populationCap,
-		stone: gameReducer.stone,
-		totalAttack: selectAttackSum(state),
-		units: gameReducer.units,
-		wood: gameReducer.wood
-	}
+const mapStateToProps = ({ gameReducer }: IApplicationState) => {
+	return { units: gameReducer.units }
 }
 
 const ResourceControls = connect(mapStateToProps, mapDispatchToProps)(ResourceControlsUnconnected)
