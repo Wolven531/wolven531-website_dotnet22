@@ -22,6 +22,7 @@ const AssignmentPanel: FC<{
 	const [assignedToFood, setAssignedToFood] = useState(0)
 	const [assignedToStone, setAssignedToStone] = useState(0)
 	const [assignedToWood, setAssignedToWood] = useState(0)
+	const [isCollapsed, setIsCollapsed] = useState(false)
 
 	const calcNumberIdle = (): number => Math.max(0, props.gatherCount - assignedToFood - assignedToStone - assignedToWood)
 
@@ -42,9 +43,14 @@ const AssignmentPanel: FC<{
 
 	return (
 		<section className="assignment">
-			<h3>Gatherer Assignment</h3>
-			<h4>{calcNumberIdle()} / {props.gatherCount} idle</h4>
-			<ul>
+			<h4 className="main-label">Gatherer Assignment</h4>
+			<h5 className="sub-label">{calcNumberIdle()} / {props.gatherCount} idle</h5>
+			<button onClick={() => { setIsCollapsed(staleCollapsed => !staleCollapsed) }}>
+				{isCollapsed
+					? '+'
+					: '-'}
+			</button>
+			{!isCollapsed && <ul>
 				<li>
 					<div className="resource food">
 						<span className="name">Food</span>
@@ -120,7 +126,7 @@ const AssignmentPanel: FC<{
 							resourceCount={assignedToWood} onElapsed={() => { props.onWoodElapsed(assignedToWood) }} />
 					</div>
 				</li>
-			</ul>
+			</ul>}
 		</section>
 	)
 }
