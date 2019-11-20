@@ -13,6 +13,8 @@ import { FoodEmoji } from '../Emoji/FoodEmoji'
 import { StoneEmoji } from '../Emoji/StoneEmoji'
 import { WoodEmoji } from '../Emoji/WoodEmoji'
 
+import './ResourceDisplay.scss'
+
 interface IResourceDisplayProps {
 	currentPopulation: number
 	food: number
@@ -25,7 +27,7 @@ interface IResourceDisplayProps {
 
 const ResourceDisplayUnconnected: FC<IResourceDisplayProps> = (props) => {
 	return (
-		<table className="resource-counts">
+		<table className="resource-display">
 			<thead>
 				<tr>
 					<th>Resource</th>
