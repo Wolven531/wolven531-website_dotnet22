@@ -57,9 +57,8 @@ const UnitDisplay: FC<IUnitDisplayProps> = (props) => {
 
 	return (
 		<article className="unit-display">
-			<p className="name">
-				{unit.Name} <span className="count">(count: <span className="value">{props.unitCount}</span>)</span>
-			</p>
+			<p className="name">{unit.Name}</p>
+			<p className="count">(count: <span className="value">{props.unitCount}</span>)</p>
 			<p className="desc">{unit.Info.Description}</p>
 			{allCostsAreZero && <p>No cost</p>}
 			{!allCostsAreZero &&

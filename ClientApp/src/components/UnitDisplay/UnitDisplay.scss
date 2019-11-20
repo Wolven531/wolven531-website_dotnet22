@@ -4,6 +4,20 @@
 	border-radius: 10px;
 	padding: 20px;
 
+	.count {
+		font-size: 1rem;
+		font-weight: normal;
+		margin: 0;
+		margin-bottom: 10px;
+		padding: 0;
+		text-align: center;
+
+		.value {
+			color: #555;
+			font-weight: bolder;
+		}
+	}
+
 	.desc {
 		background-color: rgba($color: #777, $alpha: .5);
 		border-radius: 10px;
@@ -15,16 +29,7 @@
 	.name {
 		font-size: 1.5rem;
 		font-weight: bolder;
+		margin-bottom: 0;
 		text-align: center;
-
-		.count {
-			font-size: 1rem;
-			font-weight: normal;
-
-			.value {
-				color: #555;
-				font-weight: bolder;
-			}
-		}
 	}
 }
