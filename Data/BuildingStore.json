@@ -1,0 +1,26 @@
+{
+	"0": {
+		"Cost": {
+			"Food": 0,
+			"Stone": 0,
+			"Wood": 0
+		},
+		"Id": 0,
+		"Info": {
+			"Description": "None"
+		},
+		"Name": "None"
+	},
+	"1": {
+		"Cost": {
+			"Food": 0,
+			"Stone": 0,
+			"Wood": 50
+		},
+		"Id": 1,
+		"Info": {
+			"Description": "A simple structure that increases population capacity"
+		},
+		"Name": "House"
+	}
+}
