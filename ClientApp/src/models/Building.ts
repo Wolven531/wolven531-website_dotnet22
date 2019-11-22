@@ -1,6 +1,6 @@
 import { Cost } from './Cost'
 
-class Unit {
+class Building {
 	constructor(
 		public Cost: Cost,
 		public Id: number,
@@ -8,4 +8,4 @@ class Unit {
 		public Name: string) {}
 }
 
-export { Unit }
+export { Building }
