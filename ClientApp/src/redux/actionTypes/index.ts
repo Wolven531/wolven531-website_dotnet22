@@ -11,6 +11,9 @@ export const SET_MONEY = 'SET_MONEY'
 export const SET_STONE = 'SET_STONE'
 export const SET_WOOD = 'SET_WOOD'
 
+// NOTE: building section
+export const SET_BUILDINGS = 'SET_BUILDINGS'
+
 // NOTE: unit section
 export const PURCHASE_UNIT = 'PURCHASE_UNIT'
 export const RESET_UNIT_COUNT = 'RESET_UNIT_COUNT'
