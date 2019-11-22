@@ -1,3 +1,4 @@
+import { Building } from '../../models/Building'
 import { Unit } from '../../models/Unit'
 
 import {
@@ -6,6 +7,7 @@ import {
 	ADD_WOOD,
 	PURCHASE_UNIT,
 	RESET_UNIT_COUNT,
+	SET_BUILDINGS,
 	SET_FOOD,
 	SET_STONE,
 	SET_UNITS,
@@ -37,6 +39,11 @@ const redux_resetUnitCount = () => ({
 	type: RESET_UNIT_COUNT
 })
 
+const redux_setBuildings = (buildings: Building[]) => ({
+	payload: buildings,
+	type: SET_BUILDINGS
+})
+
 const redux_setFoodCount = (count: number) => ({
 	payload: count,
 	type: SET_FOOD
@@ -63,6 +70,7 @@ const gameActions = {
 	redux_addWood,
 	redux_purchaseUnit,
 	redux_resetUnitCount,
+	redux_setBuildings,
 	redux_setFoodCount,
 	redux_setStoneCount,
 	redux_setWoodCount,
@@ -76,6 +84,7 @@ export {
 	redux_addWood,
 	redux_purchaseUnit,
 	redux_resetUnitCount,
+	redux_setBuildings,
 	redux_setFoodCount,
 	redux_setStoneCount,
 	redux_setWoodCount,
