@@ -35,6 +35,7 @@ namespace wolven531WebsiteDotnet22
         public void ConfigureServices(IServiceCollection services)
         {
             services.TryAddSingleton(_infoService);
+            services.TryAddSingleton<IBuildingStore, InMemoryBuildingStore>();
             services.TryAddSingleton<IUnitStore, InMemoryUnitStore>();
 
             // NOTE: BookStore setup
