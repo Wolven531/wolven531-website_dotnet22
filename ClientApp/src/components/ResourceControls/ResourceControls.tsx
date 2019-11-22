@@ -2,6 +2,7 @@ import React, { useState, FC, useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import {
+	BUILDING_ID_NONE,
 	// GATHERER_MAX_SPEED,
 	INITIAL_RESOURCE_FOOD,
 	INITIAL_RESOURCE_STONE,
@@ -134,6 +135,19 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 					{areUnitsLoading
 						? <p>Units Loading...</p>
 						: props.units.map(unit => <UnitDisplayConnected key={unit.Id} unit={unit} />)}
+				</section>}
+				{currentTab === TAB_BUILDINGS && <section className="building-container">
+					{areBuildingsLoading
+						? <p>Buildings Loading...</p>
+						: props.buildings.map(building => {
+							if (building.Id === BUILDING_ID_NONE) {
+								return
+							}
+
+							return (
+								<p key={building.Id}>{building.Name}</p>
+							)
+						})}
 				</section>}
 				{/*
 				{gatherCount > 0 && <article>
