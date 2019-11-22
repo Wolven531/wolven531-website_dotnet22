@@ -1,3 +1,4 @@
+import { Building } from '../../models/Building'
 import { Unit } from '../../models/Unit'
 import {
 	initFoodCount,
@@ -15,6 +16,7 @@ import {
 	ADD_WOOD,
 	PURCHASE_UNIT,
 	RESET_UNIT_COUNT,
+	SET_BUILDINGS,
 	SET_FOOD,
 	SET_STONE,
 	SET_UNITS,
@@ -27,6 +29,7 @@ import {
 } from '../../constants'
 
 export interface IGameReducerProps {
+	buildings: Building[]
 	food: number
 	money: number
 	populationCap: number
@@ -37,6 +40,7 @@ export interface IGameReducerProps {
 }
 
 const initialState: IGameReducerProps = {
+	buildings: [],
 	food: initFoodCount(),
 	money: initMoney(),
 	populationCap: initPopulationCap(),
@@ -95,6 +99,11 @@ const gameReducer = (state = initialState, action) => {
 			return {
 				...state,
 				unitCountMap: resetUnitCountMap
+			}
+		case SET_BUILDINGS:
+			return {
+				...state,
+				buildings: action.payload
 			}
 		case SET_FOOD:
 			return {
