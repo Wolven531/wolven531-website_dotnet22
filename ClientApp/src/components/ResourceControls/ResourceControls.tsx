@@ -8,11 +8,13 @@ import {
 	INITIAL_RESOURCE_WOOD
 } from '../../constants'
 
+import { Building } from '../../models/Building'
 import { Unit } from '../../models/Unit'
 
 import {
 	// redux_addMoney,
 	redux_resetUnitCount,
+	redux_setBuildings,
 	redux_setFoodCount,
 	redux_setStoneCount,
 	redux_setWoodCount,
@@ -35,8 +37,10 @@ import { UnitDisplayConnected } from '../UnitDisplay/UnitDisplay'
 import './ResourceControls.scss'
 
 interface IResourceControlsProps {
+	buildings: Building[]
 	// redux_addMoney: (additionalAmount: number) => any
 	redux_resetUnitCount: () => any
+	redux_setBuildings: (buildings: Building[]) => any
 	redux_setFoodCount: (count: number) => any
 	redux_setStoneCount: (count: number) => any
 	redux_setWoodCount: (count: number) => any
@@ -51,6 +55,7 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 	// const [gatherIncomeLevel, setGatherIncomeLevel] = useState(initGatherIncomeLevel)
 	// const [gatherSpeedLevel, setGatherSpeedLevel] = useState(initGatherSpeedLevel)
 	const [isShowingModal, setIsShowingModal] = useState(false)
+	const [areBuildingsLoading, setAreBuildingsLoading] = useState(true)
 	const [areUnitsLoading, setAreUnitsLoading] = useState(true)
 	const [currentTab, setCurrentTab] = useState(TAB_UNITS)
 
@@ -93,6 +98,14 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 			.then(unitArray => {
 				setAreUnitsLoading(false)
 				props.redux_setUnits(unitArray)
+			})
+			.catch(err => console.error(err))
+
+		fetch('/api/buildings/info')
+			.then(resp => resp.json())
+			.then(buildingArray => {
+				setAreBuildingsLoading(false)
+				props.redux_setBuildings(buildingArray)
 			})
 			.catch(err => console.error(err))
 	// 	return handleUnmount
@@ -154,6 +167,7 @@ const ResourceControlsUnconnected: FC<IResourceControlsProps> = (props) => {
 const mapDispatchToProps = {
 	// redux_addMoney,
 	redux_resetUnitCount,
+	redux_setBuildings,
 	redux_setFoodCount,
 	redux_setStoneCount,
 	redux_setUnits,
@@ -161,7 +175,10 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = ({ gameReducer }: IApplicationState) => {
-	return { units: gameReducer.units }
+	return {
+		buildings: gameReducer.buildings,
+		units: gameReducer.units
+	}
 }
 
 const ResourceControls = connect(mapStateToProps, mapDispatchToProps)(ResourceControlsUnconnected)
