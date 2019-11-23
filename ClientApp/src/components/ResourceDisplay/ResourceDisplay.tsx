@@ -64,7 +64,11 @@ const ResourceDisplayUnconnected: FC<IResourceDisplayProps> = (props) => {
 				</section>
 			</article>
 			<article className="bottom-row">
-
+				<section
+					className="resource population-display"
+					title={`${props.currentPopulation} of ${props.populationCap} max population (capacity)`}>
+					{props.currentPopulation} / {props.populationCap}
+				</section>
 			</article>
 		</div>
 	)
