@@ -10,6 +10,7 @@ import { IApplicationState } from '../../redux/store'
 // import { monify } from '../utils'
 
 import { FoodEmoji } from '../Emoji/FoodEmoji'
+import { PeopleEmoji } from '../Emoji/PeopleEmoji'
 import { StoneEmoji } from '../Emoji/StoneEmoji'
 import { WoodEmoji } from '../Emoji/WoodEmoji'
 
@@ -67,7 +68,7 @@ const ResourceDisplayUnconnected: FC<IResourceDisplayProps> = (props) => {
 				<section
 					className="resource population-display"
 					title={`${props.currentPopulation} of ${props.populationCap} max population (capacity)`}>
-					{props.currentPopulation} / {props.populationCap}
+					{props.currentPopulation} / {props.populationCap} <PeopleEmoji />
 				</section>
 			</article>
 		</div>
