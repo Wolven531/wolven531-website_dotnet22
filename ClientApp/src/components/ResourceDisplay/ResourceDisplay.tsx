@@ -45,23 +45,28 @@ const ResourceDisplayUnconnected: FC<IResourceDisplayProps> = (props) => {
 		// 			</td>
 		// 		</tr>
 		// 	</tbody>
-		<article className="resource-display">
-			<section
-				className="resource food-display"
-				title={`${props.food} food`}>
-				{props.food} <FoodEmoji />
-			</section>
-			<section
-				className="resource stone-display"
-				title={`${props.stone} stone`}>
-				{props.stone} <StoneEmoji />
-			</section>
-			<section
-				className="resource wood-display"
-				title={`${props.wood} wood`}>
-				{props.wood} <WoodEmoji />
-			</section>
-		</article>
+		<div className="resource-display">
+			<article className="top-row">
+				<section
+					className="resource food-display"
+					title={`${props.food} food`}>
+					{props.food} <FoodEmoji />
+				</section>
+				<section
+					className="resource stone-display"
+					title={`${props.stone} stone`}>
+					{props.stone} <StoneEmoji />
+				</section>
+				<section
+					className="resource wood-display"
+					title={`${props.wood} wood`}>
+					{props.wood} <WoodEmoji />
+				</section>
+			</article>
+			<article className="bottom-row">
+
+			</article>
+		</div>
 	)
 }
 

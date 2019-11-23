@@ -10,24 +10,31 @@
 	// 	text-align: right;
 	// }
 
-	.resource {
-		background-color: rgba(0, 0, 0, .5);
-		border: 1px solid #000;
-		color: #fff;
-		padding: 5px;
-		text-align: center;
+	.top-row {
+		display: grid;
+		gap: 5px;
+		grid-template-columns: 1fr 1fr 1fr;
+		margin-bottom: 10px;
+		margin-top: 10px;
 
-		&.food-display {
-			grid-column: 1;
-		}
+		.resource {
+			background-color: rgba(0, 0, 0, .5);
+			border: 1px solid #000;
+			color: #fff;
+			padding: 5px;
+			text-align: center;
 
-		&.stone-display {
-			grid-column: 2;
-		}
+			&.food-display {
+				grid-column: 1;
+			}
 
-		&.wood-display {
-			grid-column: 3;
+			&.stone-display {
+				grid-column: 2;
+			}
+
+			&.wood-display {
+				grid-column: 3;
+			}
 		}
 	}
-
 }
