@@ -1,7 +1,14 @@
+$color_Black_Blackest: #000;
+$color_Black_SemiGloss: rgba(0, 0, 0, .5);
+$color_White_Whitest: #fff;
+
+$spacing_External: 10px;
+$spacing_Internal: 5px;
+
 .resource-display {
 	display: grid;
-	margin-bottom: 10px;
-	margin-top: 10px;
+	margin-bottom: $spacing_External;
+	margin-top: $spacing_External;
 	// margin: 10px auto;
 
 	// tbody tr td:nth-child(2) {
@@ -11,18 +18,20 @@
 	.bottom-row,
 	.top-row {
 		display: grid;
-		gap: 5px;
-		// margin-bottom: 10px;
-		// margin-top: 10px;
+		gap: $spacing_Internal;
 
 		.resource {
-			background-color: rgba(0, 0, 0, .5);
-			border: 1px solid #000;
-			color: #fff;
-			padding: 5px;
+			background-color: $color_Black_SemiGloss;
+			border: 1px solid $color_Black_Blackest;
+			color: $color_White_Whitest;
+			padding: $spacing_Internal;
 			text-align: center;
 
 			&.food-display {
+				grid-column: 1;
+			}
+
+			&.population-display {
 				grid-column: 1;
 			}
 
@@ -38,11 +47,11 @@
 
 	.bottom-row {
 		grid-template-columns: 1fr;
-		margin-top: 5px;
+		margin-top: $spacing_Internal;
 	}
 
 	.top-row {
 		grid-template-columns: 1fr 1fr 1fr;
-		margin-bottom: 5px;
+		margin-bottom: $spacing_Internal;
 	}
 }
