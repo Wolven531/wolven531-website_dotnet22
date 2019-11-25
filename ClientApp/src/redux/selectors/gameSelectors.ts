@@ -1,4 +1,8 @@
-import { INITIAL_POPULATION_CAP } from '../../constants'
+import {
+	BUILDING_ID_HOUSE,
+	BUILDING_POPULATION_HOUSE,
+	INITIAL_POPULATION_CAP
+} from '../../constants'
 
 import { Unit } from '../../models/Unit'
 
@@ -43,7 +47,17 @@ const selectCurrentPopulation = (state: IApplicationState): number => {
 }
 
 const selectMaxPopulation = (state: IApplicationState) => {
-	return INITIAL_POPULATION_CAP
+	const buildingCountMap = state.gameReducer.buildingCountMap
+	let totalCapacity = INITIAL_POPULATION_CAP
+
+	Object.keys(buildingCountMap).forEach(buildingId => {
+		if (buildingId === String(BUILDING_ID_HOUSE)) {
+			const numHouses = buildingCountMap[buildingId]
+			totalCapacity += BUILDING_POPULATION_HOUSE * numHouses
+		}
+	})
+
+	return totalCapacity
 }
 
 const selectUnitCount = (unitId: string) => (state: IApplicationState): number => {
