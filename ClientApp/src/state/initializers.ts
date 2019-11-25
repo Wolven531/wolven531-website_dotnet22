@@ -3,13 +3,12 @@
 import {
 	// STORAGEKEY_ACHIEVEMENT_LEVEL_GATHER,
 	// STORAGEKEY_ACHIEVEMENT_LEVEL_MONEY,
-	INITIAL_POPULATION_CAP,
 	INITIAL_RESOURCE_FOOD,
+	STORAGEKEY_BUILDINGCOUNTMAP,
 	STORAGEKEY_FOODCOUNT,
 	STORAGEKEY_GATHERINCOMELEVEL,
 	STORAGEKEY_GATHERSPEEDLEVEL,
 	STORAGEKEY_MONEY,
-	STORAGEKEY_POPULATION_CAP,
 	STORAGEKEY_STONECOUNT,
 	STORAGEKEY_UNITCOUNTMAP,
 	STORAGEKEY_WOODCOUNT
@@ -36,6 +35,14 @@ import {
 //	// return parseInt(achieveStr, 10)
 //	return useState(parseInt(achieveStr, 10))
 //}
+
+const initBuildingCountMap = (): any => {
+	const buildingCountMapStr = window.localStorage.getItem(STORAGEKEY_BUILDINGCOUNTMAP)
+	if (!buildingCountMapStr || buildingCountMapStr.length < 1) {
+		return { }
+	}
+	return JSON.parse(buildingCountMapStr)
+}
 
 const initFoodCount = (): number => {
 	const foodStr = window.localStorage.getItem(STORAGEKEY_FOODCOUNT)
@@ -69,14 +76,6 @@ const initMoney = (): number => {
 	return parseInt(moneyStr, 10)
 }
 
-const initPopulationCap = (): number => {
-	const populationCapStr = window.localStorage.getItem(STORAGEKEY_POPULATION_CAP)
-	if (!populationCapStr || populationCapStr.length < 1) {
-		return INITIAL_POPULATION_CAP
-	}
-	return parseInt(populationCapStr, 10)
-}
-
 const initStoneCount = (): number => {
 	const stoneStr = window.localStorage.getItem(STORAGEKEY_STONECOUNT)
 	if (!stoneStr || stoneStr.length < 1) {
@@ -103,11 +102,11 @@ const initWoodCount = (): number => {
 
 export {
 	//initAchievements,
+	initBuildingCountMap,
 	initFoodCount,
 	initGatherIncomeLevel,
 	initGatherSpeedLevel,
 	initMoney,
-	initPopulationCap,
 	initStoneCount,
 	initUnitCountMap,
 	initWoodCount
