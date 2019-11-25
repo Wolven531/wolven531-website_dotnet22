@@ -18,6 +18,7 @@ import {
 } from '../../redux/actions/gameActions'
 import {
 	selectCurrentPopulation,
+	selectMaxPopulation,
 	selectUnitCount
 } from '../../redux/selectors/gameSelectors'
 import { IApplicationState } from '../../redux/store'
@@ -94,7 +95,7 @@ const mapStateToProps = (state: IApplicationState, ownProps: IUnitDisplayProps) 
 		currentPopulation: selectCurrentPopulation(state),
 		food: gameReducer.food,
 		money: gameReducer.money,
-		populationCap: gameReducer.populationCap,
+		populationCap: selectMaxPopulation(state),
 		stone: gameReducer.stone,
 		unitCount: selectUnitCount(String(ownProps.unit.Id))(state),
 		wood: gameReducer.wood
