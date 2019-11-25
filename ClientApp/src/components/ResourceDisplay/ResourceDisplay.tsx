@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 
 import {
 	selectAttackSum,
-	selectCurrentPopulation
+	selectCurrentPopulation,
+	selectMaxPopulation
 } from '../../redux/selectors/gameSelectors'
 import { IApplicationState } from '../../redux/store'
 
@@ -84,7 +85,7 @@ const mapStateToProps = (state: IApplicationState) => {
 		currentPopulation: selectCurrentPopulation(state),
 		food: gameReducer.food,
 		money: gameReducer.money,
-		populationCap: gameReducer.populationCap,
+		populationCap: selectMaxPopulation(state),
 		stone: gameReducer.stone,
 		totalAttack: selectAttackSum(state),
 		wood: gameReducer.wood
