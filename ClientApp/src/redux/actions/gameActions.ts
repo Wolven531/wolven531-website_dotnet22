@@ -6,6 +6,7 @@ import {
 	ADD_STONE,
 	ADD_WOOD,
 	PURCHASE_UNIT,
+	RESET_BUILDING_COUNT,
 	RESET_UNIT_COUNT,
 	SET_BUILDINGS,
 	SET_FOOD,
@@ -32,6 +33,11 @@ const redux_addWood = (additionalAmount: number) => ({
 const redux_purchaseUnit = (unit: Unit) => ({
 	payload: unit,
 	type: PURCHASE_UNIT
+})
+
+const redux_resetBuildingCount = () => ({
+	payload: null,
+	type: RESET_BUILDING_COUNT
 })
 
 const redux_resetUnitCount = () => ({
@@ -69,6 +75,7 @@ const gameActions = {
 	redux_addStone,
 	redux_addWood,
 	redux_purchaseUnit,
+	redux_resetBuildingCount,
 	redux_resetUnitCount,
 	redux_setBuildings,
 	redux_setFoodCount,
@@ -83,6 +90,7 @@ export {
 	redux_addStone,
 	redux_addWood,
 	redux_purchaseUnit,
+	redux_resetBuildingCount,
 	redux_resetUnitCount,
 	redux_setBuildings,
 	redux_setFoodCount,
