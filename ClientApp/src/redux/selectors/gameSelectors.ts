@@ -1,5 +1,8 @@
-import { IApplicationState } from '../store'
+import { INITIAL_POPULATION_CAP } from '../../constants'
+
 import { Unit } from '../../models/Unit'
+
+import { IApplicationState } from '../store'
 
 const selectCurrentPopulation = (state: IApplicationState): number => {
 	const unitCountMap = state.gameReducer.unitCountMap
@@ -10,6 +13,10 @@ const selectCurrentPopulation = (state: IApplicationState): number => {
 	})
 
 	return totalCount
+}
+
+const selectMaxPopulation = (state: IApplicationState) => {
+	return INITIAL_POPULATION_CAP
 }
 
 const selectUnitCount = (unitId: string) => (state: IApplicationState): number => {
@@ -53,5 +60,6 @@ const selectAttackSum = (state: IApplicationState): number => {
 export {
 	selectAttackSum,
 	selectCurrentPopulation,
+	selectMaxPopulation,
 	selectUnitCount
 }
