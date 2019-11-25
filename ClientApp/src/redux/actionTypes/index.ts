@@ -12,6 +12,7 @@ export const SET_STONE = 'SET_STONE'
 export const SET_WOOD = 'SET_WOOD'
 
 // NOTE: building section
+export const RESET_BUILDING_COUNT = 'RESET_BUILDING_COUNT'
 export const SET_BUILDINGS = 'SET_BUILDINGS'
 
 // NOTE: unit section
